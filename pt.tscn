@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://buwxuyrgvdwoi"]
+[gd_scene load_steps=16 format=4 uid="uid://buwxuyrgvdwoi"]
 
 [ext_resource type="Shader" path="res://pt.gdshader" id="1_16pv5"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_f1y3k"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://b743tqu7bpx0p" path="res://16x tilesetexample.png" id="3_o3tjy"]
 [ext_resource type="Texture2D" uid="uid://buo1wyoupojis" path="res://16x CarGameTilesetWIP1.png" id="4_fy3cc"]
 [ext_resource type="Script" path="res://tile_map_layer.gd" id="4_ip7ui"]
+[ext_resource type="Script" path="res://spring.gd" id="7_2qsbf"]
+[ext_resource type="Script" path="res://flag.gd" id="7_ocwrd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvw0m"]
 shader = ExtResource("1_16pv5")
@@ -211,6 +213,7 @@ position = Vector2(320, 320)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_f1y3k")
+metadata/Tag = "Car"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
 shape = SubResource("CircleShape2D_fgm4v")
@@ -228,6 +231,8 @@ position = Vector2(576, 832)
 collision_layer = 4
 collision_mask = 7
 monitoring = false
+script = ExtResource("7_ocwrd")
+metadata/Tag = "Flag"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flag"]
 shape = SubResource("RectangleShape2D_66vwp")
@@ -244,6 +249,7 @@ position = Vector2(960, 320)
 collision_layer = 4
 collision_mask = 7
 monitoring = false
+metadata/Tag = "TurnTile"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TurnTile"]
 shape = SubResource("RectangleShape2D_66vwp")
@@ -255,6 +261,29 @@ scale = Vector2(0.667, 0.667)
 texture = ExtResource("4_fy3cc")
 region_enabled = true
 region_rect = Rect2(384, 256, 128, 128)
+metadata/_edit_lock_ = true
+
+[node name="Spring" type="Area2D" parent="."]
+position = Vector2(1216, 704)
+collision_layer = 4
+collision_mask = 7
+monitoring = false
+script = ExtResource("7_2qsbf")
+DIRECTION = Vector2(-1, 0)
+metadata/Tag = "Spring"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring"]
+shape = SubResource("RectangleShape2D_66vwp")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Spring"]
+position = Vector2(16, 0)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_fy3cc")
+region_enabled = true
+region_rect = Rect2(256, 384, 128, 128)
+region_filter_clip_enabled = true
 
 [connection signal="timeout" from="Timer" to="Car" method="tick"]
 [connection signal="area_entered" from="Car" to="Car" method="on_body_entered"]
