@@ -12,7 +12,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Start"):
 		STARTED = true
 		
-	(get_node("Sprite2D") as Node2D).rotation = DIRECTION.angle()
+	get_node("Sprite2D").rotation = DIRECTION.angle()
+	get_node("RayCast2D").rotation = DIRECTION.angle()
 
 
 	# Get the input direction and handle the movement/deceleration.
@@ -29,6 +30,10 @@ func tick():
 	if !visible or !STARTED:
 		return
 
+	if get_node("RayCast2D").BLOCK_MOVEMENT:
+		DIRECTION = DIRECTION.rotated(deg_to_rad(180))
+		return
+
 	position += DIRECTION.normalized() * GRID_SIZE
 
 func on_body_entered(body: Area2D):
@@ -40,7 +45,7 @@ func on_body_entered(body: Area2D):
 			print("End of level")
 			hide()
 		"Spring":
-			position += (body as Spring).DIRECTION.normalized() * GRID_SIZE
+			position += body.DIRECTION.normalized() * GRID_SIZE
 		"TurnTile":
 			DIRECTION = DIRECTION.rotated(deg_to_rad(90))
 	

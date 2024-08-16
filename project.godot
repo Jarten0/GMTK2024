@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTK2024"
-run/main_scene="res://pt.tscn"
+run/main_scene="res://MainMenu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 config/icon="res://icon.svg"
@@ -47,7 +47,7 @@ Start={
 
 [layer_names]
 
-2d_physics/layer_1="Default"
+2d_physics/layer_1="Wall"
 2d_physics/layer_2="Car"
 2d_physics/layer_3="Flag"
 2d_physics/layer_4="Hazard"
