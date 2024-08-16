@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://buwxuyrgvdwoi"]
+[gd_scene load_steps=17 format=4 uid="uid://buwxuyrgvdwoi"]
 
 [ext_resource type="Shader" path="res://pt.gdshader" id="1_16pv5"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_f1y3k"]
@@ -6,11 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://b743tqu7bpx0p" path="res://16x tilesetexample.png" id="3_o3tjy"]
 [ext_resource type="Texture2D" uid="uid://buo1wyoupojis" path="res://16x CarGameTilesetWIP1.png" id="4_fy3cc"]
 [ext_resource type="Script" path="res://tile_map_layer.gd" id="4_ip7ui"]
+[ext_resource type="Script" path="res://spring.gd" id="7_2qsbf"]
+[ext_resource type="Script" path="res://ray_cast_2d.gd" id="7_8gvsw"]
+[ext_resource type="Script" path="res://flag.gd" id="7_ocwrd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvw0m"]
 shader = ExtResource("1_16pv5")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qrqeq"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dyn3f"]
 resource_name = "proto"
 texture = ExtResource("2_3bo81")
 texture_region_size = Vector2i(8, 8)
@@ -44,7 +47,7 @@ texture_region_size = Vector2i(8, 8)
 1:2/0 = 0
 2:2/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vm8q6"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2l6b"]
 texture = ExtResource("3_o3tjy")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -98,65 +101,136 @@ texture_region_size = Vector2i(128, 128)
 8:4/0 = 0
 9:4/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nv04w"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0j13m"]
 texture = ExtResource("4_fy3cc")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+0:0/0/custom_data_0 = "Wall"
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:0/0/custom_data_0 = "Wall"
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:0/0/custom_data_0 = "Wall"
 5:0/0 = 0
+5:0/0/custom_data_0 = "Road"
 6:0/0 = 0
+6:0/0/custom_data_0 = "Road"
 7:0/0 = 0
+7:0/0/custom_data_0 = "Road"
 8:0/0 = 0
+8:0/0/custom_data_0 = "Road"
 9:0/0 = 0
+9:0/0/custom_data_0 = "Road"
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+0:1/0/custom_data_0 = "Wall"
 1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:1/0/custom_data_0 = "Wall"
 2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:1/0/custom_data_0 = "Wall"
 5:1/0 = 0
+5:1/0/custom_data_0 = "Road"
 6:1/0 = 0
+6:1/0/custom_data_0 = "Grass"
 7:1/0 = 0
+7:1/0/custom_data_0 = "Grass"
 8:1/0 = 0
+8:1/0/custom_data_0 = "Grass"
 9:1/0 = 0
+9:1/0/custom_data_0 = "Road"
 0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+0:2/0/custom_data_0 = "Wall"
 1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:2/0/custom_data_0 = "Wall"
 2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:2/0/custom_data_0 = "Wall"
 3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+3:2/0/custom_data_0 = "TurnTileL"
 4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+4:2/0/custom_data_0 = "TurnTileR"
 5:2/0 = 0
+5:2/0/custom_data_0 = "Road"
 6:2/0 = 0
+6:2/0/custom_data_0 = "Grass"
 7:2/0 = 0
+7:2/0/custom_data_0 = "Grass"
 8:2/0 = 0
+8:2/0/custom_data_0 = "Grass"
 9:2/0 = 0
+9:2/0/custom_data_0 = "Road"
 0:3/0 = 0
 2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+2:3/0/custom_data_0 = "Spring"
 3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
 4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
 5:3/0 = 0
+5:3/0/custom_data_0 = "Road"
 6:3/0 = 0
+6:3/0/custom_data_0 = "Grass"
 7:3/0 = 0
+7:3/0/custom_data_0 = "Grass"
 8:3/0 = 0
+8:3/0/custom_data_0 = "Grass"
 9:3/0 = 0
+9:3/0/custom_data_0 = "Road"
 0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+0:4/0/custom_data_0 = "Wall"
 1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+1:4/0/custom_data_0 = "Flag"
 2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+2:4/0/custom_data_0 = "Spring"
 3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
 4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
 5:4/0 = 0
+5:4/0/custom_data_0 = "Road"
 6:4/0 = 0
+6:4/0/custom_data_0 = "Road"
 7:4/0 = 0
+7:4/0/custom_data_0 = "Road"
 8:4/0 = 0
+8:4/0/custom_data_0 = "Road"
 9:4/0 = 0
+9:4/0/custom_data_0 = "Road"
 0:5/0 = 0
+0:5/0/custom_data_0 = "Car"
 1:5/0 = 0
+1:5/0/custom_data_0 = "Car"
 2:5/0 = 0
+2:5/0/custom_data_0 = "Car"
 3:5/0 = 0
+3:5/0/custom_data_0 = "Car"
 0:6/0 = 0
+0:6/0/custom_data_0 = "Car"
 1:6/0 = 0
+1:6/0/custom_data_0 = "Car"
 2:6/0 = 0
+2:6/0/custom_data_0 = "Car"
 3:6/0 = 0
+3:6/0/custom_data_0 = "Car"
 
 [sub_resource type="TileSet" id="TileSet_6s4uh"]
 tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 2
+custom_data_layer_0/name = "Type"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_qrqeq")
 sources/1 = SubResource("TileSetAtlasSource_vm8q6")
 sources/2 = SubResource("TileSetAtlasSource_nv04w")
@@ -198,19 +272,22 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionTileMapLayer" type="TileMapLayer" parent="."]
 z_index = -100
-material = SubResource("ShaderMaterial_jvw0m")
-tile_map_data = PackedByteArray("AAADAAUAAgAAAAQAAAADAAYAAgAAAAQAAAADAAcAAgAAAAQAAAAIAAQAAgAAAAQAAAAGAAUAAgADAAQAAAAHAAQAAgADAAQAAAA=")
+tile_map_data = PackedByteArray("AAADAAUAAgAAAAQAAAADAAYAAgAAAAQAAAADAAcAAgAAAAQAAAAIAAQAAgAAAAQAAAAGAAUAAgADAAQAAAAHAAQAAgADAAQAAAAHAAcAAgAAAAQAAAA=")
 tile_set = SubResource("TileSet_6s4uh")
-collision_enabled = false
+collision_visibility_mode = 1
 navigation_visibility_mode = 1
 script = ExtResource("4_ip7ui")
 metadata/_edit_lock_ = true
+metadata/Tag = "CollisionTileMap"
+
+[node name="Area2D" type="Area2D" parent="."]
 
 [node name="Car" type="Area2D" parent="."]
 position = Vector2(320, 320)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_f1y3k")
+metadata/Tag = "Car"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
 shape = SubResource("CircleShape2D_fgm4v")
@@ -222,12 +299,20 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_fy3cc")
 region_enabled = true
 region_rect = Rect2(0, 640, 128, 128)
+metadata/_edit_lock_ = true
+
+[node name="RayCast2D" type="RayCast2D" parent="Car"]
+target_position = Vector2(104, 0)
+script = ExtResource("7_8gvsw")
+metadata/_edit_lock_ = true
 
 [node name="Flag" type="Area2D" parent="."]
 position = Vector2(576, 832)
 collision_layer = 4
 collision_mask = 7
 monitoring = false
+script = ExtResource("7_ocwrd")
+metadata/Tag = "Flag"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flag"]
 shape = SubResource("RectangleShape2D_66vwp")
@@ -238,12 +323,14 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_fy3cc")
 region_enabled = true
 region_rect = Rect2(128, 512, 128, 128)
+metadata/_edit_lock_ = true
 
 [node name="TurnTile" type="Area2D" parent="."]
 position = Vector2(960, 320)
 collision_layer = 4
 collision_mask = 7
 monitoring = false
+metadata/Tag = "TurnTile"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TurnTile"]
 shape = SubResource("RectangleShape2D_66vwp")
@@ -255,6 +342,30 @@ scale = Vector2(0.667, 0.667)
 texture = ExtResource("4_fy3cc")
 region_enabled = true
 region_rect = Rect2(384, 256, 128, 128)
+metadata/_edit_lock_ = true
+
+[node name="Spring" type="Area2D" parent="."]
+position = Vector2(1216, 704)
+collision_layer = 4
+collision_mask = 7
+monitoring = false
+script = ExtResource("7_2qsbf")
+DIRECTION = Vector2(-1, 0)
+metadata/Tag = "Spring"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring"]
+shape = SubResource("RectangleShape2D_66vwp")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Spring"]
+position = Vector2(16, 0)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_fy3cc")
+region_enabled = true
+region_rect = Rect2(256, 384, 128, 128)
+region_filter_clip_enabled = true
+metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="Timer" to="Car" method="tick"]
 [connection signal="area_entered" from="Car" to="Car" method="on_body_entered"]
