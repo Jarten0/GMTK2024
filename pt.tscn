@@ -12,7 +12,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvw0m"]
 shader = ExtResource("1_16pv5")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qrqeq"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dyn3f"]
 resource_name = "proto"
 texture = ExtResource("2_3bo81")
 texture_region_size = Vector2i(8, 8)
@@ -46,7 +46,7 @@ texture_region_size = Vector2i(8, 8)
 1:2/0 = 0
 2:2/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vm8q6"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2l6b"]
 texture = ExtResource("3_o3tjy")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -100,7 +100,7 @@ texture_region_size = Vector2i(128, 128)
 8:4/0 = 0
 9:4/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nv04w"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0j13m"]
 texture = ExtResource("4_fy3cc")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -159,9 +159,9 @@ texture_region_size = Vector2i(128, 128)
 
 [sub_resource type="TileSet" id="TileSet_6s4uh"]
 tile_size = Vector2i(128, 128)
-sources/0 = SubResource("TileSetAtlasSource_qrqeq")
-sources/1 = SubResource("TileSetAtlasSource_vm8q6")
-sources/2 = SubResource("TileSetAtlasSource_nv04w")
+sources/0 = SubResource("TileSetAtlasSource_dyn3f")
+sources/1 = SubResource("TileSetAtlasSource_n2l6b")
+sources/2 = SubResource("TileSetAtlasSource_0j13m")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fgm4v"]
 radius = 40.0
