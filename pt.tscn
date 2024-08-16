@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://buwxuyrgvdwoi"]
+
+[ext_resource type="Texture2D" uid="uid://chyqa7rexobvy" path="res://icon.svg" id="1_nv53o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_80qt8"]
+radius = 41.0
+height = 128.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(596, 205)
+floor_constant_speed = true
+floor_max_angle = 0.975639
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_80qt8")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(0.675, 1)
+texture = ExtResource("1_nv53o")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(24, 11)
+anchor_mode = 0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(156, 605)
+polygon = PackedVector2Array(-131, -52, -54, -128, 52, -104, 339, -104, 550, -123, 762, -210, 903, -178, 925, -70, 785, -11, 407, 10, 2, 7)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+texture = ExtResource("1_nv53o")
+polygon = PackedVector2Array(-11, 550, 86, 453, 193, 481, 493, 478, 677, 467, 888, 377, 1064, 399, 1083, 534, 940, 595, 562, 615, 158, 620, 95.2381, 497.388, 193.197, 521.197, 491.156, 517.116, 700.68, 500.789, 900, 419.837, 1042.18, 430.041, 1042.18, 430.721, 14.2857, 559.973)
+uv = PackedVector2Array(3, 544, 83, 468, 193, 481, 493, 478, 677, 467, 888, 377, 1064, 399, 1083, 534, 940, 595, 562, 615, 157, 616, 95.2381, 497.388, 193.197, 521.197, 491.156, 517.116, 700.68, 500.789, 900, 419.837, 1042.18, 430.041, 1042.18, 430.721, 14.2857, 559.973)
+internal_vertex_count = 8
