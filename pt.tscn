@@ -102,11 +102,11 @@ tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_qrqeq")
 sources/1 = SubResource("TileSetAtlasSource_vm8q6")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_66vwp"]
-size = Vector2(80, 80)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_fgm4v"]
 radius = 40.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66vwp"]
+size = Vector2(80, 80)
 
 [node name="Node2D" type="Node2D"]
 
@@ -125,15 +125,6 @@ navigation_visibility_mode = 1
 script = ExtResource("4_ip7ui")
 metadata/_edit_lock_ = true
 
-[node name="Flag" type="Area2D" parent="."]
-position = Vector2(576, 832)
-collision_layer = 4
-collision_mask = 7
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Flag"]
-shape = SubResource("RectangleShape2D_66vwp")
-
 [node name="Car" type="Area2D" parent="."]
 position = Vector2(320, 320)
 collision_layer = 2
@@ -142,6 +133,26 @@ script = ExtResource("1_f1y3k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
 shape = SubResource("CircleShape2D_fgm4v")
+metadata/_edit_lock_ = true
+
+[node name="Flag" type="Area2D" parent="."]
+position = Vector2(576, 832)
+collision_layer = 4
+collision_mask = 7
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flag"]
+shape = SubResource("RectangleShape2D_66vwp")
+metadata/_edit_lock_ = true
+
+[node name="TurnTile" type="Area2D" parent="."]
+position = Vector2(960, 320)
+collision_layer = 4
+collision_mask = 7
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurnTile"]
+shape = SubResource("RectangleShape2D_66vwp")
 metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="Timer" to="Car" method="tick"]
