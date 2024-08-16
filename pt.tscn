@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://buwxuyrgvdwoi"]
+[gd_scene load_steps=14 format=4 uid="uid://buwxuyrgvdwoi"]
 
 [ext_resource type="Shader" path="res://pt.gdshader" id="1_16pv5"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_f1y3k"]
 [ext_resource type="Texture2D" uid="uid://1nuhtuq1qn18" path="res://tilesetexample.png" id="2_3bo81"]
 [ext_resource type="Texture2D" uid="uid://b743tqu7bpx0p" path="res://16x tilesetexample.png" id="3_o3tjy"]
+[ext_resource type="Texture2D" uid="uid://buo1wyoupojis" path="res://16x CarGameTilesetWIP1.png" id="4_fy3cc"]
 [ext_resource type="Script" path="res://tile_map_layer.gd" id="4_ip7ui"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvw0m"]
@@ -97,18 +98,76 @@ texture_region_size = Vector2i(128, 128)
 8:4/0 = 0
 9:4/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nv04w"]
+texture = ExtResource("4_fy3cc")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+0:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_6s4uh"]
 tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_qrqeq")
 sources/1 = SubResource("TileSetAtlasSource_vm8q6")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_66vwp"]
-size = Vector2(80, 80)
+sources/2 = SubResource("TileSetAtlasSource_nv04w")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fgm4v"]
 radius = 40.0
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66vwp"]
+size = Vector2(80, 80)
+
+[node name="PrototypeLevelOne" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -117,22 +176,35 @@ anchor_mode = 0
 autostart = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_index = -100
 material = SubResource("ShaderMaterial_jvw0m")
-tile_map_data = PackedByteArray("AAABAAEAAQABAAEAAAABAAIAAQABAAEAAAABAAMAAQABAAEAAAACAAEAAQABAAEAAAACAAMAAQAEAAEAAAADAAEAAQABAAEAAAADAAIAAQAEAAEAAAADAAMAAQAEAAEAAAADAAQAAQABAAEAAAADAAUAAQABAAEAAAADAAYAAQABAAEAAAAEAAEAAQABAAEAAAAEAAIAAQAEAAEAAAAEAAMAAQAHAAMAAAAEAAQAAQABAAEAAAAEAAUAAQABAAEAAAAEAAYAAQAEAAEAAAAFAAEAAQABAAEAAAAFAAIAAQAEAAEAAAAFAAMAAQAEAAEAAAAFAAQAAQABAAEAAAAFAAUAAQABAAEAAAAFAAYAAQAEAAEAAAAGAAEAAQABAAEAAAAGAAIAAQAEAAEAAAAGAAMAAQAEAAEAAAAGAAQAAQAHAAEAAAAGAAUAAQAHAAEAAAAGAAYAAQAEAAEAAAAHAAEAAQABAAEAAAAHAAIAAQAEAAEAAAAHAAMAAQAEAAEAAAAHAAQAAQAHAAEAAAAHAAUAAQAHAAEAAAAHAAYAAQAEAAEAAAAIAAEAAQABAAEAAAAIAAIAAQABAAEAAAAIAAMAAQAEAAEAAAAIAAQAAQABAAEAAAAIAAUAAQAEAAEAAAAIAAYAAQAEAAEAAAAJAAEAAQABAAEAAAAJAAIAAQABAAEAAAAJAAMAAQAEAAEAAAAJAAQAAQAEAAEAAAAJAAUAAQAEAAEAAAAJAAYAAQABAAEAAAAKAAIAAQABAAEAAAAKAAMAAQABAAEAAAAKAAQAAQABAAEAAAAKAAUAAQABAAEAAAABAAQAAQABAAEAAAACAAQAAQABAAEAAAADAAcAAQABAAEAAAAEAAcAAQABAAEAAAAFAAcAAQABAAEAAAAGAAcAAQABAAEAAAAHAAcAAQABAAEAAAAIAAcAAQABAAEAAAAJAAcAAQABAAEAAAAKAAYAAQABAAEAAAACAAIAAQAEAAEAAAA=")
+tile_map_data = PackedByteArray("AAABAAEAAQABAAEAAAABAAIAAQABAAEAAAABAAMAAQABAAEAAAACAAEAAQABAAEAAAACAAMAAQAEAAEAAAADAAEAAQABAAEAAAADAAIAAQAEAAEAAAADAAMAAQAEAAEAAAADAAQAAQABAAEAAAADAAUAAQABAAEAAAADAAYAAQABAAEAAAAEAAEAAQABAAEAAAAEAAIAAQAEAAEAAAAEAAMAAQAHAAMAAAAEAAQAAQABAAEAAAAEAAUAAQABAAEAAAAEAAYAAQAEAAEAAAAFAAEAAQABAAEAAAAFAAIAAQAEAAEAAAAFAAMAAQAEAAEAAAAFAAQAAQABAAEAAAAFAAUAAQABAAEAAAAFAAYAAQAEAAEAAAAGAAEAAQABAAEAAAAGAAIAAQAEAAEAAAAGAAMAAQAEAAEAAAAGAAQAAQAHAAEAAAAGAAUAAQAHAAEAAAAHAAEAAQABAAEAAAAHAAIAAQAEAAEAAAAHAAMAAQAEAAEAAAAHAAQAAQAHAAEAAAAHAAUAAQAHAAEAAAAHAAYAAQAEAAEAAAAIAAEAAQABAAEAAAAIAAIAAQABAAEAAAAIAAMAAQAEAAEAAAAIAAQAAQABAAEAAAAIAAUAAQAEAAEAAAAIAAYAAQAEAAEAAAAJAAEAAQABAAEAAAAJAAIAAQABAAEAAAAJAAMAAQAEAAEAAAAJAAQAAQAEAAEAAAAJAAUAAQAEAAEAAAAJAAYAAQABAAEAAAAKAAIAAQABAAEAAAAKAAMAAQABAAEAAAAKAAQAAQABAAEAAAAKAAUAAQABAAEAAAABAAQAAQABAAEAAAACAAQAAQABAAEAAAADAAcAAQABAAEAAAAEAAcAAQABAAEAAAAFAAcAAQABAAEAAAAGAAcAAQABAAEAAAAHAAcAAQABAAEAAAAIAAcAAQABAAEAAAAJAAcAAQABAAEAAAAKAAYAAQABAAEAAAACAAIAAQAEAAEAAAAGAAYAAQAEAAEAAAA=")
 tile_set = SubResource("TileSet_6s4uh")
 collision_enabled = false
 navigation_visibility_mode = 1
 script = ExtResource("4_ip7ui")
 metadata/_edit_lock_ = true
 
-[node name="Flag" type="Area2D" parent="."]
-position = Vector2(576, 832)
-collision_layer = 4
-collision_mask = 7
-monitoring = false
+[node name="RoadLayer" type="TileMapLayer" parent="."]
+z_index = -100
+material = SubResource("ShaderMaterial_jvw0m")
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAAKAAUAAgAHAAIAAAAFAAQAAgAHAAIAAAAGAAQAAgAHAAIAAAAKAAQAAgAHAAIAAAALAAQAAgAHAAIAAAAMAAQAAgAHAAIAAAANAAQAAgAHAAIAAAAOAAQAAgAHAAIAAAAPAAQAAgAHAAIAAAAEAAQAAgAHAAIAAAAEAAcAAgAHAAIAAAAFAAcAAgAHAAIAAAANAAcAAgAHAAIAAAAOAAcAAgAHAAIAAAAPAAcAAgAHAAIAAAAOAAYAAgAHAAIAAAAQAAcAAgAHAAIAAAARAAcAAgAHAAIAAAARAAYAAgAHAAIAAAASAAYAAgAHAAIAAAASAAcAAgAHAAIAAAATAAcAAgAHAAIAAAATAAYAAgAHAAIAAAATAAgAAgAHAAIAAAASAAgAAgAHAAIAAAATAAkAAgAHAAIAAAATAAoAAgAHAAIAAAASAAoAAgAHAAIAAAASAAsAAgAHAAIAAAATAAsAAgAHAAIAAAAQAA0AAgAHAAIAAAAPAA0AAgAHAAIAAAAPAAwAAgAHAAIAAAAOAAwAAgAHAAIAAAAMAA0AAgAHAAIAAAANAA0AAgAHAAIAAAALAA0AAgAHAAIAAAAKAAwAAgAHAAIAAAAKAA0AAgAHAAIAAAA=")
+tile_set = SubResource("TileSet_6s4uh")
+collision_enabled = false
+navigation_visibility_mode = 1
+script = ExtResource("4_ip7ui")
+metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Flag"]
-shape = SubResource("RectangleShape2D_66vwp")
+[node name="CollisionTileMapLayer" type="TileMapLayer" parent="."]
+z_index = -100
+material = SubResource("ShaderMaterial_jvw0m")
+tile_map_data = PackedByteArray("AAADAAUAAgAAAAQAAAADAAYAAgAAAAQAAAADAAcAAgAAAAQAAAAIAAQAAgAAAAQAAAAGAAUAAgADAAQAAAAHAAQAAgADAAQAAAA=")
+tile_set = SubResource("TileSet_6s4uh")
+collision_enabled = false
+navigation_visibility_mode = 1
+script = ExtResource("4_ip7ui")
+metadata/_edit_lock_ = true
 
 [node name="Car" type="Area2D" parent="."]
 position = Vector2(320, 320)
@@ -143,6 +215,46 @@ script = ExtResource("1_f1y3k")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
 shape = SubResource("CircleShape2D_fgm4v")
 metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Car"]
+z_index = 20
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_fy3cc")
+region_enabled = true
+region_rect = Rect2(0, 640, 128, 128)
+
+[node name="Flag" type="Area2D" parent="."]
+position = Vector2(576, 832)
+collision_layer = 4
+collision_mask = 7
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flag"]
+shape = SubResource("RectangleShape2D_66vwp")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Flag"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_fy3cc")
+region_enabled = true
+region_rect = Rect2(128, 512, 128, 128)
+
+[node name="TurnTile" type="Area2D" parent="."]
+position = Vector2(960, 320)
+collision_layer = 4
+collision_mask = 7
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurnTile"]
+shape = SubResource("RectangleShape2D_66vwp")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TurnTile"]
+rotation = 1.5708
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("4_fy3cc")
+region_enabled = true
+region_rect = Rect2(384, 256, 128, 128)
 
 [connection signal="timeout" from="Timer" to="Car" method="tick"]
 [connection signal="area_entered" from="Car" to="Car" method="on_body_entered"]
