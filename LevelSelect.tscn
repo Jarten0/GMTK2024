@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctjcqadss426g"]
+
+[ext_resource type="Script" path="res://buttons_level_select.gd" id="1_8re1b"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BTMM" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.396701
+anchor_top = 0.742284
+anchor_right = 0.603299
+anchor_bottom = 0.805556
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back to main menu"
+script = ExtResource("1_8re1b")
+metadata/_edit_use_anchors_ = true
+
+[node name="Level1" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.340278
+anchor_top = 0.468364
+anchor_right = 0.450521
+anchor_bottom = 0.531636
+grow_vertical = 2
+text = "Level 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="Level2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.547743
+anchor_top = 0.468364
+anchor_right = 0.657986
+anchor_bottom = 0.531636
+grow_vertical = 2
+text = "Level 2"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="BTMM" to="BTMM" method="_on_pressed"]
+[connection signal="pressed" from="Level1" to="BTMM" method="_on_level_1_pressed"]
+[connection signal="pressed" from="Level2" to="BTMM" method="_on_level_2_pressed"]

@@ -12,12 +12,12 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://MainMenu.tscn")
 
 
-func _on_new_game_pressed() -> void:
+func _on_level_1_pressed() -> void:
 	get_tree().change_scene_to_file("res://pt.tscn")
 
 
-func _on_load_level_pressed() -> void:
-	get_tree().change_scene_to_file("res://LevelSelect.tscn")
+func _on_level_2_pressed() -> void:
+	pass # Replace with function body.
