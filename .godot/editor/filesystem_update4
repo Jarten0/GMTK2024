@@ -1,13 +1,7 @@
-res://scenes/car.tscn
-res://shaders/pt.gdshader
-res://scripts/character_body_2d.gd
 res://levels/pt.tscn
-res://scenes/carencapsulation.gd
+res://shaders/pt.gdshader
+res://scenes/car.tscn
+res://scenes/scaleable.tscn
 res://scenes/flag.tscn
 res://scenes/spring.tscn
-res://scenes/scaleable.tscn
-res://levels/LevelManager.gd
-res://scripts/car_interface.gd
-res://scripts/car_internal.gd
-res://scripts/scale_on_click.gd
 res://scenes/turn_tile.tscn
