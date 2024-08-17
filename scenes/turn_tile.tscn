@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyl5behnlkvsh"]
+[gd_scene load_steps=6 format=3 uid="uid://cyl5behnlkvsh"]
 
+[ext_resource type="Script" path="res://scripts/turn_tile_interface.gd" id="1_1a8fm"]
 [ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="1_h11j2"]
-[ext_resource type="Texture2D" uid="uid://buo1wyoupojis" path="res://assets/16x CarGameTilesetWIP1.png" id="2_oakhx"]
+[ext_resource type="Texture2D" uid="uid://dfbm6kug61smu" path="res://assets/CarGameTilesetWIP2.png" id="2_r1ie0"]
+[ext_resource type="Script" path="res://scripts/turn_tile_internal.gd" id="3_i6gdl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66vwp"]
 size = Vector2(48, 48)
 
 [node name="TurnTile" type="Node2D"]
+script = ExtResource("1_1a8fm")
 
 [node name="Scaleable" parent="." node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("1_h11j2")]
 OTHER_NODE = NodePath("../TurnTile")
@@ -15,6 +18,7 @@ OTHER_NODE = NodePath("../TurnTile")
 collision_layer = 4
 collision_mask = 7
 monitoring = false
+script = ExtResource("3_i6gdl")
 metadata/Tag = "TurnTile"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TurnTile"]
@@ -23,8 +27,8 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="TurnTile"]
 rotation = 1.5708
-scale = Vector2(0.667, 0.667)
-texture = ExtResource("2_oakhx")
+scale = Vector2(16, 16)
+texture = ExtResource("2_r1ie0")
 region_enabled = true
-region_rect = Rect2(384, 256, 128, 128)
+region_rect = Rect2(24, 16, 8, 8)
 metadata/_edit_lock_ = true

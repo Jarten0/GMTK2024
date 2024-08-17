@@ -11,9 +11,9 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		return
 		
 	if event.is_action_pressed("ScaleUp"):
-		node.scale *= 1.5
+		node.scale *= 2
 		node.scale = node.scale.normalized() * clampf(node.scale.length(), 0.5, SCALE_LIMIT)
 
 	if event.is_action_pressed("ScaleDown"):
-		node.scale /= 1.5
+		node.scale /= 2
 		node.scale = node.scale.normalized() * clampf(node.scale.length(), 0.5, SCALE_LIMIT)
