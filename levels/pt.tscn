@@ -58,7 +58,7 @@ metadata/Tag = "ObjectLayer"
 metadata/_edit_lock_ = true
 
 [node name="Spring" parent="Objects" instance=ExtResource("7_r1uog")]
-position = Vector2(960, 320)
+position = Vector2(1088, 320)
 rotation = -1.5708
 
 [node name="Spring2" parent="Objects" instance=ExtResource("7_r1uog")]
@@ -67,11 +67,10 @@ rotation = 3.14159
 
 [node name="TurnTile" parent="Objects" instance=ExtResource("8_yrypd")]
 position = Vector2(704, 256)
-TURN_COUNTERCLOCKWISE = true
 metadata/Tag = "TurnTile"
 
 [node name="TurnTile2" parent="Objects" instance=ExtResource("8_yrypd")]
-position = Vector2(256, 512)
+position = Vector2(192, 512)
 rotation = -1.5708
 metadata/Tag = "TurnTile"
 
