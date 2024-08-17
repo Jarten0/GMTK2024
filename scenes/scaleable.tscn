@@ -3,9 +3,14 @@
 [ext_resource type="Script" path="res://scripts/scaleOnClick.gd" id="1_47c23"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qqmcr"]
+size = Vector2(112, 112)
 
 [node name="Scaleable" type="Area2D"]
+collision_mask = 0
+monitorable = false
 script = ExtResource("1_47c23")
 
 [node name="ScaleHitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qqmcr")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

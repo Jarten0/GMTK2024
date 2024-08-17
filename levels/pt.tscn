@@ -1,18 +1,17 @@
-[gd_scene load_steps=13 format=4 uid="uid://buwxuyrgvdwoi"]
+[gd_scene load_steps=10 format=4 uid="uid://buwxuyrgvdwoi"]
 
-[ext_resource type="Shader" path="res://shaders/pt.gdshader" id="1_16pv5"]
-[ext_resource type="Script" path="res://scripts/character_body_2d.gd" id="1_f1y3k"]
-[ext_resource type="Texture2D" uid="uid://buo1wyoupojis" path="res://assets/16x CarGameTilesetWIP1.png" id="4_fy3cc"]
-[ext_resource type="PackedScene" uid="uid://cbhbiqksousog" path="res://scenes/spring.tscn" id="7_1m3so"]
-[ext_resource type="Script" path="res://scripts/ray_cast_2d.gd" id="7_8gvsw"]
-[ext_resource type="Script" path="res://scripts/flag.gd" id="7_ocwrd"]
-[ext_resource type="Script" path="res://scripts/scaleOnClick.gd" id="9_xxded"]
+[ext_resource type="Shader" path="res://shaders/pt.gdshader" id="1_jgt8j"]
+[ext_resource type="Texture2D" uid="uid://buo1wyoupojis" path="res://assets/16x CarGameTilesetWIP1.png" id="2_2og11"]
+[ext_resource type="PackedScene" uid="uid://dacyksh0vdcf1" path="res://scenes/car.tscn" id="6_5k435"]
+[ext_resource type="PackedScene" uid="uid://cbhbiqksousog" path="res://scenes/spring.tscn" id="7_r1uog"]
+[ext_resource type="PackedScene" uid="uid://5hyunbfu11ky" path="res://scenes/flag.tscn" id="8_eld5y"]
+[ext_resource type="PackedScene" uid="uid://cyl5behnlkvsh" path="res://scenes/turn_tile.tscn" id="8_yrypd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvw0m"]
-shader = ExtResource("1_16pv5")
+shader = ExtResource("1_jgt8j")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nv04w"]
-texture = ExtResource("4_fy3cc")
+texture = ExtResource("2_2og11")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
@@ -152,12 +151,6 @@ custom_data_layer_0/name = "Type"
 custom_data_layer_0/type = 4
 sources/2 = SubResource("TileSetAtlasSource_nv04w")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fgm4v"]
-radius = 40.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_66vwp"]
-size = Vector2(32, 32)
-
 [node name="PrototypeLevelOne" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -201,102 +194,22 @@ metadata/_edit_lock_ = true
 metadata/Tag = "Hazard"
 
 [node name="Objects" type="Node2D" parent="."]
-
-[node name="Car" type="Area2D" parent="Objects"]
-position = Vector2(320, 320)
-collision_layer = 2
-collision_mask = 255
-script = ExtResource("1_f1y3k")
-metadata/Tag = "Car"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Car"]
-shape = SubResource("CircleShape2D_fgm4v")
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Objects/Car"]
-z_index = 20
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("4_fy3cc")
-region_enabled = true
-region_rect = Rect2(0, 640, 128, 128)
-region_filter_clip_enabled = true
-metadata/_edit_lock_ = true
+[node name="Spring" parent="Objects" instance=ExtResource("7_r1uog")]
+position = Vector2(960, 576)
 
-[node name="RayCast2D" type="RayCast2D" parent="Objects/Car/Sprite2D"]
-position = Vector2(0, -40)
-scale = Vector2(1.25, 1.25)
-target_position = Vector2(64, 0)
-script = ExtResource("7_8gvsw")
-
-[node name="RayCast2D2" type="RayCast2D" parent="Objects/Car/Sprite2D"]
-scale = Vector2(1.25, 1.25)
-target_position = Vector2(64, 0)
-script = ExtResource("7_8gvsw")
-
-[node name="RayCast2D3" type="RayCast2D" parent="Objects/Car/Sprite2D"]
-position = Vector2(0, 40)
-scale = Vector2(1.25, 1.25)
-target_position = Vector2(64, 0)
-script = ExtResource("7_8gvsw")
-
-[node name="Scaleable" type="Node" parent="Objects/Car"]
-script = ExtResource("9_xxded")
-
-[node name="Flag" type="Area2D" parent="Objects"]
-position = Vector2(576, 832)
-collision_layer = 4
-collision_mask = 7
-monitoring = false
-script = ExtResource("7_ocwrd")
-metadata/Tag = "Flag"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Flag"]
-shape = SubResource("RectangleShape2D_66vwp")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Objects/Flag"]
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("4_fy3cc")
-region_enabled = true
-region_rect = Rect2(128, 512, 128, 128)
-metadata/_edit_lock_ = true
-
-[node name="Scaleable" type="Node" parent="Objects/Flag"]
-script = ExtResource("9_xxded")
-
-[node name="TurnTile" type="Area2D" parent="Objects"]
+[node name="TurnTile" parent="Objects" instance=ExtResource("8_yrypd")]
 position = Vector2(960, 320)
-collision_layer = 4
-collision_mask = 7
-monitoring = false
-metadata/Tag = "TurnTile"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/TurnTile"]
-shape = SubResource("RectangleShape2D_66vwp")
-metadata/_edit_lock_ = true
+[node name="Flag" parent="Objects" instance=ExtResource("8_eld5y")]
+position = Vector2(576, 832)
 
-[node name="Sprite2D" type="Sprite2D" parent="Objects/TurnTile"]
-rotation = 1.5708
-scale = Vector2(0.667, 0.667)
-texture = ExtResource("4_fy3cc")
-region_enabled = true
-region_rect = Rect2(384, 256, 128, 128)
-metadata/_edit_lock_ = true
-
-[node name="Scaleable" type="Node" parent="Objects/TurnTile"]
-script = ExtResource("9_xxded")
-
-[node name="Spring" parent="Objects" instance=ExtResource("7_1m3so")]
+[node name="Car" parent="Objects" instance=ExtResource("6_5k435")]
+position = Vector2(320, 320)
 
 [node name="Timers" type="Node" parent="."]
 
 [node name="Global Tick" type="Timer" parent="Timers"]
 wait_time = 0.5
 autostart = true
-
-[connection signal="area_entered" from="Objects/Car" to="Objects/Car" method="on_body_entered"]
-[connection signal="body_entered" from="Objects/Car" to="Objects/Car" method="on_body_entered"]
-[connection signal="input_event" from="Objects/Car" to="Objects/Car/Scaleable" method="_on_input_event"]
-[connection signal="input_event" from="Objects/Flag" to="Objects/Flag/Scaleable" method="_on_input_event"]
-[connection signal="input_event" from="Objects/TurnTile" to="Objects/TurnTile/Scaleable" method="_on_input_event"]
-[connection signal="timeout" from="Timers/Global Tick" to="Objects/Car" method="tick"]

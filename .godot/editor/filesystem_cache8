@@ -10,17 +10,17 @@ tilesetexample.png::CompressedTexture2D::1852974715406380009::1723832124::172385
 ::res://levels/::1723853976
 LevelSelect.tscn::PackedScene::6125158808460843672::1723844843::0::1::::<><>::res://buttons_level_select.gd
 MainMenu.tscn::PackedScene::5283998927907210622::1723853964::0::1::::<><>::res://scripts/buttons.gd
-::res://scenes/::1723854012
-pt.tscn::PackedScene::3837047360877688356::1723854008::0::1::::<><>::res://shaders/pt.gdshader<>res://scripts/character_body_2d.gd<>uid://buo1wyoupojis::::res://assets/16x CarGameTilesetWIP1.png<>uid://cbhbiqksousog::::res://scenes/spring.tscn<>res://scripts/ray_cast_2d.gd<>res://scripts/flag.gd<>res://scripts/scaleOnClick.gd
-scaleable.tscn::PackedScene::8264033291731114292::1723853996::0::1::::<><>::res://scripts/scaleOnClick.gd
-spring.tscn::PackedScene::4857556715305658730::1723854012::0::1::::<><>::res://scripts/spring.gd<>uid://dp0fokuaqjer1::::res://scenes/scaleable.tscn<>uid://buo1wyoupojis::::res://assets/16x CarGameTilesetWIP1.png
-::res://scripts/::1723853997
+::res://scenes/::1723854733
+pt.tscn::PackedScene::3837047360877688356::1723854733::0::1::::<><>::res://shaders/pt.gdshader<>uid://buo1wyoupojis::::res://assets/16x CarGameTilesetWIP1.png<>res://scripts/character_body_2d.gd<>res://scripts/ray_cast_2d.gd<>res://scripts/scaleOnClick.gd<>res://scripts/flag.gd<>uid://cbhbiqksousog::::res://scenes/spring.tscn
+scaleable.tscn::PackedScene::8264033291731114292::1723854733::0::1::::<><>::res://scripts/scaleOnClick.gd
+spring.tscn::PackedScene::4857556715305658730::1723854733::0::1::::<><>::res://scripts/spring.gd<>uid://dp0fokuaqjer1::::res://scenes/scaleable.tscn<>uid://buo1wyoupojis::::res://assets/16x CarGameTilesetWIP1.png
+::res://scripts/::1723854441
 buttons.gd::GDScript::-1::1723844843::0::1::::<>Button<>::
 buttons_level_select.gd::GDScript::-1::1723846240::0::1::::<>Button<>::
 character_body_2d.gd::GDScript::-1::1723853061::0::1::::<>Area2D<>::
 flag.gd::GDScript::-1::1723838734::0::1::::LevelFlag<>Area2D<>::
 ray_cast_2d.gd::GDScript::-1::1723852133::0::1::::<>RayCast2D<>::
-scaleOnClick.gd::GDScript::-1::1723853739::0::1::::<>Node<>::
+scaleOnClick.gd::GDScript::-1::1723854441::0::1::::<>Node<>::
 spring.gd::GDScript::-1::1723848399::0::1::::Spring<>Area2D<>::
-::res://shaders/::1723854008
-pt.gdshader::Shader::-1::1723854008::0::1::::<><>::
+::res://shaders/::1723854733
+pt.gdshader::Shader::-1::1723854733::0::1::::<><>::

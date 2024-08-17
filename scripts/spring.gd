@@ -1,5 +1,5 @@
 class_name Spring
 
-extends Area2D
+extends Node
 
 @export var DIRECTION: Vector2 = Vector2.UP
