@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://scripts/car_interface.gd" id="1_7hk0w"]
 [ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="1_ygvcg"]
 [ext_resource type="Script" path="res://scripts/car_internal.gd" id="2_5muok"]
-[ext_resource type="Texture2D" uid="uid://buo1wyoupojis" path="res://assets/16x CarGameTilesetWIP1.png" id="3_dm435"]
 [ext_resource type="Script" path="res://scripts/raycast_walls.gd" id="4_mkqm4"]
+[ext_resource type="Texture2D" uid="uid://crqdhx1frltud" path="res://assets/CarGameTileset8-17-24WIP5.png" id="5_0dexq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fgm4v"]
-radius = 40.0
+radius = 32.0
 
 [node name="Car" type="Node2D"]
 script = ExtResource("1_7hk0w")
@@ -26,31 +26,29 @@ metadata/Tag = "Car"
 shape = SubResource("CircleShape2D_fgm4v")
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Car"]
+[node name="RotatingPart" type="Node2D" parent="Car"]
+
+[node name="RayCast2D" type="RayCast2D" parent="Car/RotatingPart"]
+target_position = Vector2(72, 0)
+script = ExtResource("4_mkqm4")
+
+[node name="RayCast2D2" type="RayCast2D" parent="Car/RotatingPart"]
+position = Vector2(0, -32)
+target_position = Vector2(72, 0)
+script = ExtResource("4_mkqm4")
+
+[node name="RayCast2D3" type="RayCast2D" parent="Car/RotatingPart"]
+position = Vector2(0, 32)
+target_position = Vector2(72, 0)
+script = ExtResource("4_mkqm4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Car/RotatingPart"]
 z_index = 20
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("3_dm435")
+position = Vector2(-8, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("5_0dexq")
 region_enabled = true
-region_rect = Rect2(0, 640, 128, 128)
-region_filter_clip_enabled = true
-metadata/_edit_lock_ = true
-
-[node name="RayCast2D" type="RayCast2D" parent="Car/Sprite2D"]
-position = Vector2(0, -40)
-scale = Vector2(1.25, 1.25)
-target_position = Vector2(64, 0)
-script = ExtResource("4_mkqm4")
-
-[node name="RayCast2D2" type="RayCast2D" parent="Car/Sprite2D"]
-scale = Vector2(1.25, 1.25)
-target_position = Vector2(64, 0)
-script = ExtResource("4_mkqm4")
-
-[node name="RayCast2D3" type="RayCast2D" parent="Car/Sprite2D"]
-position = Vector2(0, 40)
-scale = Vector2(1.25, 1.25)
-target_position = Vector2(64, 0)
-script = ExtResource("4_mkqm4")
+region_rect = Rect2(16, 32, 32, 16)
 
 [connection signal="area_entered" from="Car" to="Car" method="on_body_entered"]
 [connection signal="body_entered" from="Car" to="Car" method="on_body_entered"]

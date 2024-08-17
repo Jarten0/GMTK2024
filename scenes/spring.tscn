@@ -1,30 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbhbiqksousog"]
+[gd_scene load_steps=7 format=3 uid="uid://cbhbiqksousog"]
 
 [ext_resource type="Script" path="res://scripts/spring_internal.gd" id="1_157om"]
+[ext_resource type="Shader" path="res://scenes/focus_lighten.gdshader" id="2_ccgso"]
 [ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="2_ln0ix"]
-[ext_resource type="Texture2D" uid="uid://buo1wyoupojis" path="res://assets/16x CarGameTilesetWIP1.png" id="3_t0itg"]
+[ext_resource type="Texture2D" uid="uid://dfm0xgxcechd1" path="res://assets/FixedCarGameTileset8-17-24WIP5 (1).png" id="3_vdlxk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dlrxi"]
+shader = ExtResource("2_ccgso")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66vwp"]
-size = Vector2(48, 48)
+size = Vector2(112, 112)
 
 [node name="Spring" type="Node2D"]
 metadata/Tag = "Spring"
 
 [node name="Scaleable" parent="." node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("2_ln0ix")]
 OTHER_NODE = NodePath("../Spring")
-metadata/_edit_lock_ = true
 
 [node name="Spring" type="Area2D" parent="."]
+material = SubResource("ShaderMaterial_dlrxi")
 script = ExtResource("1_157om")
 metadata/Tag = "Spring"
 
 [node name="Sprite2D" type="Sprite2D" parent="Spring"]
-position = Vector2(-5.96046e-07, 16)
-scale = Vector2(0.625, 0.625)
-texture = ExtResource("3_t0itg")
+position = Vector2(0, -64)
+scale = Vector2(8, 8)
+texture = ExtResource("3_vdlxk")
 flip_v = true
+hframes = 3
+frame = 2
 region_enabled = true
-region_rect = Rect2(256, 384, 128, 128)
+region_rect = Rect2(0, 48, 48, 32)
 region_filter_clip_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spring"]

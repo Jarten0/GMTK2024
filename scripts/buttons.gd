@@ -1,16 +1,10 @@
 extends Button
 
-
 func _on_pressed() -> void:
 	get_tree().quit()
 
-
 func _on_new_game_pressed() -> void:
-	get_tree().change_scene_to_file("res://levels/pt.tscn")
-
+	get_tree().root.get_node("LevelManager").load_level(1)
 
 func _on_load_level_pressed() -> void:
-	get_tree().change_scene_to_file("res://levels/LevelSelect.tscn")
-
-func load_level():
-	get_tree().change_scene_to_file("res://levels/level_manager.tscn")
+	get_tree().root.get_node("LevelManager").level_select()

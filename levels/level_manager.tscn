@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgjkajwga3lrj"]
+[gd_scene load_steps=6 format=3 uid="uid://bgjkajwga3lrj"]
 
-[ext_resource type="Script" path="res://levels/LevelManager.gd" id="1_3fj03"]
+[ext_resource type="Script" path="res://scripts/LevelManager.gd" id="1_3fj03"]
+[ext_resource type="PackedScene" uid="uid://chjuxqbffvjs5" path="res://levels/MainMenu.tscn" id="2_fd8mp"]
+[ext_resource type="PackedScene" uid="uid://ctjcqadss426g" path="res://levels/LevelSelect.tscn" id="3_vuvgs"]
+[ext_resource type="PackedScene" uid="uid://buwxuyrgvdwoi" path="res://levels/pt.tscn" id="4_vas4g"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="5_h6pyi"]
 
 [node name="LevelManager" type="Control"]
 layout_mode = 3
@@ -10,3 +14,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3fj03")
+InitialScene = ExtResource("2_fd8mp")
+LevelSelect = ExtResource("3_vuvgs")
+PackedSceneLevels = Array[PackedScene]([ExtResource("2_fd8mp"), ExtResource("4_vas4g")])
+
+[node name="UI" type="Container" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+script = ExtResource("5_h6pyi")
+
+[node name="Label" type="Label" parent="UI"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Level:"
+vertical_alignment = 2
+
+[node name="Counter" type="Label" parent="UI"]
+layout_mode = 2
