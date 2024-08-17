@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/turn_tile_interface.gd" id="1_1a8fm"]
 [ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="1_h11j2"]
-[ext_resource type="Texture2D" uid="uid://dfbm6kug61smu" path="res://assets/CarGameTilesetWIP2.png" id="2_r1ie0"]
 [ext_resource type="Script" path="res://scripts/turn_tile_internal.gd" id="3_i6gdl"]
+[ext_resource type="Texture2D" uid="uid://dfm0xgxcechd1" path="res://assets/FixedCarGameTileset8-17-24WIP5 (1).png" id="4_jjn1v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66vwp"]
 size = Vector2(48, 48)
@@ -27,8 +27,8 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="TurnTile"]
 rotation = 1.5708
-scale = Vector2(16, 16)
-texture = ExtResource("2_r1ie0")
+scale = Vector2(8, 8)
+texture = ExtResource("4_jjn1v")
 region_enabled = true
-region_rect = Rect2(24, 16, 8, 8)
+region_rect = Rect2(16, 80, 16, 16)
 metadata/_edit_lock_ = true

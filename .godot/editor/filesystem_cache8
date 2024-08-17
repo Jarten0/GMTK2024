@@ -1,37 +1,43 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1723925422
-::res://assets/::1723918177
+::res://::1723933861
+::res://assets/::1723932907
 8xCarGameTilesetWIP2.png::CompressedTexture2D::5195581848964802131::1723913246::1723917130::1::::<><>::
 16x CarGameTilesetWIP1.png::CompressedTexture2D::3820718057405401126::1723836993::1723917576::1::::<><>::
+CarGameTileset8-17-24WIP5.png::CompressedTexture2D::5999277653285660671::1723932025::1723932031::1::::<><>::
 CarGameTilesetWIP1.png::CompressedTexture2D::273848385860639283::1723836856::1723917882::1::::<><>::
 CarGameTilesetWIP2.png::CompressedTexture2D::7513055166992446068::1723846569::1723918177::1::::<><>::
-::res://levels/::1723925422
+FixedCarGameTileset8-17-24WIP5 (1).png::CompressedTexture2D::7536538151164062060::1723932904::1723932907::1::::<><>::
+::res://levels/::1723933679
 LevelSelect.tscn::PackedScene::6125158808460843672::1723856313::0::1::::<><>::res://scripts/buttons_level_select.gd
-level_manager.tscn::PackedScene::2826740822205072791::1723925422::0::1::::<><>::res://scripts/LevelManager.gd<>uid://chjuxqbffvjs5::::res://levels/MainMenu.tscn<>uid://ctjcqadss426g::::res://levels/LevelSelect.tscn<>uid://buwxuyrgvdwoi::::res://levels/pt.tscn<>res://scripts/ui.gd
+level_manager.tscn::PackedScene::2826740822205072791::1723933564::0::1::::<><>::res://scripts/LevelManager.gd<>uid://chjuxqbffvjs5::::res://levels/MainMenu.tscn<>uid://ctjcqadss426g::::res://levels/LevelSelect.tscn<>uid://buwxuyrgvdwoi::::res://levels/pt.tscn<>res://scripts/ui.gd
 MainMenu.tscn::PackedScene::5283998927907210622::1723925171::0::1::::<><>::res://scripts/buttons.gd
-pt.tscn::PackedScene::3837047360877688356::1723925424::0::1::::<><>::res://shaders/pt.gdshader<>res://levels/tile_map_manager.gd<>uid://blak8hxvc553y::::res://resources/8xTileSet.tres<>uid://biyeaqtct0bmo::::res://resources/16xTileSet.tres<>uid://dacyksh0vdcf1::::res://scenes/car.tscn<>uid://cbhbiqksousog::::res://scenes/spring.tscn<>uid://5hyunbfu11ky::::res://scenes/flag.tscn<>uid://cyl5behnlkvsh::::res://scenes/turn_tile.tscn
-tile_map_manager.gd::GDScript::-1::1723920741::0::1::::TileMapManager<>Node2D<>::
-::res://resources/::1723917553
+pt.tscn::PackedScene::3837047360877688356::1723933679::0::1::::<><>::res://shaders/pt.gdshader<>res://scripts/tile_map_manager.gd<>uid://blak8hxvc553y::::res://resources/8xTileSet.tres<>uid://biyeaqtct0bmo::::res://resources/16xTileSet.tres<>uid://dacyksh0vdcf1::::res://scenes/car.tscn<>uid://cbhbiqksousog::::res://scenes/spring.tscn<>uid://5hyunbfu11ky::::res://scenes/flag.tscn<>uid://cyl5behnlkvsh::::res://scenes/turn_tile.tscn
+::res://resources/::1723932470
 8xTileSet.tres::TileSet::3159164468989967416::1723917553::0::1::::<><>::uid://cga1qd54det2b::::res://assets/8xCarGameTilesetWIP2.png
-16xTileSet.tres::TileSet::2997720236707992226::1723916189::0::1::::<><>::uid://buo1wyoupojis::::res://assets/16x CarGameTilesetWIP1.png
-::res://scenes/::1723925253
-car.tscn::PackedScene::7164866829750869396::1723925253::0::1::::<><>::res://scripts/car_interface.gd<>uid://dp0fokuaqjer1::::res://scenes/scaleable.tscn<>res://scripts/car_internal.gd<>uid://dfbm6kug61smu::::res://assets/CarGameTilesetWIP2.png<>res://scripts/raycast_walls.gd
-flag.tscn::PackedScene::2121609561727195460::1723925253::0::1::::<><>::uid://dp0fokuaqjer1::::res://scenes/scaleable.tscn<>res://scripts/flag_internal.gd<>uid://dfbm6kug61smu::::res://assets/CarGameTilesetWIP2.png
+16xTileSet.tres::TileSet::2997720236707992226::1723932470::0::1::::<><>::
+MainTileSet.tres::TileSet::7342295211417904211::1723932470::0::1::::<><>::uid://crqdhx1frltud::::res://assets/CarGameTileset8-17-24WIP5.png
+::res://scenes/::1723934041
+car.tscn::PackedScene::7164866829750869396::1723933350::0::1::::<><>::res://scripts/car_interface.gd<>uid://dp0fokuaqjer1::::res://scenes/scaleable.tscn<>res://scripts/car_internal.gd<>res://scripts/raycast_walls.gd<>uid://crqdhx1frltud::::res://assets/CarGameTileset8-17-24WIP5.png
+flag.tscn::PackedScene::2121609561727195460::1723933350::0::1::::<><>::uid://dp0fokuaqjer1::::res://scenes/scaleable.tscn<>res://scripts/flag_internal.gd<>uid://dfbm6kug61smu::::res://assets/CarGameTilesetWIP2.png
+focus_lighten.gdshader::Shader::-1::1723934088::0::1::::<><>::
+path_direction.tscn::PackedScene::6877520349972945353::1723934088::0::1::::<><>::res://scenes/path_interface.gd
+path_interface.gd::GDScript::-1::1723934065::0::1::::<>Node2D<>::
 scaleable.tscn::PackedScene::8264033291731114292::1723919471::0::1::::<><>::res://scripts/scale_on_click.gd
-spring.tscn::PackedScene::4857556715305658730::1723925253::0::1::::<><>::res://scripts/spring_internal.gd<>uid://dp0fokuaqjer1::::res://scenes/scaleable.tscn<>uid://dfbm6kug61smu::::res://assets/CarGameTilesetWIP2.png
-turn_tile.tscn::PackedScene::6481905287083345311::1723925253::0::1::::<><>::res://scripts/turn_tile_interface.gd<>uid://dp0fokuaqjer1::::res://scenes/scaleable.tscn<>uid://dfbm6kug61smu::::res://assets/CarGameTilesetWIP2.png<>res://scripts/turn_tile_internal.gd
-::res://scripts/::1723925422
+spring.tscn::PackedScene::4857556715305658730::1723933350::0::1::::<><>::res://scripts/spring_internal.gd<>res://scenes/focus_lighten.gdshader<>uid://dp0fokuaqjer1::::res://scenes/scaleable.tscn<>uid://dfm0xgxcechd1::::res://assets/FixedCarGameTileset8-17-24WIP5 (1).png
+turn_tile.tscn::PackedScene::6481905287083345311::1723933596::0::1::::<><>::res://scripts/turn_tile_interface.gd<>uid://dp0fokuaqjer1::::res://scenes/scaleable.tscn<>res://scripts/turn_tile_internal.gd<>uid://dfm0xgxcechd1::::res://assets/FixedCarGameTileset8-17-24WIP5 (1).png
+::res://scripts/::1723933564
 buttons.gd::GDScript::-1::1723924578::0::1::::<>Button<>::
 buttons_level_select.gd::GDScript::-1::1723854824::0::1::::<>Button<>::
 car_interface.gd::GDScript::-1::1723925088::0::1::::CarInterface<>Node2D<>::
 car_internal.gd::GDScript::-1::1723924986::0::1::::<>Area2D<>::
 flag_internal.gd::GDScript::-1::1723838734::0::1::::LevelFlag<>Area2D<>::
-LevelManager.gd::GDScript::-1::1723925325::0::1::::LevelManager<>Control<>::
+LevelManager.gd::GDScript::-1::1723933564::0::1::::LevelManager<>Control<>::
 raycast_walls.gd::GDScript::-1::1723852133::0::1::::<>RayCast2D<>::
-scale_on_click.gd::GDScript::-1::1723911448::0::1::::<>Node<>::
+scale_on_click.gd::GDScript::-1::1723931375::0::1::::<>Node<>::
 spring_internal.gd::GDScript::-1::1723920411::0::1::::Spring<>Node<>::
+tile_map_manager.gd::GDScript::-1::1723920741::0::1::::TileMapManager<>Node2D<>::
 turn_tile_interface.gd::GDScript::-1::1723919711::0::1::::<>Node2D<>::
 turn_tile_internal.gd::GDScript::-1::1723920199::0::1::::<>Area2D<>::
-ui.gd::GDScript::-1::1723925413::0::1::::<>Control<>::
-::res://shaders/::1723925422
-pt.gdshader::Shader::-1::1723925424::0::1::::<><>::
+ui.gd::GDScript::-1::1723925618::0::1::::<>Control<>::
+::res://shaders/::1723934041
+pt.gdshader::Shader::-1::1723934088::0::1::::<><>::

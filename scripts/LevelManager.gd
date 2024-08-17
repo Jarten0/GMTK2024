@@ -24,10 +24,6 @@ func load_level_from_packed_scene(scene: PackedScene):
 		remove_child(current_level)
 	current_level = scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
 	add_child(current_level)
-	
-
-func level_select():
-	load_level_from_packed_scene(LevelSelect)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,9 +44,13 @@ func on_level_restart():
 
 func on_level_exit():
 	level_index = 0
+	
 	load_level(level_index)
 	$UI.visible = false
 
 func on_level_select(index: int):
 	level_index = index
 	load_level(level_index)
+
+func level_select():
+	load_level_from_packed_scene(LevelSelect)

@@ -19,3 +19,8 @@ res://levels/LevelManager.gd
 res://scripts/buttons.gd
 res://scripts/ui.gd
 res://scripts/scale_on_click.gd
+res://resources/MainTileSet.tres
+res://scenes/focus_lighten.gdshader
+res://scripts/LevelManager.gd
+res://scenes/path_direction.tscn
+res://scenes/path_interface.gd

@@ -68,6 +68,15 @@ func check_for_tag(body: Node2D):
 					$"..".emit_signal("LevelRestart")
 				null:
 					printerr("null?")
+		"Path":
+			if body.get_parent().VERTICAL:
+				if DIRECTION.y == 0:
+					DIRECTION.y = DIRECTION.x
+				DIRECTION = Vector2(0, DIRECTION.y).normalized()
+			else:
+				if DIRECTION.x == 0:
+					DIRECTION.x = DIRECTION.y
+				DIRECTION = Vector2(DIRECTION.x, 0).normalized()
 		var tag:
 			if tag != null:
 				print("Unknown tag!: " + tag as String)

@@ -21,6 +21,8 @@ config/icon="res://assets/icon.svg"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
+window/main_scene="res://levels/level_manager.tscn"
+window/icon="res://assets/icon.svg"
 
 [dotnet]
 
@@ -63,6 +65,7 @@ Exit={
 2d_physics/layer_3="Flag"
 2d_physics/layer_4="Hazard"
 2d_physics/layer_5="Spring"
+2d_physics/layer_6="Path"
 
 [rendering]
 
