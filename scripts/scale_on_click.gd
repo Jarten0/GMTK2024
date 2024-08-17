@@ -3,6 +3,7 @@ extends Node
 @export var SCALE_LIMIT = 4.0
 @export var OTHER_NODE: Area2D = null
 
+
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	var node = OTHER_NODE
 	if node == null:

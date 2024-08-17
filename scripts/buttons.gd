@@ -11,3 +11,6 @@ func _on_new_game_pressed() -> void:
 
 func _on_load_level_pressed() -> void:
 	get_tree().change_scene_to_file("res://levels/LevelSelect.tscn")
+
+func load_level():
+	get_tree().change_scene_to_file("res://levels/level_manager.tscn")
