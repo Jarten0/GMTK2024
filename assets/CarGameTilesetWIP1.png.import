@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b743tqu7bpx0p"
-path="res://.godot/imported/16x tilesetexample.png-f1dd13e13718ed517a801b8382291ec0.ctex"
+uid="uid://fcu2fdtg8wio"
+path="res://.godot/imported/CarGameTilesetWIP1.png-cf269566ca078c28abf408d00f82d0cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://16x tilesetexample.png"
-dest_files=["res://.godot/imported/16x tilesetexample.png-f1dd13e13718ed517a801b8382291ec0.ctex"]
+source_file="res://assets/CarGameTilesetWIP1.png"
+dest_files=["res://.godot/imported/CarGameTilesetWIP1.png-cf269566ca078c28abf408d00f82d0cc.ctex"]
 
 [params]
 

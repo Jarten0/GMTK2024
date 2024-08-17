@@ -1,13 +1,14 @@
+Node2D
 Area2D
+CollisionShape2D
+Node
+TileMap
 StaticBody2D
 RayCast2D
 Sprite2D
 Timer
-CollisionShape2D
 CharacterBody2D
-Node2D
 TileMapLayer
 Polygon2D
 Camera2D
-Node
 CollisionPolygon2D

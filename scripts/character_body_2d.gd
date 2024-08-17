@@ -13,7 +13,9 @@ func _physics_process(delta: float) -> void:
 		STARTED = true
 		
 	get_node("Sprite2D").rotation = DIRECTION.angle()
-	get_node("RayCast2D").rotation = DIRECTION.angle()
+	#get_node("RayCast2D").rotation = DIRECTION.angle()
+	#get_node("RayCast2D2").rotation = DIRECTION.angle()
+	#get_node("RayCast2D3").rotation = DIRECTION.angle()
 
 
 	# Get the input direction and handle the movement/deceleration.
@@ -30,13 +32,13 @@ func tick():
 	if !visible or !STARTED:
 		return
 
-	if get_node("RayCast2D").BLOCK_MOVEMENT:
+	if get_node("Sprite2D/RayCast2D").BLOCK_MOVEMENT or get_node("Sprite2D/RayCast2D2").BLOCK_MOVEMENT or get_node("Sprite2D/RayCast2D3").BLOCK_MOVEMENT:
 		DIRECTION = DIRECTION.rotated(deg_to_rad(180))
 		return
 
-	position += DIRECTION.normalized() * GRID_SIZE
+	position += DIRECTION.normalized() * GRID_SIZE / 2
 
-func on_body_entered(body: Area2D):
+func on_body_entered(body: Node2D):
 	if !visible:
 		return
 		
@@ -48,4 +50,11 @@ func on_body_entered(body: Area2D):
 			position += body.DIRECTION.normalized() * GRID_SIZE
 		"TurnTile":
 			DIRECTION = DIRECTION.rotated(deg_to_rad(90))
+		"Wall":
+			print("map collision")
+		"Hazard":
+			print("Died")
+			hide()
+		var tag:
+			print("Unknown tag!" + tag)
 	
