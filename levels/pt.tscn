@@ -9,26 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://5hyunbfu11ky" path="res://scenes/flag.tscn" id="8_eld5y"]
 [ext_resource type="PackedScene" uid="uid://cyl5behnlkvsh" path="res://scenes/turn_tile.tscn" id="8_yrypd"]
 [ext_resource type="PackedScene" uid="uid://c48r0xgdyxo1f" path="res://scenes/path_direction.tscn" id="9_jmy22"]
-[ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="12_pd8sh"]
-[ext_resource type="Texture2D" uid="uid://cginesen6kr2b" path="res://assets/CarGameTileset8-17-24WIP9.png" id="13_bm0sb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvw0m"]
 shader = ExtResource("1_jgt8j")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qq2rw"]
-size = Vector2(101, 101)
-
-[node name="BaseLevel" type="Node2D"]
-script = ExtResource("1_tl82h")
+[node name="PrototypeLevelOne" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="TileMaps" type="Node2D" parent="." node_paths=PackedStringArray("ROAD_LAYER", "WALL_LAYER", "OBJECT_LAYER")]
+[node name="TileMaps" type="Node2D" parent="."]
 script = ExtResource("2_5yls3")
-ROAD_LAYER = NodePath("RoadLayer")
-WALL_LAYER = NodePath("WallLayer")
-OBJECT_LAYER = NodePath("ObjectLayer")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="TileMaps"]
 z_index = -100
@@ -70,11 +61,11 @@ metadata/Tag = "ObjectLayer"
 metadata/_edit_lock_ = true
 
 [node name="Spring" parent="Objects" instance=ExtResource("7_r1uog")]
-position = Vector2(1344, 960)
+position = Vector2(1088, 320)
 rotation = -1.5708
 
 [node name="Spring2" parent="Objects" instance=ExtResource("7_r1uog")]
-position = Vector2(1216, 960)
+position = Vector2(576, 640)
 rotation = 3.14159
 
 [node name="TurnTile" parent="Objects" instance=ExtResource("8_yrypd")]
@@ -83,55 +74,21 @@ TURN_COUNTERCLOCKWISE = true
 metadata/Tag = "TurnTile"
 
 [node name="TurnTile2" parent="Objects" instance=ExtResource("8_yrypd")]
-position = Vector2(1344, 192)
-rotation = 0.0
+position = Vector2(192, 512)
 metadata/Tag = "TurnTile"
 
 [node name="Flag" parent="Objects" instance=ExtResource("8_eld5y")]
-position = Vector2(1728, 960)
+position = Vector2(960, 896)
 
 [node name="Car" parent="Objects" node_paths=PackedStringArray("TILEMAP_MANAGER") instance=ExtResource("6_5k435")]
-position = Vector2(192, 320)
+position = Vector2(256, 320)
 TILEMAP_MANAGER = NodePath("../../TileMaps")
 
 [node name="PathDirection" parent="Objects" instance=ExtResource("9_jmy22")]
 position = Vector2(448, 320)
 
-[node name="PathDirection5" parent="Objects" instance=ExtResource("9_jmy22")]
-position = Vector2(1024, 320)
-
 [node name="PathDirection2" parent="Objects" instance=ExtResource("9_jmy22")]
-position = Vector2(960, 512)
-VERTICAL = true
-
-[node name="PathDirection4" parent="Objects" instance=ExtResource("9_jmy22")]
-position = Vector2(704, 384)
-VERTICAL = true
-
-[node name="PathDirection3" parent="Objects" instance=ExtResource("9_jmy22")]
-position = Vector2(768, 576)
-
-[node name="Boulder" type="Node2D" parent="Objects"]
-position = Vector2(832, 512)
-
-[node name="Scaleable" parent="Objects/Boulder" instance=ExtResource("12_pd8sh")]
-metadata/_edit_lock_ = true
-
-[node name="Area2D" type="Area2D" parent="Objects/Boulder"]
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Boulder/Area2D"]
-shape = SubResource("RectangleShape2D_qq2rw")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Objects/Boulder/Area2D"]
-scale = Vector2(8, 8)
-texture = ExtResource("13_bm0sb")
-hframes = 2
-vframes = 3
-region_enabled = true
-region_rect = Rect2(16, 96, 32, 48)
-metadata/_edit_lock_ = true
+position = Vector2(576, 320)
 
 [node name="Timers" type="Node" parent="."]
 
@@ -139,7 +96,4 @@ metadata/_edit_lock_ = true
 wait_time = 0.5
 autostart = true
 
-[connection signal="LevelComplete" from="Objects/Car" to="." method="_on_car_level_complete"]
-[connection signal="LevelExit" from="Objects/Car" to="." method="_on_car_level_exit"]
-[connection signal="LevelRestart" from="Objects/Car" to="." method="_on_car_level_restart"]
 [connection signal="timeout" from="Timers/Global Tick" to="Objects/Car" method="_on_global_tick_timeout"]
