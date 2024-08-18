@@ -15,6 +15,12 @@ func load_level(index: int):
 		remove_child(current_level)
 	current_level = PackedSceneLevels[index].instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
 	add_child(current_level)
+	
+	if current_level is LevelSignals:
+		current_level.LevelComplete.connect(on_level_complete)
+		current_level.LevelExit.connect(on_level_exit)
+		current_level.LevelReset.connect(on_level_restart)
+		
 
 	if index != 0:
 		$UI.visible = true
@@ -24,6 +30,11 @@ func load_level_from_packed_scene(scene: PackedScene):
 		remove_child(current_level)
 	current_level = scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
 	add_child(current_level)
+	
+	if current_level is LevelSignals:
+		current_level.LevelComplete.connect(on_level_complete())
+		current_level.LevelExit.connect(on_level_exit())
+		current_level.LevelReset.connect(on_level_restart())
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
