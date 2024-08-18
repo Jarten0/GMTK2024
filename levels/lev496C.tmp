@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgjkajwga3lrj"]
+[gd_scene load_steps=9 format=3 uid="uid://bgjkajwga3lrj"]
 
 [ext_resource type="Script" path="res://scripts/LevelManager.gd" id="1_3fj03"]
 [ext_resource type="PackedScene" uid="uid://chjuxqbffvjs5" path="res://levels/MainMenu.tscn" id="2_fd8mp"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://buwxuyrgvdwoi" path="res://levels/pt.tscn" id="4_vas4g"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="5_h6pyi"]
 [ext_resource type="Script" path="res://card_row/card_row.gd" id="6_oupbq"]
-[ext_resource type="PackedScene" uid="uid://bhf4knacvgtqi" path="res://card_row/card.tscn" id="7_e4c01"]
+[ext_resource type="Script" path="res://card_row/card.gd" id="7_1oqdu"]
+[ext_resource type="Texture2D" uid="uid://ch2f76xu1qd41" path="res://assets/scaling_signs.png" id="7_48x2n"]
 
 [node name="LevelManager" type="Control"]
 layout_mode = 3
@@ -42,4 +43,11 @@ layout_mode = 2
 position = Vector2(256, 960)
 script = ExtResource("6_oupbq")
 
-[node name="Card" parent="CardRow" instance=ExtResource("7_e4c01")]
+[node name="Card" type="Node2D" parent="CardRow"]
+script = ExtResource("7_1oqdu")
+
+[node name="Sprite2D" type="Sprite2D" parent="CardRow/Card"]
+scale = Vector2(8, 8)
+texture = ExtResource("7_48x2n")
+vframes = 6
+region_rect = Rect2(16, 80, 16, 16)
