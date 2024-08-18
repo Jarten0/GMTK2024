@@ -1,28 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgjkajwga3lrj"]
+[gd_scene load_steps=9 format=3 uid="uid://bgjkajwga3lrj"]
 
 [ext_resource type="Script" path="res://scripts/LevelManager.gd" id="1_3fj03"]
 [ext_resource type="PackedScene" uid="uid://chjuxqbffvjs5" path="res://levels/MainMenu.tscn" id="2_fd8mp"]
 [ext_resource type="PackedScene" uid="uid://ctjcqadss426g" path="res://levels/LevelSelect.tscn" id="3_vuvgs"]
-[ext_resource type="PackedScene" uid="uid://buwxuyrgvdwoi" path="res://levels/pt.tscn" id="4_vas4g"]
+[ext_resource type="PackedScene" uid="uid://cjbgpa6dy0krx" path="res://levels/level_one.tscn" id="4_sptf6"]
+[ext_resource type="PackedScene" uid="uid://c5tdj7lug6o2g" path="res://levels/level_two.tscn" id="5_7tnxq"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="5_h6pyi"]
 [ext_resource type="Script" path="res://card_row/card_row.gd" id="6_oupbq"]
 [ext_resource type="PackedScene" uid="uid://bhf4knacvgtqi" path="res://card_row/card.tscn" id="7_e4c01"]
 
-[node name="LevelManager" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="LevelManager" type="Node2D"]
 script = ExtResource("1_3fj03")
 InitialScene = ExtResource("2_fd8mp")
 LevelSelect = ExtResource("3_vuvgs")
-PackedSceneLevels = Array[PackedScene]([ExtResource("2_fd8mp"), ExtResource("4_vas4g")])
+PackedSceneLevels = Array[PackedScene]([ExtResource("2_fd8mp"), ExtResource("4_sptf6"), ExtResource("5_7tnxq")])
 
 [node name="UI" type="Container" parent="."]
 custom_minimum_size = Vector2(1280, 720)
-layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
@@ -39,7 +33,10 @@ vertical_alignment = 2
 layout_mode = 2
 
 [node name="CardRow" type="Node2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(256, 960)
 script = ExtResource("6_oupbq")
+CARD_INSTANCE = ExtResource("7_e4c01")
 
 [node name="Card" parent="CardRow" instance=ExtResource("7_e4c01")]
+visible = false

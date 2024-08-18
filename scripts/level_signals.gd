@@ -2,6 +2,8 @@ class_name LevelSignals
 
 extends Node2D
 
+@export var CARDS: Array[int]
+
 signal LevelComplete()
 signal LevelReset()
 signal LevelExit()

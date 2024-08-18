@@ -20,6 +20,7 @@ size = Vector2(101, 101)
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_tl82h")
+CARDS = Array[int]([1, 2, 3])
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -78,7 +79,7 @@ position = Vector2(1216, 960)
 rotation = 3.14159
 
 [node name="TurnTile" parent="Objects" instance=ExtResource("8_yrypd")]
-position = Vector2(1088, 704)
+position = Vector2(1152, 512)
 TURN_COUNTERCLOCKWISE = true
 metadata/Tag = "TurnTile"
 
@@ -112,13 +113,14 @@ VERTICAL = true
 position = Vector2(768, 576)
 
 [node name="Boulder" type="Node2D" parent="Objects"]
-position = Vector2(832, 512)
+position = Vector2(896, 512)
 
 [node name="Scaleable" parent="Objects/Boulder" instance=ExtResource("12_pd8sh")]
 metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="Objects/Boulder"]
 metadata/_edit_lock_ = true
+metadata/Tag = "Wall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Boulder/Area2D"]
 shape = SubResource("RectangleShape2D_qq2rw")

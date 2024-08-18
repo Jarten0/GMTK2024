@@ -6,8 +6,8 @@
 size = Vector2(112, 112)
 
 [node name="Scaleable" type="Area2D"]
-collision_mask = 0
-monitorable = false
+collision_layer = 128
+collision_mask = 64
 script = ExtResource("1_47c23")
 
 [node name="ScaleHitbox" type="CollisionShape2D" parent="."]

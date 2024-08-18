@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgnni7e27y0xs"]
+[gd_scene load_steps=2 format=3 uid="uid://cjbgpa6dy0krx"]
 
 [ext_resource type="PackedScene" uid="uid://buwxuyrgvdwoi" path="res://levels/pt.tscn" id="1_rlb7m"]
 
 [node name="BaseLevel2" instance=ExtResource("1_rlb7m")]
+CARDS = Array[int]([0, 1, 2, 3, 4, 5, 2])
+
+[node name="Scaleable" parent="Objects/Boulder" index="0" node_paths=PackedStringArray("OTHER_NODE")]
+OTHER_NODE = NodePath("../Area2D")

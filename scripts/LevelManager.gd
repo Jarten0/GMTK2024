@@ -1,6 +1,6 @@
 class_name LevelManager
 
-extends Control
+extends Node2D
 
 @export var InitialScene: PackedScene
 @export var LevelSelect: PackedScene
@@ -20,6 +20,7 @@ func load_level(index: int):
 		current_level.LevelComplete.connect(on_level_complete)
 		current_level.LevelExit.connect(on_level_exit)
 		current_level.LevelReset.connect(on_level_restart)
+		$CardRow.setup(current_level.CARDS)
 		
 
 	if index != 0:
@@ -39,6 +40,8 @@ func load_level_from_packed_scene(scene: PackedScene):
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_level_from_packed_scene(InitialScene)
+	var array: Array[int] = [0,1,2,3,4,5]
+	$CardRow.setup(array)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Restart"):
