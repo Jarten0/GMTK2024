@@ -8,5 +8,7 @@ signal LevelComplete()
 signal LevelRestart()
 signal LevelExit()
 
+signal Tick()
+
 func _on_global_tick_timeout() -> void:
-	get_node("Car").tick()
+	emit_signal("Tick")

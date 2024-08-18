@@ -27,6 +27,11 @@ func _physics_process(delta: float) -> void:
 
 	if dragging:
 		global_position = get_global_mouse_position()
+		scale = Vector2.ONE
+		
+	else:
+		scale = Vector2.ONE / 2
+		position += (default_position - position) * 0.2
 	
 	if !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and dragging:
 		dragging = false
@@ -39,7 +44,11 @@ func _physics_process(delta: float) -> void:
 				3: colliding_area.scale_down_x()
 				4: colliding_area.scale_up_y()
 				5: colliding_area.scale_down_y()
+			get_parent().CARDS.erase(self)
+			get_parent().update_cards()
 			get_parent().remove_child(self)
+			
+		
 	
 
 func _on_area_entered(area: Area2D) -> void:

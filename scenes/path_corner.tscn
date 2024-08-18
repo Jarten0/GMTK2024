@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0xd7lvk1llfb"]
+
+[ext_resource type="Script" path="res://scripts/path_corner.gd" id="1_k1str"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lgvxk"]
+radius = 24.0
+height = 192.0
+
+[node name="PathDirection" type="Node2D"]
+script = ExtResource("1_k1str")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+monitoring = false
+metadata/Tag = "Path"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_lgvxk")

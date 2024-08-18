@@ -4,10 +4,11 @@ extends Node2D
 @export var CARD_COUNT: int
 @export var DRAGGING_CARD: Card = null
 @export var CARD_INSTANCE: PackedScene
+var target_position: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func setup(cards: Array[int]) -> void:
-	var xOffset = 0
+	var xOffset = 120
 	for card in CARDS:
 		remove_child(card)
 	
@@ -21,3 +22,15 @@ func setup(cards: Array[int]) -> void:
 		add_child(card)
 		card.default_position = card.position
 		CARDS.append(card)
+
+func update_cards():
+	var xOffset = 120
+	
+	for card in CARDS:
+		card.default_position = Vector2(xOffset, 0)
+		xOffset += 160
+
+func _process(delta: float) -> void:
+	target_position = Vector2(-1728 + (CARDS.size() * 160.0), 0.0)
+	var other = $Bar/Mask.position
+	$Bar/Mask.position += (target_position - other) * 0.2

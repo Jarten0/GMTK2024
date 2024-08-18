@@ -20,7 +20,7 @@ func load_level(index: int):
 		current_level.LevelComplete.connect(on_level_complete)
 		current_level.LevelExit.connect(on_level_exit)
 		current_level.LevelReset.connect(on_level_restart)
-		$CardRow.setup(current_level.CARDS)
+		%CardRow.setup(current_level.CARDS)
 		
 
 	if index != 0:
@@ -41,7 +41,7 @@ func load_level_from_packed_scene(scene: PackedScene):
 func _ready() -> void:
 	load_level_from_packed_scene(InitialScene)
 	var array: Array[int] = [0,1,2,3,4,5]
-	$CardRow.setup(array)
+	%CardRow.setup(array)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Restart"):

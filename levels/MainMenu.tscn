@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://chjuxqbffvjs5"]
+[gd_scene load_steps=3 format=3 uid="uid://chjuxqbffvjs5"]
 
 [ext_resource type="Script" path="res://scripts/buttons.gd" id="1_2gvtf"]
+[ext_resource type="Texture2D" uid="uid://dy4nxl2sxunt4" path="res://assets/title_texture.png" id="2_4ktyk"]
 
 [node name="Control" type="Node2D"]
 
@@ -60,18 +61,15 @@ text = "Quit"
 script = ExtResource("1_2gvtf")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.5
-offset_left = 448.0
-offset_top = 240.0
-offset_right = 524.0
-offset_bottom = 415.0
-grow_horizontal = 2
-text = "Car Game"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="TextureRect" type="TextureRect" parent="Control"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 768.0
+offset_top = 192.0
+offset_right = 1152.0
+offset_bottom = 448.0
+texture = ExtResource("2_4ktyk")
+expand_mode = 1
 
 [connection signal="pressed" from="Control/New Game" to="Control/Quit" method="_on_new_game_pressed"]
 [connection signal="pressed" from="Control/Load Level" to="Control/Quit" method="_on_load_level_pressed"]

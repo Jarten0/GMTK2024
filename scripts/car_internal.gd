@@ -61,6 +61,8 @@ func check_for_tag(body: Node2D):
 			unpathable = 3
 		"Wall":
 			print("Wall collision")
+			DIRECTION = DIRECTION.rotated(deg_to_rad(180))
+			return
 		"ObjectLayer":
 			var tiledata = get_tile_data(TILEMAP_MANAGER.OBJECT_LAYER)
 			if tiledata == null:
@@ -75,19 +77,31 @@ func check_for_tag(body: Node2D):
 					$"..".emit_signal("LevelRestart")
 				null:
 					printerr("null?")
-		"Path":
-			if unpathable > 0:
-				return
-			if body.get_parent().VERTICAL:
-				if DIRECTION.y == 0:
-					DIRECTION.y = DIRECTION.x
-				DIRECTION = Vector2(0, DIRECTION.y).normalized()
-			else:
-				if DIRECTION.x == 0:
-					DIRECTION.x = DIRECTION.y
-				DIRECTION = Vector2(DIRECTION.x, 0).normalized()
 		var tag:
 			if tag != null:
 				print("Unknown tag!: " + tag as String)
 			else:
 				print("Unknown tag!" )
+
+
+func _on_path_tracker_area_entered(area: Area2D) -> void:
+	if unpathable > 0:
+		return
+	
+	var path = area.get_parent()
+	
+	if path is PathCorner:
+		if DIRECTION == (-path.EXIT as Vector2) :
+			DIRECTION = -path.ENTER
+		else:
+			DIRECTION = path.EXIT
+		return
+	
+	if area.get_parent().VERTICAL:
+		if DIRECTION.y == 0:
+			DIRECTION.y = DIRECTION.x
+		DIRECTION = Vector2(0, DIRECTION.y).normalized()
+	else:
+		if DIRECTION.x == 0:
+			DIRECTION.x = DIRECTION.y
+		DIRECTION = Vector2(DIRECTION.x, 0).normalized()

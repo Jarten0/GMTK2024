@@ -1,9 +1,156 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjbgpa6dy0krx"]
+[gd_scene load_steps=15 format=4 uid="uid://cjbgpa6dy0krx"]
 
-[ext_resource type="PackedScene" uid="uid://buwxuyrgvdwoi" path="res://levels/pt.tscn" id="1_rlb7m"]
+[ext_resource type="Script" path="res://scripts/level_signals.gd" id="1_okl7n"]
+[ext_resource type="Script" path="res://scripts/tile_map_manager.gd" id="2_m6y1v"]
+[ext_resource type="Shader" path="res://shaders/pt.gdshader" id="3_w3i0d"]
+[ext_resource type="TileSet" uid="uid://dcuwr885x5o64" path="res://resources/MainTileSet.tres" id="4_jt6k4"]
+[ext_resource type="PackedScene" uid="uid://cbhbiqksousog" path="res://scenes/spring.tscn" id="5_5eq40"]
+[ext_resource type="PackedScene" uid="uid://cyl5behnlkvsh" path="res://scenes/turn_tile.tscn" id="6_3lnjp"]
+[ext_resource type="PackedScene" uid="uid://5hyunbfu11ky" path="res://scenes/flag.tscn" id="7_t3pvw"]
+[ext_resource type="PackedScene" uid="uid://dacyksh0vdcf1" path="res://scenes/car.tscn" id="8_28sk7"]
+[ext_resource type="PackedScene" uid="uid://c48r0xgdyxo1f" path="res://scenes/path_direction.tscn" id="9_1806s"]
+[ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="10_4w7e6"]
+[ext_resource type="Texture2D" uid="uid://cginesen6kr2b" path="res://assets/CarGameTileset8-17-24WIP9.png" id="11_6g013"]
+[ext_resource type="PackedScene" uid="uid://c0xd7lvk1llfb" path="res://scenes/path_corner.tscn" id="12_opg4x"]
 
-[node name="BaseLevel2" instance=ExtResource("1_rlb7m")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvw0m"]
+shader = ExtResource("3_w3i0d")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qq2rw"]
+size = Vector2(101, 101)
+
+[node name="BaseLevel2" type="Node2D"]
+script = ExtResource("1_okl7n")
 CARDS = Array[int]([0, 1, 2, 3, 4, 5, 2])
 
-[node name="Scaleable" parent="Objects/Boulder" index="0" node_paths=PackedStringArray("OTHER_NODE")]
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="TileMaps" type="Node2D" parent="." node_paths=PackedStringArray("ROAD_LAYER", "WALL_LAYER", "OBJECT_LAYER")]
+script = ExtResource("2_m6y1v")
+ROAD_LAYER = NodePath("RoadLayer")
+WALL_LAYER = NodePath("WallLayer")
+OBJECT_LAYER = NodePath("ObjectLayer")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="TileMaps"]
+z_index = -100
+material = SubResource("ShaderMaterial_jvw0m")
+scale = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAAJAAYAAAAEAAkAAAAJAAUAAAAEAAkAAAAJAAQAAAAEAAkAAAAJAAMAAAAEAAkAAAAJAAIAAAAEAAkAAAAJAAEAAAAEAAkAAAAIAAEAAAAEAAkAAAAHAAEAAAAEAAkAAAAGAAEAAAAEAAkAAAAFAAEAAAAEAAkAAAAEAAEAAAAEAAkAAAADAAEAAAAEAAkAAAACAAEAAAAEAAkAAAABAAEAAAAEAAkAAAABAAIAAAAEAAkAAAABAAMAAAAEAAkAAAABAAQAAAAEAAkAAAABAAUAAAAEAAkAAAABAAYAAAAEAAkAAAACAAYAAAAEAAkAAAACAAUAAAAEAAkAAAACAAQAAAAEAAkAAAACAAMAAAAEAAkAAAACAAIAAAAEAAkAAAADAAIAAAAEAAkAAAADAAMAAAAEAAkAAAADAAQAAAAEAAkAAAADAAUAAAAEAAkAAAADAAYAAAAEAAkAAAAEAAYAAAAEAAkAAAAEAAUAAAAEAAkAAAAEAAQAAAAEAAkAAAAEAAMAAAAEAAkAAAAEAAIAAAAEAAkAAAAFAAIAAAAEAAkAAAAFAAMAAAAEAAkAAAAFAAQAAAAEAAkAAAAFAAUAAAAEAAkAAAAFAAYAAAAEAAkAAAAGAAYAAAAEAAkAAAAGAAUAAAAEAAkAAAAGAAQAAAAEAAkAAAAGAAMAAAAEAAkAAAAGAAIAAAAEAAkAAAAHAAIAAAAEAAkAAAAHAAMAAAAEAAkAAAAHAAQAAAAEAAkAAAAHAAUAAAAEAAkAAAAHAAYAAAAEAAkAAAAIAAYAAAAEAAkAAAAIAAUAAAAEAAkAAAAIAAQAAAAEAAkAAAAIAAMAAAAEAAkAAAAIAAIAAAAEAAkAAAAKAAYAAAAEAAkAAAAKAAUAAAAEAAkAAAAKAAQAAAAEAAkAAAAKAAMAAAAEAAkAAAAKAAIAAAAEAAkAAAAKAAEAAAAEAAkAAAALAAEAAAAEAAkAAAALAAIAAAAEAAkAAAALAAMAAAAEAAkAAAALAAQAAAAEAAkAAAALAAUAAAAEAAkAAAALAAYAAAAEAAkAAAAMAAYAAAAEAAkAAAAMAAUAAAAEAAkAAAAMAAQAAAAEAAkAAAAMAAMAAAAEAAkAAAAMAAIAAAAEAAkAAAAMAAEAAAAEAAkAAAANAAEAAAAEAAkAAAANAAIAAAAEAAkAAAANAAMAAAAEAAkAAAANAAQAAAAEAAkAAAANAAUAAAAEAAkAAAANAAYAAAAEAAkAAAA=")
+tile_set = ExtResource("4_jt6k4")
+collision_enabled = false
+navigation_visibility_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="RoadLayer" type="TileMapLayer" parent="TileMaps"]
+z_index = -100
+material = SubResource("ShaderMaterial_jvw0m")
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAEAAQAAAAEAAUAAAAFAAQAAAAEAAUAAAAGAAQAAAAEAAUAAAAHAAQAAAAEAAUAAAAIAAQAAAAEAAUAAAAJAAQAAAAEAAUAAAAEAAUAAAAEAAcAAAAFAAUAAAAEAAcAAAAGAAUAAAAEAAcAAAAHAAUAAAAEAAcAAAAIAAUAAAAEAAcAAAAJAAUAAAAEAAcAAAALAAYAAAAFAAYAAAALAAcAAAAFAAYAAAAPAAcAAAAFAAYAAAAPAAYAAAAFAAYAAAAKAAcAAAADAAYAAAAKAAYAAAADAAYAAAAOAAYAAAADAAYAAAAOAAcAAAADAAYAAAAOAAQAAAAFAAUAABAMAAkAAAAEAAcAAAANAAkAAAAEAAcAAAANAAgAAAAEAAUAAAAMAAgAAAAEAAUAAAAKAAgAAAADAAYAAAAKAAkAAAADAAcAAAALAAgAAAAEAAYAAAALAAkAAAAEAAcAAAAOAAgAAAAEAAYAACAOAAkAAAAEAAUAACAPAAgAAAAFAAYAACAPAAkAAAAFAAUAACAKAAQAAAAEAAUAAAAKAAUAAAAEAAYAAAALAAQAAAAFAAUAAAALAAUAAAAFAAYAAAAPAAQAAAAEAAUAABAPAAUAAAAEAAYAABAOAAUAAAAFAAYAABAQAAQAAAAEAAUAAAAQAAUAAAAEAAcAAAARAAQAAAAEAAUAAAARAAUAAAAEAAcAAAASAAQAAAAEAAUAAAASAAUAAAAEAAcAAAATAAQAAAAEAAUAAAATAAUAAAAEAAcAAAAUAAQAAAAEAAUAAAAUAAUAAAAEAAUAACAVAAQAAAAFAAUAAAAVAAUAAAAFAAUAACA=")
+tile_set = ExtResource("4_jt6k4")
+collision_enabled = false
+navigation_visibility_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="WallLayer" type="TileMapLayer" parent="TileMaps"]
+z_index = -100
+scale = Vector2(8, 8)
+tile_set = ExtResource("4_jt6k4")
+navigation_visibility_mode = 1
+metadata/_edit_lock_ = true
+metadata/Tag = "Wall"
+
+[node name="ObjectLayer" type="TileMapLayer" parent="TileMaps"]
+z_index = -100
+scale = Vector2(8, 8)
+tile_set = ExtResource("4_jt6k4")
+navigation_visibility_mode = 1
+metadata/_edit_lock_ = true
+metadata/Tag = "ObjectLayer"
+
+[node name="Objects" type="Node" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Spring" parent="Objects" instance=ExtResource("5_5eq40")]
+position = Vector2(1344, 960)
+rotation = -1.5708
+
+[node name="Spring2" parent="Objects" instance=ExtResource("5_5eq40")]
+position = Vector2(1216, 960)
+rotation = 3.14159
+
+[node name="TurnTile" parent="Objects" instance=ExtResource("6_3lnjp")]
+position = Vector2(1152, 512)
+TURN_COUNTERCLOCKWISE = true
+metadata/Tag = "TurnTile"
+
+[node name="TurnTile2" parent="Objects" instance=ExtResource("6_3lnjp")]
+position = Vector2(1344, 192)
+rotation = 0.0
+metadata/Tag = "TurnTile"
+
+[node name="Flag" parent="Objects" instance=ExtResource("7_t3pvw")]
+position = Vector2(1728, 960)
+
+[node name="Car" parent="Objects" node_paths=PackedStringArray("TILEMAP_MANAGER") instance=ExtResource("8_28sk7")]
+position = Vector2(192, 320)
+TILEMAP_MANAGER = NodePath("../../TileMaps")
+
+[node name="PathDirection" parent="Objects" instance=ExtResource("9_1806s")]
+position = Vector2(448, 320)
+
+[node name="Boulder" type="Node2D" parent="Objects"]
+position = Vector2(832, 448)
+metadata/Tag = "Wall"
+
+[node name="Scaleable" parent="Objects/Boulder" node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("10_4w7e6")]
 OTHER_NODE = NodePath("../Area2D")
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="Objects/Boulder"]
+collision_mask = 18
+metadata/_edit_lock_ = true
+metadata/Tag = "Wall"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Boulder/Area2D"]
+shape = SubResource("RectangleShape2D_qq2rw")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Objects/Boulder/Area2D"]
+scale = Vector2(8, 8)
+texture = ExtResource("11_6g013")
+hframes = 2
+vframes = 3
+region_enabled = true
+region_rect = Rect2(16, 96, 32, 48)
+metadata/_edit_lock_ = true
+
+[node name="PathDirection2" parent="Objects" instance=ExtResource("12_opg4x")]
+position = Vector2(704, 320)
+ENTER = Vector2i(1, 0)
+EXIT = Vector2i(0, 1)
+
+[node name="PathDirection3" parent="Objects" instance=ExtResource("12_opg4x")]
+position = Vector2(960, 576)
+ENTER = Vector2i(1, 0)
+EXIT = Vector2i(0, -1)
+
+[node name="PathDirection4" parent="Objects" instance=ExtResource("12_opg4x")]
+position = Vector2(704, 576)
+rotation = -1.57079
+ENTER = Vector2i(0, 1)
+
+[node name="PathDirection5" parent="Objects" instance=ExtResource("12_opg4x")]
+position = Vector2(960, 320)
+rotation = -1.57079
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Global Tick" type="Timer" parent="Timers"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="LevelComplete" from="Objects/Car" to="." method="_on_car_level_complete"]
+[connection signal="LevelExit" from="Objects/Car" to="." method="_on_car_level_exit"]
+[connection signal="LevelRestart" from="Objects/Car" to="." method="_on_car_level_restart"]
+[connection signal="timeout" from="Timers/Global Tick" to="Objects/Car" method="_on_global_tick_timeout"]

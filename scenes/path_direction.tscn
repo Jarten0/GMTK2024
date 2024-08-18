@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c48r0xgdyxo1f"]
 
-[ext_resource type="Script" path="res://path_interface.gd" id="1_p26yc"]
+[ext_resource type="Script" path="res://scripts/path_interface.gd" id="1_p26yc"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dym6c"]
-radius = 40.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lgvxk"]
+radius = 24.0
+height = 192.0
 
 [node name="PathDirection" type="Node2D"]
 script = ExtResource("1_p26yc")
@@ -15,4 +16,4 @@ monitoring = false
 metadata/Tag = "Path"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_dym6c")
+shape = SubResource("CapsuleShape2D_lgvxk")
