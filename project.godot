@@ -66,6 +66,7 @@ Exit={
 2d_physics/layer_4="Hazard"
 2d_physics/layer_5="Spring"
 2d_physics/layer_6="Path"
+2d_physics/layer_7="Card"
 
 [rendering]
 
