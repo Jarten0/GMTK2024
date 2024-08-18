@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
 void vertex() {
-	 COLOR.r *= 0.2;
-	 COLOR.g *= 0.2;
-	 COLOR.b *= 0.2;
+	 COLOR.r *= 0.7;
+	 COLOR.g *= 0.7;
+	 COLOR.b *= 0.7;
 
 
 	// Called for every vertex the material is visible on.

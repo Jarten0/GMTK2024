@@ -2,7 +2,7 @@ class_name CarInterface
 
 extends Node2D
 
-@export var TILEMAP_MANAGER: TileMapManager
+@export var TILEMAP_MANAGER: TileMapManager 
 
 signal LevelComplete()
 signal LevelRestart()
