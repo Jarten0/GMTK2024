@@ -116,24 +116,39 @@ metadata/Tag = "TurnTile"
 
 [node name="Flag" parent="Objects" instance=ExtResource("7_5emx8")]
 z_index = 25
-position = Vector2(1792, 192)
+position = Vector2(1856, 192)
 
 [node name="Car" parent="Objects" node_paths=PackedStringArray("TILEMAP_MANAGER", "TIMER") instance=ExtResource("8_bicmj")]
 unique_name_in_owner = true
 z_index = 20
-position = Vector2(256, 320)
+position = Vector2(128, 960)
 TILEMAP_MANAGER = NodePath("../../TileMaps")
 TIMER = NodePath("../../Global Tick")
 
 [node name="Directions" type="Node2D" parent="Objects"]
 
 [node name="PathDirection6" parent="Objects/Directions" instance=ExtResource("8_xguj7")]
-position = Vector2(896, 1088)
+position = Vector2(768, 960)
 ENTER = Vector2i(0, 1)
 
+[node name="PathDirection13" parent="Objects/Directions" instance=ExtResource("8_xguj7")]
+position = Vector2(768, 832)
+EXIT = Vector2i(0, -1)
+
+[node name="PathDirection14" parent="Objects/Directions" instance=ExtResource("8_xguj7")]
+position = Vector2(768, 384)
+EXIT = Vector2i(0, -1)
+
+[node name="PathDirection15" parent="Objects/Directions" instance=ExtResource("8_xguj7")]
+position = Vector2(768, 192)
+ENTER = Vector2i(1, 0)
+
+[node name="PathDirection16" parent="Objects/Directions" instance=ExtResource("8_xguj7")]
+position = Vector2(640, 192)
+
 [node name="PathDirection12" parent="Objects/Directions" instance=ExtResource("8_xguj7")]
-position = Vector2(832, 1088)
-ENTER = Vector2i(0, 1)
+position = Vector2(512, 960)
+ENTER = Vector2i(1, 0)
 
 [node name="PathDirection8" parent="Objects/Directions" instance=ExtResource("8_xguj7")]
 position = Vector2(960, 1216)
@@ -161,8 +176,9 @@ EXIT = Vector2i(0, 1)
 [node name="Spring" parent="Objects" instance=ExtResource("9_ajiik")]
 position = Vector2(640, 1024)
 
-[node name="Boulder2" parent="Objects" instance=ExtResource("9_js1yy")]
-position = Vector2(896, 192)
+[node name="Boulder2" parent="Objects" node_paths=PackedStringArray("TILEMAP_MANAGER") instance=ExtResource("9_js1yy")]
+position = Vector2(960, 192)
+TILEMAP_MANAGER = NodePath("../../TileMaps")
 
 [node name="Global Tick" type="Timer" parent="."]
 wait_time = 0.5
@@ -171,3 +187,4 @@ wait_time = 0.5
 [connection signal="LevelExit" from="Objects/Car" to="." method="_on_car_level_exit"]
 [connection signal="LevelRestart" from="Objects/Car" to="." method="_on_car_level_restart"]
 [connection signal="timeout" from="Global Tick" to="Objects/Car" method="_on_global_tick_timeout"]
+[connection signal="timeout" from="Global Tick" to="Objects/Boulder2" method="_on_global_tick_timeout"]

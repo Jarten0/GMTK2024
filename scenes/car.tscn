@@ -23,6 +23,7 @@ OTHER_NODE = NodePath("../Car")
 [node name="Car" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 29
+collision_priority = 100.0
 script = ExtResource("2_5muok")
 metadata/Tag = "Car"
 

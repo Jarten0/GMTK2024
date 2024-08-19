@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://chjuxqbffvjs5" path="res://levels/MainMenu.tscn" id="2_fd8mp"]
 [ext_resource type="PackedScene" uid="uid://ctjcqadss426g" path="res://levels/LevelSelect.tscn" id="3_vuvgs"]
 [ext_resource type="PackedScene" uid="uid://cjbgpa6dy0krx" path="res://levels/level_one.tscn" id="4_sptf6"]
+[ext_resource type="PackedScene" uid="uid://dw6u7voruxocu" path="res://levels/level_two.tscn" id="5_7tnxq"]
 [ext_resource type="PackedScene" uid="uid://wrgig1dh51np" path="res://levels/faux_level_two.tscn" id="5_7tnxq"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="5_h6pyi"]
 [ext_resource type="Script" path="res://card_row/card_row.gd" id="6_oupbq"]
