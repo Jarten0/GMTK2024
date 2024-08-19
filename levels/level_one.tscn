@@ -137,7 +137,6 @@ TIMER = NodePath("../../Global Tick")
 position = Vector2(448, 320)
 
 [node name="Boulder" parent="Objects" node_paths=PackedStringArray("TILEMAP_MANAGER") instance=ExtResource("9_cy544")]
-z_index = 5
 position = Vector2(832, 576)
 TILEMAP_MANAGER = NodePath("../../TileMaps")
 

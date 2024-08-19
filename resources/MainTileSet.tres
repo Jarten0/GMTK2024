@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://dcuwr885x5o64"]
+[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://dcuwr885x5o64"]
 
 [ext_resource type="Texture2D" uid="uid://dlq4t3lln7nd" path="res://assets/bridge.png" id="1_155mw"]
 [ext_resource type="Texture2D" uid="uid://y8uhy7stu2cx" path="res://assets/finalizedTileSet2.png" id="2_0rkcj"]
+[ext_resource type="Texture2D" uid="uid://cr6kwan4d3pq2" path="res://assets/truck_threequel.png" id="3_35216"]
 [ext_resource type="Texture2D" uid="uid://dhtp18jhyitk" path="res://assets/morkesAdjustedTileset.png" id="6_nloiy"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_v5ei2"]
@@ -250,6 +251,9 @@ texture = ExtResource("2_0rkcj")
 2:14/0 = 0
 6:14/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ps2au"]
+texture = ExtResource("3_35216")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_85u82"]
 texture = ExtResource("6_nloiy")
 4:0/0 = 0
@@ -426,6 +430,7 @@ texture = ExtResource("6_nloiy")
 sources/0 = SubResource("TileSetAtlasSource_slgwm")
 sources/1 = SubResource("TileSetAtlasSource_vl752")
 sources/5 = SubResource("TileSetAtlasSource_85u82")
+sources/3 = SubResource("TileSetAtlasSource_ps2au")
 pattern_0 = SubResource("TileMapPattern_v5ei2")
 pattern_1 = SubResource("TileMapPattern_vixku")
 pattern_2 = SubResource("TileMapPattern_246nm")
