@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dacyksh0vdcf1"]
+[gd_scene load_steps=8 format=3 uid="uid://dacyksh0vdcf1"]
 
 [ext_resource type="Script" path="res://scripts/car_interface.gd" id="1_7hk0w"]
 [ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="1_ygvcg"]
 [ext_resource type="Script" path="res://scripts/car_internal.gd" id="2_5muok"]
 [ext_resource type="Script" path="res://scripts/raycast_walls.gd" id="4_mkqm4"]
-[ext_resource type="Texture2D" uid="uid://crqdhx1frltud" path="res://assets/CarGameTileset8-17-24WIP5.png" id="5_0dexq"]
-[ext_resource type="Script" path="res://scripts/interpolater.gd" id="6_itx4p"]
+[ext_resource type="Texture2D" uid="uid://cr6kwan4d3pq2" path="res://assets/truck_threequel.png" id="4_o03j6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fgm4v"]
 radius = 16.0
@@ -22,7 +21,6 @@ visible = false
 OTHER_NODE = NodePath("../Car")
 
 [node name="Car" type="Area2D" parent="."]
-scale = Vector2(2, 2)
 collision_layer = 2
 collision_mask = 223
 script = ExtResource("2_5muok")
@@ -38,6 +36,17 @@ collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Car/PathTracker"]
 shape = SubResource("CircleShape2D_ny0wh")
+
+[node name="Sprites" type="Node2D" parent="Car"]
+position = Vector2(-80, -56)
+scale = Vector2(4, 4)
+
+[node name="Small" type="Sprite2D" parent="Car/Sprites"]
+position = Vector2(20, 4)
+texture = ExtResource("4_o03j6")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(64, 136, 64, 32)
 
 [node name="RotatingPart" type="Node2D" parent="Car"]
 
@@ -58,26 +67,7 @@ position = Vector2(0, 20)
 target_position = Vector2(72, 0)
 script = ExtResource("4_mkqm4")
 
-[node name="Sprite2D" type="Sprite2D" parent="Car/RotatingPart"]
-unique_name_in_owner = true
-top_level = true
-z_index = 20
-scale = Vector2(4, 4)
-texture = ExtResource("5_0dexq")
-region_enabled = true
-region_rect = Rect2(37, 32, 11, 16)
-script = ExtResource("6_itx4p")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Car/RotatingPart/Sprite2D"]
-z_index = -1
-position = Vector2(-6, 0)
-texture = ExtResource("5_0dexq")
-offset = Vector2(-10, 0)
-region_enabled = true
-region_rect = Rect2(16, 32, 21, 16)
-
 [connection signal="Tick" from="." to="Car" method="tick"]
-[connection signal="Tick" from="." to="Car/RotatingPart/Sprite2D" method="_on_car_tick"]
 [connection signal="area_entered" from="Car" to="Car" method="on_body_entered"]
 [connection signal="body_entered" from="Car" to="Car" method="on_body_entered"]
 [connection signal="area_entered" from="Car/PathTracker" to="Car" method="_on_path_tracker_area_entered"]

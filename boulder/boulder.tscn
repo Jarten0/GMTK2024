@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://vhipsd830vto"]
+
+[ext_resource type="Script" path="res://boulder/boulder.gd" id="1_ci5pa"]
+[ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="1_loaxa"]
+[ext_resource type="Script" path="res://scripts/scaleable_sprite.gd" id="3_kh07q"]
+[ext_resource type="Texture2D" uid="uid://dvfvng0ejsa3l" path="res://boulder/boulder.png" id="4_n3v4i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gcqco"]
+radius = 56.0
+
+[node name="Boulder" type="Node2D"]
+position = Vector2(832, 512)
+script = ExtResource("1_ci5pa")
+metadata/Tag = "Wall"
+
+[node name="Scaleable" parent="." node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("1_loaxa")]
+visible = false
+OTHER_NODE = NodePath("../Area2D")
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 18
+collision_priority = 2.0
+metadata/_edit_lock_ = true
+metadata/Tag = "Boulder"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = 100
+shape = SubResource("CircleShape2D_gcqco")
+metadata/_edit_lock_ = true
+
+[node name="ScaleableSprite" type="Node2D" parent="Area2D" node_paths=PackedStringArray("small_tile", "medium_tile", "large_tile")]
+top_level = true
+script = ExtResource("3_kh07q")
+small_tile = NodePath("Small")
+medium_tile = NodePath("Normal")
+large_tile = NodePath("Large")
+
+[node name="Large" type="Sprite2D" parent="Area2D/ScaleableSprite"]
+visible = false
+position = Vector2(832, 512)
+scale = Vector2(4, 4)
+texture = ExtResource("4_n3v4i")
+hframes = 2
+vframes = 3
+region_enabled = true
+region_rect = Rect2(96, 0, 64, 96)
+metadata/_edit_lock_ = true
+
+[node name="Normal" type="Sprite2D" parent="Area2D/ScaleableSprite"]
+position = Vector2(832, 512)
+scale = Vector2(8, 8)
+texture = ExtResource("4_n3v4i")
+hframes = 2
+vframes = 3
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 48)
+metadata/_edit_lock_ = true
+
+[node name="Small" type="Sprite2D" parent="Area2D/ScaleableSprite"]
+visible = false
+position = Vector2(832, 512)
+scale = Vector2(8, 8)
+texture = ExtResource("4_n3v4i")
+hframes = 2
+vframes = 3
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 48)
+metadata/_edit_lock_ = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

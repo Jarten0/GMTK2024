@@ -14,7 +14,7 @@ config/name="GMTK2024"
 run/main_scene="res://levels/level_manager.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
-config/icon="res://assets/icon.svg"
+config/icon="res://assets/truck_parts.png"
 
 [display]
 
@@ -64,7 +64,7 @@ Exit={
 2d_physics/layer_2="Car"
 2d_physics/layer_3="Flag"
 2d_physics/layer_4="Hazard"
-2d_physics/layer_5="Spring"
+2d_physics/layer_5="Dynamic Objects"
 2d_physics/layer_6="Path"
 2d_physics/layer_7="Card"
 2d_physics/layer_8="Scaleable Object"

@@ -1,10 +1,17 @@
+class_name CarInternal
+
 extends Area2D
 
 @export var GRID_SIZE = 128.0
-@export var DIRECTION: Vector2 = Vector2.RIGHT
+@export var DIRECTION: Vector2i = Vector2i.RIGHT
 @export var STARTED: bool = false
+
 var TILEMAP_MANAGER: TileMapManager
-var unpathable = 0
+var unpathable: int = 0
+var previous_direction: Vector2i
+var visible_sprite: int = 0
+var size: int = 2
+var anim_delta: float = 0.0
 
 func _ready():
 	if TILEMAP_MANAGER == null:
@@ -14,11 +21,23 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
+	anim_delta += delta
+
 	if Input.is_action_just_pressed("Start"):
 		STARTED = true
+		$"..".TIMER.start()
 
-	$RotatingPart.rotation = DIRECTION.angle()
+	if DIRECTION == previous_direction: 
+		$RotatingPart.rotation = (DIRECTION as Vector2).angle()
 	
+
+
+	if STARTED and anim_delta > 0.1:
+		anim_delta = 0
+		$Sprites/Small.frame = abs(sign($Sprites/Small.frame) - 1)
+
+	update_visible_sprite()
+
 func get_tile_data(tile_map_layer: TileMapLayer) -> TileData:
 	var map_position = tile_map_layer.local_to_map($"..".position / 8)
 	return tile_map_layer.get_cell_tile_data(map_position)
@@ -26,16 +45,24 @@ func get_tile_data(tile_map_layer: TileMapLayer) -> TileData:
 func tick():
 	if !visible or !STARTED:
 		return
+
+	if DIRECTION != previous_direction: 
+		previous_direction = DIRECTION
 	
 	if $RotatingPart/RayCast2D.BLOCK_MOVEMENT or $RotatingPart/RayCast2D2.BLOCK_MOVEMENT or $RotatingPart/RayCast2D3.BLOCK_MOVEMENT:
-		DIRECTION = DIRECTION.rotated(deg_to_rad(180))
+		DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
 		return
 		
 	if unpathable > 0:
 		unpathable -= 1
+
+	$"..".position += DIRECTION * GRID_SIZE / 2
 	
-	$"..".position += DIRECTION.normalized() * GRID_SIZE / 2
+	update_visible_sprite()
 	
+	if get_tile_data(TILEMAP_MANAGER.FLOOR_LAYER) == null:
+		fall()
+
 func on_body_entered(body: Node2D):
 	if !visible:
 		return
@@ -50,20 +77,24 @@ func check_for_tag(body: Node2D):
 	match body.get_meta("Tag"):
 		"Flag": 
 			$"..".emit_signal("LevelComplete")
-			$RotatingPart/Sprite2D.POSITION_RATE = 1
 		"Spring":
-			$"..".position += body.DIRECTION.normalized() * GRID_SIZE
+			$"..".position += body.DIRECTION * GRID_SIZE
 			body.Activate()
 		"TurnTile":
 			if body.get_parent().TURN_COUNTERCLOCKWISE:
-				DIRECTION = DIRECTION.rotated(deg_to_rad(-90))
+				DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(-90))
 			else:
-				DIRECTION = DIRECTION.rotated(deg_to_rad(90))
+				DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(90))
 			unpathable = 3
 		"Wall":
 			print("Wall collision")
-			DIRECTION = DIRECTION.rotated(deg_to_rad(180))
+			DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
 			return
+		"Boulder":
+			if body.get_parent().size != 1:
+				DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
+			else:
+				body.get_parent().position += DIRECTION * GRID_SIZE / 2
 		"ObjectLayer":
 			var tiledata = get_tile_data(TILEMAP_MANAGER.OBJECT_LAYER)
 			if tiledata == null:
@@ -91,21 +122,33 @@ func _on_path_tracker_area_entered(area: Area2D) -> void:
 	
 	var path = area.get_parent()
 	
-	if path is PathCorner:
-		#print(Vector2i(path.EXIT * -1), Vector2i(DIRECTION), Vector2i(path.EXIT * -1) == Vector2i(DIRECTION))
-		
+	if path is PathCorner:		
 		if Vector2i(path.EXIT * -1) == Vector2i(DIRECTION):
 			DIRECTION = path.ENTER * -1
-			printerr("ITWORK")
 		else:
 			DIRECTION = path.EXIT
 		return
-	
-	if area.get_parent().VERTICAL:
-		if DIRECTION.y == 0:
-			DIRECTION.y = DIRECTION.x
-		DIRECTION = Vector2(0, DIRECTION.y).normalized()
 	else:
-		if DIRECTION.x == 0:
-			DIRECTION.x = DIRECTION.y
-		DIRECTION = Vector2(DIRECTION.x, 0).normalized()
+		check_for_tag(area)
+func fall():
+	pass
+	
+func update_visible_sprite():
+	var sprite: Sprite2D = $Sprites/Small
+	sprite.hframes = 2
+	size = ScaleableSprite.measure_scale(scale)
+	if size == 3:
+		sprite.region_rect = Rect2(128, 0, 128, 64)
+		sprite.scale = Vector2.ONE / 2
+	else:
+		sprite.region_rect = Rect2(0, 0, 64, 32)
+		sprite.region_rect.position.x = (size * 64) - 64
+		sprite.scale = Vector2.ONE
+
+
+	if DIRECTION.x != 0:
+		sprite.region_rect.position.y += 128
+		if DIRECTION.x < 0:
+			sprite.region_rect.position.y += 64
+	elif DIRECTION.y < 0:
+		sprite.region_rect.position.y += 64

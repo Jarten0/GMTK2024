@@ -1,15 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgjkajwga3lrj"]
+[gd_scene load_steps=10 format=3 uid="uid://bgjkajwga3lrj"]
 
 [ext_resource type="Script" path="res://scripts/LevelManager.gd" id="1_3fj03"]
 [ext_resource type="PackedScene" uid="uid://chjuxqbffvjs5" path="res://levels/MainMenu.tscn" id="2_fd8mp"]
 [ext_resource type="PackedScene" uid="uid://ctjcqadss426g" path="res://levels/LevelSelect.tscn" id="3_vuvgs"]
 [ext_resource type="PackedScene" uid="uid://cjbgpa6dy0krx" path="res://levels/level_one.tscn" id="4_sptf6"]
-[ext_resource type="PackedScene" uid="uid://c5tdj7lug6o2g" path="res://levels/level_two.tscn" id="5_7tnxq"]
+[ext_resource type="PackedScene" uid="uid://wrgig1dh51np" path="res://levels/level_two.tscn" id="5_7tnxq"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="5_h6pyi"]
 [ext_resource type="Script" path="res://card_row/card_row.gd" id="6_oupbq"]
 [ext_resource type="PackedScene" uid="uid://bhf4knacvgtqi" path="res://card_row/card.tscn" id="7_e4c01"]
-[ext_resource type="Script" path="res://bgm.gd" id="9_vo6f7"]
-[ext_resource type="AudioStream" uid="uid://6lnqq3ffdnku" path="res://music/CarGameGMTK2024song8-17-24WIP5.wav" id="10_5l471"]
+[ext_resource type="Script" path="res://scripts/bgm.gd" id="9_4orgb"]
 
 [node name="LevelManager" type="Node2D"]
 script = ExtResource("1_3fj03")
@@ -18,7 +17,6 @@ LevelSelect = ExtResource("3_vuvgs")
 PackedSceneLevels = Array[PackedScene]([ExtResource("2_fd8mp"), ExtResource("4_sptf6"), ExtResource("5_7tnxq")])
 
 [node name="UI" type="Container" parent="."]
-visible = false
 custom_minimum_size = Vector2(1280, 720)
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -51,14 +49,12 @@ polygon = PackedVector2Array(-176, -34.8774, -112, 34.8774, 1616, 34.8774, 1552,
 
 [node name="Mask" type="Polygon2D" parent="UI/CardRow/Bar"]
 clip_children = 1
-position = Vector2(-1728, 0)
 color = Color(0.393086, 0.393086, 0.393085, 1)
 offset = Vector2(88, 0)
 polygon = PackedVector2Array(-88, -34.8774, -24, 34.8774, 1704, 34.8774, 1640, -34.8774)
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
-script = ExtResource("9_vo6f7")
-TRACKS = Array[AudioStreamWAV]([ExtResource("10_5l471")])
+script = ExtResource("9_4orgb")
 
 [node name="LevelCompleteDelay" type="Timer" parent="."]
 wait_time = 5.0

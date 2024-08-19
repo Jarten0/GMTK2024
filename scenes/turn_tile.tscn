@@ -1,35 +1,61 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyl5behnlkvsh"]
+[gd_scene load_steps=7 format=3 uid="uid://cyl5behnlkvsh"]
 
 [ext_resource type="Script" path="res://scripts/turn_tile_interface.gd" id="1_1a8fm"]
 [ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="1_h11j2"]
 [ext_resource type="Script" path="res://scripts/turn_tile_internal.gd" id="3_i6gdl"]
-[ext_resource type="Texture2D" uid="uid://dfm0xgxcechd1" path="res://assets/FixedCarGameTileset8-17-24WIP5 (1).png" id="4_jjn1v"]
+[ext_resource type="Texture2D" uid="uid://cb0grass7i2kb" path="res://assets/ScalingTileSet.png" id="4_ibap4"]
+[ext_resource type="Script" path="res://scripts/scaleable_sprite.gd" id="5_52a65"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66vwp"]
-size = Vector2(80, 80)
+size = Vector2(96.0004, 95.9996)
 
 [node name="TurnTile" type="Node2D"]
 rotation = -1.5708
 script = ExtResource("1_1a8fm")
 
 [node name="Scaleable" parent="." node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("1_h11j2")]
+visible = false
 OTHER_NODE = NodePath("../TurnTile")
 
 [node name="TurnTile" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 7
+collision_layer = 32
+collision_mask = 18
 monitoring = false
 script = ExtResource("3_i6gdl")
 metadata/Tag = "TurnTile"
 
+[node name="ScaleableSprite" type="Node2D" parent="TurnTile" node_paths=PackedStringArray("small_tile", "medium_tile", "large_tile")]
+top_level = true
+script = ExtResource("5_52a65")
+small_tile = NodePath("Small")
+medium_tile = NodePath("Normal")
+large_tile = NodePath("Large")
+metadata/_edit_lock_ = true
+
+[node name="Large" type="Sprite2D" parent="TurnTile/ScaleableSprite"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("4_ibap4")
+region_enabled = true
+region_rect = Rect2(64, 32, 32, 32)
+
+[node name="Normal" type="Sprite2D" parent="TurnTile/ScaleableSprite"]
+scale = Vector2(8, 8)
+texture = ExtResource("4_ibap4")
+region_enabled = true
+region_rect = Rect2(96, 64, 16, 16)
+
+[node name="Small" type="Sprite2D" parent="TurnTile/ScaleableSprite"]
+visible = false
+scale = Vector2(8, 8)
+texture = ExtResource("4_ibap4")
+region_enabled = true
+region_rect = Rect2(96, 80, 16, 16)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TurnTile"]
+z_index = 100
+position = Vector2(-6.04151e-12, 1.66893e-06)
 shape = SubResource("RectangleShape2D_66vwp")
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="TurnTile"]
-rotation = 1.5708
-scale = Vector2(8, 8)
-texture = ExtResource("4_jjn1v")
-region_enabled = true
-region_rect = Rect2(16, 80, 16, 16)
-metadata/_edit_lock_ = true
+[connection signal="area_entered" from="TurnTile" to="TurnTile" method="_on_area_entered"]
