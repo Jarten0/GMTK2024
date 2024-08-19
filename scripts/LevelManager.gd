@@ -9,12 +9,16 @@ extends Node2D
 var current_level: Node
 var level_index: int = 0
 
+signal loaded_level(index: int)
+
 func load_level(index: int):
 	level_index = index
 	if current_level != null:
 		remove_child(current_level)
 	current_level = PackedSceneLevels[index].instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
 	add_child(current_level)
+
+	emit_signal("loaded_level", index)
 	
 	if current_level is LevelSignals:
 		current_level.LevelComplete.connect(on_level_complete)
@@ -25,6 +29,7 @@ func load_level(index: int):
 
 	if index != 0:
 		$UI.visible = true
+
 
 func load_level_from_packed_scene(scene: PackedScene):
 	if current_level != null:
@@ -42,6 +47,7 @@ func _ready() -> void:
 	load_level_from_packed_scene(InitialScene)
 	var array: Array[int] = [0,1,2,3,4,5]
 	%CardRow.setup(array)
+	$UI.visible = false
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Restart"):
@@ -49,7 +55,11 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Exit"):
 		on_level_exit()
 
-func on_level_complete():	
+func on_level_complete():
+	$LevelCompleteDelay.start()
+	current_level.get_node("Global Tick").start(0.1)
+	
+func _on_level_complete_delay_timeout() -> void:
 	level_index += 1
 	load_level(level_index)
 	

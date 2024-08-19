@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/ui.gd" id="5_h6pyi"]
 [ext_resource type="Script" path="res://card_row/card_row.gd" id="6_oupbq"]
 [ext_resource type="PackedScene" uid="uid://bhf4knacvgtqi" path="res://card_row/card.tscn" id="7_e4c01"]
-[ext_resource type="Script" path="res://levels/bgm.gd" id="9_vo6f7"]
+[ext_resource type="Script" path="res://bgm.gd" id="9_vo6f7"]
 [ext_resource type="AudioStream" uid="uid://6lnqq3ffdnku" path="res://music/CarGameGMTK2024song8-17-24WIP5.wav" id="10_5l471"]
 
 [node name="LevelManager" type="Node2D"]
@@ -59,3 +59,9 @@ polygon = PackedVector2Array(-88, -34.8774, -24, 34.8774, 1704, 34.8774, 1640, -
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 script = ExtResource("9_vo6f7")
 TRACKS = Array[AudioStreamWAV]([ExtResource("10_5l471")])
+
+[node name="LevelCompleteDelay" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="LevelCompleteDelay" to="." method="_on_level_complete_delay_timeout"]

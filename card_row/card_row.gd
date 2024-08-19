@@ -22,6 +22,7 @@ func setup(cards: Array[int]) -> void:
 		add_child(card)
 		card.default_position = card.position
 		CARDS.append(card)
+	$Bar/Mask.position = Vector2(-1728, 100)
 
 func update_cards():
 	var xOffset = 120
@@ -34,3 +35,8 @@ func _process(delta: float) -> void:
 	target_position = Vector2(-1728 + (CARDS.size() * 160.0), 0.0)
 	var other = $Bar/Mask.position
 	$Bar/Mask.position += (target_position - other) * 0.2
+
+
+func _on_level_manager_loaded_level(index:int) -> void:
+	CARDS.clear()
+	$Bar/Mask.position = Vector2(-1728, 100)

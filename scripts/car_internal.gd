@@ -9,6 +9,8 @@ var unpathable = 0
 func _ready():
 	if TILEMAP_MANAGER == null:
 		TILEMAP_MANAGER = $"..".TILEMAP_MANAGER
+	
+	print(Vector2(-1, 0) == (Vector2i(-1, -0) as Vector2))
 
 
 func _physics_process(delta: float) -> void:
@@ -47,9 +49,8 @@ func check_for_tag(body: Node2D):
 	
 	match body.get_meta("Tag"):
 		"Flag": 
-			print("End of level")
-			hide()
 			$"..".emit_signal("LevelComplete")
+			$RotatingPart/Sprite2D.POSITION_RATE = 1
 		"Spring":
 			$"..".position += body.DIRECTION.normalized() * GRID_SIZE
 			body.Activate()
@@ -91,8 +92,11 @@ func _on_path_tracker_area_entered(area: Area2D) -> void:
 	var path = area.get_parent()
 	
 	if path is PathCorner:
-		if DIRECTION == (-path.EXIT as Vector2) :
-			DIRECTION = -path.ENTER
+		#print(Vector2i(path.EXIT * -1), Vector2i(DIRECTION), Vector2i(path.EXIT * -1) == Vector2i(DIRECTION))
+		
+		if Vector2i(path.EXIT * -1) == Vector2i(DIRECTION):
+			DIRECTION = path.ENTER * -1
+			printerr("ITWORK")
 		else:
 			DIRECTION = path.EXIT
 		return
