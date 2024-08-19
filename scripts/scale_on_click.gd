@@ -1,20 +1,31 @@
 extends Area2D
 
-@export var SCALE_LIMIT = 8.0
+var SCALE_LIMIT = (Vector2.ONE * 4).length()
 @export var OTHER_NODE: Area2D = null
 
 func _ready() -> void:
+	SCALE_LIMIT = (Vector2.ONE * 4).length()
 	if OTHER_NODE == null:
 		OTHER_NODE = $"../Area2D"
 
 func scale_up():
 	var node = OTHER_NODE
-	node.scale *= 2
+	if node.scale.x > 2:
+		node.scale.y *= 2
+	elif node.scale.y > 2:
+		node.scale.x *= 2
+	else:
+		node.scale *= 2
 	node.scale = node.scale.normalized() * clampf(node.scale.length(), 0.5, SCALE_LIMIT)
 
 func scale_down():
 	var node = OTHER_NODE
-	node.scale /= 2
+	if node.scale.x < 1:
+		node.scale.y /= 2
+	elif node.scale.y < 1:
+		node.scale.x /= 2
+	else:
+		node.scale /= 2
 	node.scale = node.scale.normalized() * clampf(node.scale.length(), 0.5, SCALE_LIMIT)
 
 func scale_up_x():

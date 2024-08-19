@@ -1,20 +1,19 @@
 class_name Spring
 
-extends Node
+extends Node2D
 
 @export var DIRECTION: Vector2 = Vector2.ZERO
-var ticks = 0
+var frame = 2
 
 func _init() -> void:
 	if (DIRECTION == Vector2.ZERO):
-		DIRECTION = Vector2.from_angle(get_node(".").rotation).rotated(deg_to_rad(180))
+		DIRECTION = Vector2.from_angle(global_rotation).rotated(deg_to_rad(-90))
 
 func _physics_process(delta: float) -> void:
-	if ticks > 0:
-		$Sprite2D.frame = 1
-		ticks -= 1
-	else:
-		$Sprite2D.frame = 0
+	if frame < 5:
+		frame += 1 
+
+	$ScaleableSprite.get_current_sprite().frame = clamp(frame - 3, 0, 2)
 
 func Activate():
-	ticks = 5
+	frame = 0

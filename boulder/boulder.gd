@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var TILEMAP_MANAGER: TileMapManager
 @export var AUTO_ROLL: bool = false
 @export var DIRECTION: Vector2 = Vector2.ZERO
 @export var size: int = 2
@@ -16,6 +17,10 @@ func on_collision(direction: Vector2):
 		DIRECTION = direction
 		rolling = true
 
+func _physics_process(delta: float) -> void:
+	size = $Area2D/ScaleableSprite.current_tile
+
+
 func tick():
 	if rolling:
 		current_frame += 1
@@ -31,7 +36,10 @@ func tick():
 
 		
 	$Area2D/ScaleableSprite.get_current_sprite().frame_coords.y = current_frame 
-	size = $Area2D/ScaleableSprite.current_tile
+
+	if get_tile_data(TILEMAP_MANAGER.FLOOR_LAYER) == null:
+		rotation
+		queue_free()
 
 func _on_area_2d_area_entered(area:Area2D) -> void:
 	if area is CarInternal:
@@ -40,3 +48,8 @@ func _on_area_2d_area_entered(area:Area2D) -> void:
 
 func _on_global_tick_timeout() -> void:
 	tick()
+
+func get_tile_data(tile_map_layer: TileMapLayer) -> TileData:
+	var map_position = tile_map_layer.local_to_map($"..".position / tile_map_layer.scale.x)
+	print(map_position)
+	return tile_map_layer.get_cell_tile_data(map_position)

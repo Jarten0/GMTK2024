@@ -12,3 +12,4 @@ func _ready() -> void:
 func _on_area_entered(area:Area2D) -> void:
 	if area.has_meta("Tag") and area.get_meta("Tag") != "Car":
 		area.rotate(deg_to_rad(90) * sign(TURN_COUNTERCLOCKWISE - 0.5))
+		get_parent().on_use()

@@ -14,7 +14,6 @@ func _ready() -> void:
 
 func _mouse_enter() -> void:
 	hovering = true
-	print("Hovering")
 
 func _mouse_exit() -> void:
 	hovering = false

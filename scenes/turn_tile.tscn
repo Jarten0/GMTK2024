@@ -10,7 +10,6 @@
 size = Vector2(96.0004, 95.9996)
 
 [node name="TurnTile" type="Node2D"]
-rotation = -1.5708
 script = ExtResource("1_1a8fm")
 
 [node name="Scaleable" parent="." node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("1_h11j2")]
@@ -25,7 +24,6 @@ script = ExtResource("3_i6gdl")
 metadata/Tag = "TurnTile"
 
 [node name="ScaleableSprite" type="Node2D" parent="TurnTile" node_paths=PackedStringArray("small_tile", "medium_tile", "large_tile")]
-top_level = true
 script = ExtResource("5_52a65")
 small_tile = NodePath("Small")
 medium_tile = NodePath("Normal")

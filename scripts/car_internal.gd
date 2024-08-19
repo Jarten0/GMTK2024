@@ -17,9 +17,6 @@ func _ready():
 	if TILEMAP_MANAGER == null:
 		TILEMAP_MANAGER = $"..".TILEMAP_MANAGER
 	
-	print(Vector2(-1, 0) == (Vector2i(-1, -0) as Vector2))
-
-
 func _physics_process(delta: float) -> void:
 	anim_delta += delta
 
@@ -30,8 +27,6 @@ func _physics_process(delta: float) -> void:
 	if DIRECTION == previous_direction: 
 		$RotatingPart.rotation = (DIRECTION as Vector2).angle()
 	
-
-
 	if STARTED and anim_delta > 0.1:
 		anim_delta = 0
 		$Sprites/Small.frame = abs(sign($Sprites/Small.frame) - 1)
@@ -39,8 +34,10 @@ func _physics_process(delta: float) -> void:
 	update_visible_sprite()
 
 func get_tile_data(tile_map_layer: TileMapLayer) -> TileData:
-	var map_position = tile_map_layer.local_to_map($"..".position / 8)
+	var map_position = tile_map_layer.local_to_map($"..".position / tile_map_layer.scale.x)
 	return tile_map_layer.get_cell_tile_data(map_position)
+
+
 
 func tick():
 	if !visible or !STARTED:
@@ -71,7 +68,7 @@ func on_body_entered(body: Node2D):
 	
 func check_for_tag(body: Node2D):
 	if !body.has_meta("Tag"):
-		printerr("No tag metadata found")
+		print("No tag metadata found for" + body.to_string())
 		return
 	
 	match body.get_meta("Tag"):
@@ -86,6 +83,7 @@ func check_for_tag(body: Node2D):
 			else:
 				DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(90))
 			unpathable = 3
+			body.get_parent().on_use()
 		"Wall":
 			print("Wall collision")
 			DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
@@ -113,7 +111,7 @@ func check_for_tag(body: Node2D):
 			if tag != null:
 				print("Unknown tag!: " + tag as String)
 			else:
-				print("Unknown tag!" )
+				print("Unknown tag!")
 
 
 func _on_path_tracker_area_entered(area: Area2D) -> void:
@@ -130,7 +128,9 @@ func _on_path_tracker_area_entered(area: Area2D) -> void:
 		return
 	else:
 		check_for_tag(area)
+
 func fall():
+	$"..".emit_signal("LevelRestart")
 	pass
 	
 func update_visible_sprite():

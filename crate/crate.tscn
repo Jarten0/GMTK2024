@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://7517qscpunx1"]
+
+[ext_resource type="Script" path="res://scripts/scaleable_sprite.gd" id="1_xpf2s"]
+[ext_resource type="Texture2D" uid="uid://ckmifq80xcnbk" path="res://assets/finalizedObjectSet.png" id="2_7b1fn"]
+[ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="3_elnou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfcqw"]
+size = Vector2(128, 128)
+
+[node name="Crate" type="Node2D"]
+position = Vector2(1536, 192)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_pfcqw")
+
+[node name="ScaleableSprite" type="Node2D" parent="Area2D" node_paths=PackedStringArray("small_tile", "medium_tile", "large_tile")]
+script = ExtResource("1_xpf2s")
+small_tile = NodePath("small")
+medium_tile = NodePath("med")
+large_tile = NodePath("large")
+
+[node name="small" type="Sprite2D" parent="Area2D/ScaleableSprite"]
+visible = false
+scale = Vector2(8, 8)
+texture = ExtResource("2_7b1fn")
+region_enabled = true
+region_rect = Rect2(256, 96, 16, 16)
+
+[node name="med" type="Sprite2D" parent="Area2D/ScaleableSprite"]
+scale = Vector2(8, 8)
+texture = ExtResource("2_7b1fn")
+region_enabled = true
+region_rect = Rect2(272, 96, 16, 16)
+
+[node name="large" type="Sprite2D" parent="Area2D/ScaleableSprite"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("2_7b1fn")
+region_enabled = true
+region_rect = Rect2(256, 112, 32, 32)
+
+[node name="Scaleable" parent="." node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("3_elnou")]
+OTHER_NODE = NodePath("../Area2D")
