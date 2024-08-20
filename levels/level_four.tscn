@@ -159,7 +159,7 @@ TURN_COUNTERCLOCKWISE = true
 SIZE = Vector2(0.5, 0.5)
 
 [node name="TurnTile6" parent="Entities" instance=ExtResource("9_fjanv")]
-position = Vector2(768, 576)
+position = Vector2(768, 640)
 TURN_COUNTERCLOCKWISE = true
 SIZE = Vector2(2, 2)
 
