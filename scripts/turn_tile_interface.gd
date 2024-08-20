@@ -9,7 +9,7 @@ func _process(delta: float) -> void:
 	if shrinking:
 		shrink_progress += delta
 		rotation = shrink_progress
-		$TurnTile.scale = scale_when_used * (1 - (shrink_progress * 2))
+		$Area2D.scale = scale_when_used * (1 - (shrink_progress * 2))
 		if shrink_progress >= 0.5:
 			queue_free() 
 
