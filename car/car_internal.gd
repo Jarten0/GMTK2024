@@ -111,7 +111,7 @@ func check_for_tag(body: Node2D):
 				DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(90))
 			unpathable = 3
 			body.get_parent().on_use()
-		"Wall":
+		"Wall", "Crate":
 			print("Wall collision")
 			DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
 			get_parent().position += DIRECTION * GRID_SIZE / 2
@@ -122,6 +122,13 @@ func check_for_tag(body: Node2D):
 				KEY = null
 		"Boulder":
 			var other_parent = body.get_parent()
+			print(DIRECTION, "-" ,other_parent.DIRECTION)
+			var angle = abs(((DIRECTION as Vector2).angle_to(other_parent.DIRECTION)))
+			if angle >= deg_to_rad(89) and angle <= deg_to_rad(91) and other_parent.DIRECTION.length() != 0:
+				print("Died")
+				hide()
+				$"..".emit_signal("LevelRestart")
+				return
 			
 			if get_parent().SIZE.length() >= (other_parent.SIZE.length() - 0.01):
 				other_parent.DIRECTION = DIRECTION

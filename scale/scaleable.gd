@@ -24,5 +24,5 @@ func _init() -> void:
 	
 	add_child(reciever)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	SIZE = AREA_NODE.scale 
