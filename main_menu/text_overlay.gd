@@ -22,10 +22,11 @@ var displayed_text: String = ""
 var displaying_text: String = ""
 var text: String = ""
 
-func display_text(text: String):
-	displaying_text = text
-	text = text
+func display_text(new_text: String):
+	displaying_text = new_text
+	text = new_text
 
 func close_text():
 	displaying_text = ""
 	text = ""
+	displayed_text = ""

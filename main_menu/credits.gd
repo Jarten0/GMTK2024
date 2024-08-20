@@ -1,6 +1,7 @@
 extends Button
 
 
+var active = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,10 +11,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Credits.position
-
-
+	if active: $Credits.position += (Vector2(-768, 488) - $Credits.position) * 0.2
+	if !active: $Credits.position += (Vector2(0, -1000) - $Credits.position) * 0.2
 
 func _on_pressed() -> void:
-	$Credits.position = Vector2(0, -10000)
+	active = !active
 	

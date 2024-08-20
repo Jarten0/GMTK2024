@@ -5,6 +5,7 @@ extends Node2D
 @export var CARDS: Array[int]
 @export var CARD_ROW_POS: Vector2 = Vector2(128, 960)
 @export var TURNS_ALLOWED: int = 2
+@onready var LEVEL_MANAGER: LevelManager = $".."
 
 signal LevelComplete()
 signal LevelReset()

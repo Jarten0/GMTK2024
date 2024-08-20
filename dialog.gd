@@ -38,6 +38,6 @@ static func _static_init() -> void:
 	lines.append("Okay, heres the road again. We're almost there.") #[28] = 
 	# ending cutscene
 	lines.append("Go! Go!!! You're going to make it!") #[29]
-	lines.append("Yes! Now connect the fuel line and get out of there!") #[30]
+	lines.append("Yes! Now connect the fuel line\nand get out of there!") #[30]
 	lines.append("Oh no! It's too late! Brace yourself!") #[31]
 	
