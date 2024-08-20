@@ -5,7 +5,7 @@ extends Area2D
 @export var GRID_SIZE = 128.0
 @export var DIRECTION: Vector2i = Vector2i.RIGHT
 @export var STARTED: bool = false
-@export var turns: int = 2 
+var turns: int 
 
 var TILEMAP_MANAGER: TileMapManager
 var unpathable: int = 0
@@ -16,6 +16,8 @@ var anim_delta: float = 0.0
 var KEY: DoorKey
 
 func _ready():
+	turns = get_parent().get_parent().get_parent().TURNS_ALLOWED
+
 	if TILEMAP_MANAGER == null:
 		TILEMAP_MANAGER = $"..".TILEMAP_MANAGER
 	
@@ -115,10 +117,17 @@ func check_for_tag(body: Node2D):
 			else:
 				KEY = null
 		"Boulder":
-			if body.get_parent().size != 1:
+			var other_parent = body.get_parent()
+			
+			if get_parent().SIZE.length() >= (other_parent.SIZE.length() - 0.01):
+				other_parent.DIRECTION = DIRECTION
+				other_parent.rolling = true
+				
+			if other_parent.SIZE.length() >= get_parent().SIZE.length():
 				DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
 			else:
-				body.get_parent().position += DIRECTION * GRID_SIZE / 2
+				other_parent.position += DIRECTION * GRID_SIZE / 2
+
 		"ObjectLayer":
 			var tiledata = get_tile_data(TILEMAP_MANAGER.OBJECT_LAYER)
 			if tiledata == null:

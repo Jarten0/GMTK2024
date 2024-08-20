@@ -27,6 +27,10 @@ func on_collision(direction: Vector2):
 	if l <= 2:
 		DIRECTION = direction 
 		rolling = true
+
+func on_collision_car(car: CarInterface):
+	# print(car.SIZE.length(), " - " , SIZE.length())
+	pass
 	
 
 func _physics_process(delta: float) -> void:
@@ -60,7 +64,7 @@ func tick():
 		
 	$Area2D/ScaleableSprite.get_current_sprite().frame_coords.y = current_frame 
 
-	if get_tile_data(TILEMAP_MANAGER.FLOOR_LAYER) == null:
+	if get_tile_data(TILEMAP_MANAGER.FLOOR_LAYER) == null and get_tile_data_minus_one(TILEMAP_MANAGER.FLOOR_LAYER) == null:
 		fall()
 
 
@@ -72,6 +76,10 @@ func get_tile_data(tile_map_layer: TileMapLayer) -> TileData:
 	var map_position = tile_map_layer.local_to_map(position / tile_map_layer.scale.x)
 	return tile_map_layer.get_cell_tile_data(map_position)
 
+func get_tile_data_minus_one(tile_map_layer: TileMapLayer) -> TileData:
+	var map_position = tile_map_layer.local_to_map(position / tile_map_layer.scale.x) - Vector2i.ONE
+	return tile_map_layer.get_cell_tile_data(map_position)
+
 func fall():
 	falling = true
 	position += DIRECTION.normalized() * 64
@@ -81,14 +89,13 @@ func turn_tile_rotate(counterclockwise: bool):
 	DIRECTION = DIRECTION.rotated(deg_to_rad(-90) * sign(float(counterclockwise) - 0.5))
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
-	print("something collided with boulder" + body.get_path().get_concatenated_names())
+	# print("something collided with boulder" + body.get_path().get_concatenated_names())
 	var parent = body.get_parent() 
 	var tag = "None"
 	if body.has_meta("Tag"):
 		tag = body.get_meta("Tag")
 	if body is CarInternal:
-		print(body.DIRECTION)
-		on_collision(body.DIRECTION)
+		on_collision_car(body.get_parent())
 	elif parent is Crate:
 		if parent.get_node("Area2D/ScaleableSprite").current_tile > 2:
 			# DIRECTION *= -1
@@ -97,8 +104,8 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 		print('push')
 		parent.position += DIRECTION.normalized() * 64
 	elif tag == "Wall":
-		DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
-		position += DIRECTION.normalized() * 64
+		position -= DIRECTION.normalized() * 64
+		DIRECTION = Vector2.ZERO
 
 
 	# elif body is Area2D:

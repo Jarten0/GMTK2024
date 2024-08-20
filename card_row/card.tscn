@@ -14,7 +14,7 @@ script = ExtResource("1_kjbhm")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(8, 8)
 texture = ExtResource("2_y3hdc")
-vframes = 6
+vframes = 8
 region_rect = Rect2(16, 80, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

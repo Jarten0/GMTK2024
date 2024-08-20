@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func scale_up():
 	var node = OTHER_NODE
+	assert(OTHER_NODE != null, "No other node found!")
 	if node.scale.x > 2:
 		node.scale.y *= 2
 	elif node.scale.y > 2:
@@ -29,6 +30,14 @@ func scale_down():
 	else:
 		node.scale /= 2
 	node.scale = node.scale.normalized() * clampf(node.scale.length(), 0.5, SCALE_LIMIT)
+
+func scale_jumbo():
+	var node = OTHER_NODE
+	node.scale = Vector2.ONE * 4
+
+func scale_mini():
+	var node = OTHER_NODE
+	node.scale = Vector2.ONE * 0.5
 
 func scale_up_x():
 	var node = OTHER_NODE

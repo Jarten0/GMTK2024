@@ -10,45 +10,45 @@ size = Vector2(128, 128)
 
 [node name="TurnTile" type="Node2D" node_paths=PackedStringArray("AREA_NODE", "SCALEABLE_SPRITE")]
 script = ExtResource("1_1a8fm")
-AREA_NODE = NodePath("TurnTile")
-SCALEABLE_SPRITE = NodePath("TurnTile/ScaleableSprite")
+AREA_NODE = NodePath("Area2D")
+SCALEABLE_SPRITE = NodePath("Area2D/ScaleableSprite")
 
-[node name="TurnTile" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 18
 script = ExtResource("3_i6gdl")
 metadata/Tag = "TurnTile"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurnTile"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 1.90735e-06)
 shape = SubResource("RectangleShape2D_66vwp")
 metadata/_edit_lock_ = true
 
-[node name="ScaleableSprite" type="Node2D" parent="TurnTile" node_paths=PackedStringArray("small_tile", "medium_tile", "large_tile")]
+[node name="ScaleableSprite" type="Node2D" parent="Area2D" node_paths=PackedStringArray("small_tile", "medium_tile", "large_tile")]
 script = ExtResource("5_52a65")
 small_tile = NodePath("Small")
 medium_tile = NodePath("Normal")
 large_tile = NodePath("Large")
 metadata/_edit_lock_ = true
 
-[node name="Large" type="Sprite2D" parent="TurnTile/ScaleableSprite"]
+[node name="Large" type="Sprite2D" parent="Area2D/ScaleableSprite"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("4_ibap4")
 region_enabled = true
 region_rect = Rect2(64, 32, 32, 32)
 
-[node name="Normal" type="Sprite2D" parent="TurnTile/ScaleableSprite"]
+[node name="Normal" type="Sprite2D" parent="Area2D/ScaleableSprite"]
 scale = Vector2(8, 8)
 texture = ExtResource("4_ibap4")
 region_enabled = true
 region_rect = Rect2(96, 64, 16, 16)
 
-[node name="Small" type="Sprite2D" parent="TurnTile/ScaleableSprite"]
+[node name="Small" type="Sprite2D" parent="Area2D/ScaleableSprite"]
 visible = false
 scale = Vector2(8, 8)
 texture = ExtResource("4_ibap4")
 region_enabled = true
 region_rect = Rect2(96, 80, 16, 16)
 
-[connection signal="area_entered" from="TurnTile" to="TurnTile" method="_on_area_entered"]
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

@@ -17,3 +17,4 @@ func _on_area_entered(area:Area2D) -> void:
 
 		# area.rotate(deg_to_rad(90) * sign(float(TURN_COUNTERCLOCKWISE) - 0.5))
 		get_parent().on_use()
+

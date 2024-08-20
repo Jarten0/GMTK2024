@@ -14,12 +14,12 @@ radius = 24.0
 
 [node name="Car" type="Node2D" node_paths=PackedStringArray("AREA_NODE")]
 script = ExtResource("1_7hk0w")
-AREA_NODE = NodePath("Car")
+AREA_NODE = NodePath("Area2D")
 metadata/Tag = "Car"
 
 [node name="Scaleable" parent="." node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("1_ygvcg")]
 visible = false
-OTHER_NODE = NodePath("../Car")
+OTHER_NODE = NodePath("../Area2D")
 
 [node name="PathTracker" type="Area2D" parent="."]
 collision_layer = 0
@@ -29,48 +29,48 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathTracker"]
 shape = SubResource("CircleShape2D_ny0wh")
 
-[node name="Car" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 285
-collision_priority = 100.0
+collision_priority = 2.0
 script = ExtResource("2_5muok")
 metadata/Tag = "Car"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_fgm4v")
 metadata/_edit_lock_ = true
 
-[node name="Sprites" type="Node2D" parent="Car"]
+[node name="Sprites" type="Node2D" parent="Area2D"]
 position = Vector2(-80, -56)
 scale = Vector2(4, 4)
 
-[node name="Small" type="Sprite2D" parent="Car/Sprites"]
+[node name="Small" type="Sprite2D" parent="Area2D/Sprites"]
 position = Vector2(20, 4)
 texture = ExtResource("4_o03j6")
 hframes = 2
 region_enabled = true
 region_rect = Rect2(64, 136, 64, 32)
 
-[node name="RotatingPart" type="Node2D" parent="Car"]
+[node name="RotatingPart" type="Node2D" parent="Area2D"]
 
-[node name="RayCast2D" type="RayCast2D" parent="Car/RotatingPart"]
+[node name="RayCast2D" type="RayCast2D" parent="Area2D/RotatingPart"]
 enabled = false
 target_position = Vector2(72, 0)
 script = ExtResource("4_mkqm4")
 
-[node name="RayCast2D2" type="RayCast2D" parent="Car/RotatingPart"]
+[node name="RayCast2D2" type="RayCast2D" parent="Area2D/RotatingPart"]
 position = Vector2(0, -20)
 enabled = false
 target_position = Vector2(72, 0)
 script = ExtResource("4_mkqm4")
 
-[node name="RayCast2D3" type="RayCast2D" parent="Car/RotatingPart"]
+[node name="RayCast2D3" type="RayCast2D" parent="Area2D/RotatingPart"]
 position = Vector2(0, 20)
 enabled = false
 target_position = Vector2(72, 0)
 script = ExtResource("4_mkqm4")
 
-[connection signal="Tick" from="." to="Car" method="tick"]
-[connection signal="area_entered" from="PathTracker" to="Car" method="_on_path_tracker_area_entered"]
-[connection signal="area_entered" from="Car" to="Car" method="on_body_entered"]
-[connection signal="body_entered" from="Car" to="Car" method="on_body_entered"]
+[connection signal="Tick" from="." to="Area2D" method="tick"]
+[connection signal="area_entered" from="PathTracker" to="Area2D" method="_on_path_tracker_area_entered"]
+[connection signal="area_entered" from="Area2D" to="Area2D" method="on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="on_body_entered"]

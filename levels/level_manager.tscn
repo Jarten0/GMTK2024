@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgjkajwga3lrj"]
+[gd_scene load_steps=14 format=3 uid="uid://bgjkajwga3lrj"]
 
 [ext_resource type="Script" path="res://scripts/LevelManager.gd" id="1_3fj03"]
 [ext_resource type="PackedScene" uid="uid://chjuxqbffvjs5" path="res://levels/MainMenu.tscn" id="2_fd8mp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/ui.gd" id="5_h6pyi"]
 [ext_resource type="PackedScene" uid="uid://dl5ydkex18xa4" path="res://levels/level_three.tscn" id="6_36y5b"]
 [ext_resource type="Script" path="res://card_row/card_row.gd" id="6_oupbq"]
+[ext_resource type="PackedScene" uid="uid://c1aws7fcm4yeb" path="res://levels/level_four.tscn" id="7_5ds5p"]
 [ext_resource type="PackedScene" uid="uid://bhf4knacvgtqi" path="res://card_row/card.tscn" id="7_e4c01"]
 [ext_resource type="Script" path="res://scripts/bgm.gd" id="9_4orgb"]
 [ext_resource type="Texture2D" uid="uid://ckmifq80xcnbk" path="res://assets/finalizedObjectSet.png" id="10_o1hwv"]
@@ -19,7 +20,7 @@ font_size = 128
 script = ExtResource("1_3fj03")
 InitialScene = ExtResource("2_fd8mp")
 LevelSelect = ExtResource("3_vuvgs")
-PackedSceneLevels = Array[PackedScene]([ExtResource("2_fd8mp"), ExtResource("4_sptf6"), ExtResource("5_7tnxq"), ExtResource("6_36y5b")])
+PackedSceneLevels = Array[PackedScene]([ExtResource("2_fd8mp"), ExtResource("4_sptf6"), ExtResource("5_7tnxq"), ExtResource("6_36y5b"), ExtResource("7_5ds5p")])
 
 [node name="UI" type="Node2D" parent="."]
 script = ExtResource("5_h6pyi")
@@ -70,8 +71,8 @@ region_rect = Rect2(560, 128, 216, 16)
 
 [node name="Mask" type="Polygon2D" parent="UI/CardRow/Bar"]
 clip_children = 1
-position = Vector2(-180, -0.25)
-offset = Vector2(88, 0)
+position = Vector2(20, 0)
+offset = Vector2(-300, 0)
 polygon = PackedVector2Array(92, -8, 92.0119, -5.97637, 93, -6, 93, -4, 94, -4, 94, -2, 95, -2, 95, 0, 96, 0, 96, 2, 97, 2, 97, 4, 98, 4, 98.0242, 6.04822, 99, 6, 99.0001, 8, 307, 8, 307, 7, 306, 7, 305.933, 5.86609, 305, 6, 305, 4, 304, 4, 304, 2, 303, 2, 303, 0, 302, 0, 302, -2, 301, -2, 301, -4, 300, -4, 300, -6, 299, -6, 299, -8)
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
