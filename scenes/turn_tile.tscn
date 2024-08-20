@@ -1,27 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyl5behnlkvsh"]
+[gd_scene load_steps=6 format=3 uid="uid://cyl5behnlkvsh"]
 
 [ext_resource type="Script" path="res://scripts/turn_tile_interface.gd" id="1_1a8fm"]
-[ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="1_h11j2"]
 [ext_resource type="Script" path="res://scripts/turn_tile_internal.gd" id="3_i6gdl"]
 [ext_resource type="Texture2D" uid="uid://cb0grass7i2kb" path="res://assets/ScalingTileSet.png" id="4_ibap4"]
-[ext_resource type="Script" path="res://scripts/scaleable_sprite.gd" id="5_52a65"]
+[ext_resource type="Script" path="res://scale/scaleable_sprite.gd" id="5_52a65"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66vwp"]
-size = Vector2(96.0004, 95.9996)
+size = Vector2(128, 128)
 
-[node name="TurnTile" type="Node2D"]
+[node name="TurnTile" type="Node2D" node_paths=PackedStringArray("AREA_NODE", "SCALEABLE_SPRITE")]
 script = ExtResource("1_1a8fm")
-
-[node name="Scaleable" parent="." node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("1_h11j2")]
-visible = false
-OTHER_NODE = NodePath("../TurnTile")
+AREA_NODE = NodePath("TurnTile")
+SCALEABLE_SPRITE = NodePath("TurnTile/ScaleableSprite")
 
 [node name="TurnTile" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 18
-monitoring = false
 script = ExtResource("3_i6gdl")
 metadata/Tag = "TurnTile"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurnTile"]
+position = Vector2(0, 1.90735e-06)
+shape = SubResource("RectangleShape2D_66vwp")
+metadata/_edit_lock_ = true
 
 [node name="ScaleableSprite" type="Node2D" parent="TurnTile" node_paths=PackedStringArray("small_tile", "medium_tile", "large_tile")]
 script = ExtResource("5_52a65")
@@ -49,11 +50,5 @@ scale = Vector2(8, 8)
 texture = ExtResource("4_ibap4")
 region_enabled = true
 region_rect = Rect2(96, 80, 16, 16)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TurnTile"]
-z_index = 100
-position = Vector2(-6.04151e-12, 1.66893e-06)
-shape = SubResource("RectangleShape2D_66vwp")
-metadata/_edit_lock_ = true
 
 [connection signal="area_entered" from="TurnTile" to="TurnTile" method="_on_area_entered"]

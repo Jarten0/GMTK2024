@@ -9,16 +9,17 @@ var target_position: Vector2
 # Called when the node enters the scene tree for the first time.
 func setup(cards: Array[int]) -> void:
 	var xOffset = 120
+
+	DRAGGING_CARD = null
 	for card in CARDS:
-		remove_child(card)
-	
+		card.queue_free()	
 	CARDS.clear()
-	
+
 	for type in cards:
 		var card = CARD_INSTANCE.instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
 		card.type = type
 		card.position = Vector2(xOffset, 0)
-		xOffset += 160
+		xOffset += 80
 		add_child(card)
 		card.default_position = card.position
 		CARDS.append(card)
@@ -33,8 +34,7 @@ func update_cards():
 
 func _process(delta: float) -> void:
 	target_position = Vector2(-1728 + (CARDS.size() * 160.0), 0.0)
-	var other = $Bar/Mask.position
-	$Bar/Mask.position += (target_position - other) * 0.2
+	$Bar/Mask.position += (target_position - $Bar/Mask.position) * 0.2
 
 
 func _on_level_manager_loaded_level(index:int) -> void:

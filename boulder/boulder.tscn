@@ -1,26 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://vhipsd830vto"]
+[gd_scene load_steps=5 format=3 uid="uid://vhipsd830vto"]
 
 [ext_resource type="Script" path="res://boulder/boulder.gd" id="1_ci5pa"]
-[ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="1_loaxa"]
-[ext_resource type="Script" path="res://scripts/scaleable_sprite.gd" id="3_kh07q"]
+[ext_resource type="Script" path="res://scale/scaleable_sprite.gd" id="3_kh07q"]
 [ext_resource type="Texture2D" uid="uid://dvfvng0ejsa3l" path="res://boulder/boulder.png" id="4_n3v4i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gcqco"]
 radius = 56.0
 
-[node name="Boulder" type="Node2D"]
+[node name="Boulder" type="Node2D" node_paths=PackedStringArray("AREA_NODE", "SCALEABLE_SPRITE")]
 z_index = 5
 script = ExtResource("1_ci5pa")
+INITIAL_SIZE = 1
+AREA_NODE = NodePath("Area2D")
+SCALEABLE_SPRITE = NodePath("Area2D/ScaleableSprite")
 metadata/Tag = "Wall"
-
-[node name="Scaleable" parent="." node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("1_loaxa")]
-visible = false
-OTHER_NODE = NodePath("../Area2D")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16
-collision_mask = 50
+collision_mask = 275
 collision_priority = 10.0
+priority = 10
 metadata/Tag = "Boulder"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -57,4 +56,5 @@ vframes = 3
 region_enabled = true
 region_rect = Rect2(32, 0, 32, 48)
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

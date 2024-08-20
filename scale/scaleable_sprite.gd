@@ -6,12 +6,12 @@ extends Node2D
 @export var medium_tile: Sprite2D
 @export var large_tile: Sprite2D
 @export var AUTO_SCALE: bool = true
+@export var current_tile: int = 2
 
 var small_base_scale
 var medium_base_scale
 var large_base_scale
 
-var current_tile: int = 2
 
 func get_current_sprite():
 	match current_tile:
@@ -70,7 +70,7 @@ static func measure_scale(parent_scale: Vector2):
 		var _scale when parent_scale.x < 1 and parent_scale.y < 1: 
 			return 1
 			
-		var _scale when parent_scale.x > 2 and parent_scale.y > 2: 
+		var _scale when parent_scale.x > 3 and parent_scale.y > 3: 
 			return 3
 			
 		var _scale:

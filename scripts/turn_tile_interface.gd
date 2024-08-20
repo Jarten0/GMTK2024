@@ -1,19 +1,19 @@
-extends Node2D
+extends Scaleable
 
 @export var TURN_COUNTERCLOCKWISE = false
-var TURNTILE_ROTATION: float = 0
 var shrink_progress: float = 0
 var shrinking: bool = false
-var init_scale: Vector2
+var scale_when_used: Vector2
 
 func _process(delta: float) -> void:
     if shrinking:
         shrink_progress += delta
         rotation = shrink_progress
-        scale = init_scale * (1 - (shrink_progress * 2))
+        $TurnTile.scale = scale_when_used * (1 - (shrink_progress * 2))
         if shrink_progress >= 0.5:
             queue_free() 
 
 func on_use():
     shrinking = true
-    init_scale = scale
+    scale_when_used = scale
+

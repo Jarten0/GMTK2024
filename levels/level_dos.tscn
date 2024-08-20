@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://c5tdj7lug6o2g"]
+[gd_scene load_steps=8 format=4 uid="uid://db282fhto10f4"]
 
 [ext_resource type="Script" path="res://scripts/level_signals.gd" id="1_w64fc"]
 [ext_resource type="Script" path="res://scripts/tile_map_manager.gd" id="2_em1b2"]

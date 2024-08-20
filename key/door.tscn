@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://qjhdm7dvq8j4"]
+
+[ext_resource type="Script" path="res://key/locked_door.gd" id="1_o0usy"]
+[ext_resource type="Script" path="res://scale/scaleable_sprite.gd" id="2_xphlh"]
+[ext_resource type="Texture2D" uid="uid://ckmifq80xcnbk" path="res://assets/finalizedObjectSet.png" id="3_wt65s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvupo"]
+size = Vector2(128, 128)
+
+[node name="Door" type="Node2D" node_paths=PackedStringArray("AREA_NODE", "SCALEABLE_SPRITE")]
+script = ExtResource("1_o0usy")
+AREA_NODE = NodePath("Area2D")
+SCALEABLE_SPRITE = NodePath("Area2D/ScaleableSprite")
+
+[node name="Area2D" type="Area2D" parent="."]
+metadata/Tag = "LockedDoor"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_fvupo")
+
+[node name="ScaleableSprite" type="Node2D" parent="Area2D" node_paths=PackedStringArray("small_tile", "medium_tile", "large_tile")]
+script = ExtResource("2_xphlh")
+small_tile = NodePath("smol")
+medium_tile = NodePath("med")
+large_tile = NodePath("lar")
+
+[node name="med" type="Sprite2D" parent="Area2D/ScaleableSprite"]
+position = Vector2(0, 2)
+scale = Vector2(8, 8)
+texture = ExtResource("3_wt65s")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(256, 160, 64, 16)
+
+[node name="smol" type="Sprite2D" parent="Area2D/ScaleableSprite"]
+visible = false
+position = Vector2(0, 1)
+scale = Vector2(8, 8)
+texture = ExtResource("3_wt65s")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(256, 144, 64, 16)
+
+[node name="lar" type="Sprite2D" parent="Area2D/ScaleableSprite"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("3_wt65s")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(256, 176, 128, 32)

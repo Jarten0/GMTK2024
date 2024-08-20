@@ -5,6 +5,7 @@ extends Area2D
 @export var GRID_SIZE = 128.0
 @export var DIRECTION: Vector2i = Vector2i.RIGHT
 @export var STARTED: bool = false
+@export var turns: int = 2 
 
 var TILEMAP_MANAGER: TileMapManager
 var unpathable: int = 0
@@ -12,12 +13,35 @@ var previous_direction: Vector2i
 var visible_sprite: int = 0
 var size: int = 2
 var anim_delta: float = 0.0
+var KEY: DoorKey
 
 func _ready():
 	if TILEMAP_MANAGER == null:
 		TILEMAP_MANAGER = $"..".TILEMAP_MANAGER
 	
 func _physics_process(delta: float) -> void:
+	if turns > 0:
+		if Input.is_action_just_pressed("left"): 
+			DIRECTION = Vector2.LEFT
+			turns -= 1
+			unpathable = 2
+		if Input.is_action_just_pressed("right"): 
+			DIRECTION = Vector2.RIGHT
+			turns -= 1
+			unpathable = 2
+		if Input.is_action_just_pressed("up"): 
+			DIRECTION = Vector2.UP
+			turns -= 1
+			unpathable = 2
+		if Input.is_action_just_pressed("down"): 
+			DIRECTION = Vector2.DOWN
+			turns -= 1
+			unpathable = 2
+
+	var manager = get_tree().root.get_node("LevelManager")
+	if manager != null:
+		manager.turns_left = turns
+
 	anim_delta += delta
 
 	if Input.is_action_just_pressed("Start"):
@@ -46,9 +70,6 @@ func tick():
 	if DIRECTION != previous_direction: 
 		previous_direction = DIRECTION
 	
-	if $RotatingPart/RayCast2D.BLOCK_MOVEMENT or $RotatingPart/RayCast2D2.BLOCK_MOVEMENT or $RotatingPart/RayCast2D3.BLOCK_MOVEMENT:
-		DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
-		return
 		
 	if unpathable > 0:
 		unpathable -= 1
@@ -68,7 +89,7 @@ func on_body_entered(body: Node2D):
 	
 func check_for_tag(body: Node2D):
 	if !body.has_meta("Tag"):
-		print("No tag metadata found for" + body.to_string())
+		# print("No tag metadata found for" + body.to_string())
 		return
 	
 	match body.get_meta("Tag"):
@@ -87,7 +108,12 @@ func check_for_tag(body: Node2D):
 		"Wall":
 			print("Wall collision")
 			DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
-			return
+			get_parent().position += DIRECTION * GRID_SIZE / 2
+		"LockedDoor":
+			if !body.get_parent().unlock(KEY): # if door fails to unlock
+				DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
+			else:
+				KEY = null
 		"Boulder":
 			if body.get_parent().size != 1:
 				DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
@@ -129,10 +155,29 @@ func _on_path_tracker_area_entered(area: Area2D) -> void:
 	else:
 		check_for_tag(area)
 
+var falling_from: Vector2
+var fall_progress: float = 0
+var falling: bool = false
+
+func _process(delta: float) -> void:
+	if falling:
+		monitoring = false
+		monitorable = false
+		fall_progress += delta
+		var falling_to = falling_from
+		falling_to.y += 64 * 4
+		position = falling_from.lerp(falling_to, pow(fall_progress, 2))
+		
+		if fall_progress >= 1:
+			$"..".emit_signal("LevelRestart")
+
 func fall():
-	$"..".emit_signal("LevelRestart")
-	pass
-	
+	falling = true
+	position += DIRECTION as Vector2 * 64
+	falling_from = position
+	z_index = -10
+	get_parent().TIMER.stop()
+
 func update_visible_sprite():
 	var sprite: Sprite2D = $Sprites/Small
 	sprite.hframes = 2

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/spring_internal.gd" id="1_157om"]
 [ext_resource type="Shader" path="res://shaders/focus_lighten.gdshader" id="2_ccgso"]
 [ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="2_ln0ix"]
-[ext_resource type="Script" path="res://scripts/scaleable_sprite.gd" id="4_tvdoo"]
+[ext_resource type="Script" path="res://scale/scaleable_sprite.gd" id="4_tvdoo"]
 [ext_resource type="Texture2D" uid="uid://ckmifq80xcnbk" path="res://assets/finalizedObjectSet.png" id="5_s2ri0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dlrxi"]

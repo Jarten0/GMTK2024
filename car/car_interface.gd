@@ -1,6 +1,6 @@
 class_name CarInterface
 
-extends Node2D
+extends Scaleable
 
 @export var TILEMAP_MANAGER: TileMapManager 
 @export var TIMER: Timer

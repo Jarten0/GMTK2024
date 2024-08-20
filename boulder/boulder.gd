@@ -1,9 +1,12 @@
-extends Node2D
+class_name Boulder
+
+extends Scaleable
 
 @export var TILEMAP_MANAGER: TileMapManager
 @export var AUTO_ROLL: bool = false
 @export var DIRECTION: Vector2 = Vector2.ZERO
-@export var size: int = 2
+@export var INITIAL_SIZE: int = 2
+var size: int = 2
 var rolling = false
 var current_frame: int = 0
 
@@ -15,11 +18,16 @@ var falling: bool = false
 func _ready() -> void:
 	if AUTO_ROLL:
 		rolling = true
-	
+	$Area2D/ScaleableSprite.current_tile = INITIAL_SIZE
+	size = INITIAL_SIZE
+
+
 func on_collision(direction: Vector2):
-	if size <= 2:
-		DIRECTION = direction * -1
+	var l = ScaleableSprite.measure_scale(scale)
+	if l <= 2:
+		DIRECTION = direction 
 		rolling = true
+	
 
 func _physics_process(delta: float) -> void:
 	size = $Area2D/ScaleableSprite.current_tile
@@ -55,9 +63,7 @@ func tick():
 	if get_tile_data(TILEMAP_MANAGER.FLOOR_LAYER) == null:
 		fall()
 
-func _on_area_2d_area_entered(area:Area2D) -> void:
-	if area is CarInternal:
-		on_collision(area.DIRECTION)
+
 
 func _on_global_tick_timeout() -> void:
 	tick()
@@ -70,3 +76,33 @@ func fall():
 	falling = true
 	position += DIRECTION.normalized() * 64
 	falling_from = position
+
+func turn_tile_rotate(counterclockwise: bool):
+	DIRECTION = DIRECTION.rotated(deg_to_rad(-90) * sign(float(counterclockwise) - 0.5))
+
+func _on_area_2d_body_entered(body:Node2D) -> void:
+	print("something collided with boulder" + body.get_path().get_concatenated_names())
+	var parent = body.get_parent() 
+	var tag = "None"
+	if body.has_meta("Tag"):
+		tag = body.get_meta("Tag")
+	if body is CarInternal:
+		print(body.DIRECTION)
+		on_collision(body.DIRECTION)
+	elif parent is Crate:
+		if parent.get_node("Area2D/ScaleableSprite").current_tile > 2:
+			# DIRECTION *= -1
+			position += DIRECTION.normalized() * 64
+	elif parent is DoorKey:
+		print('push')
+		parent.position += DIRECTION.normalized() * 64
+	elif tag == "Wall":
+		DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
+		position += DIRECTION.normalized() * 64
+
+
+	# elif body is Area2D:
+	# 	if body.get_collision_layer_value(1):
+	# 		DIRECTION *= -1
+	# 		position += DIRECTION.normalized() * 64
+			

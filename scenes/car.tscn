@@ -1,28 +1,37 @@
 [gd_scene load_steps=8 format=3 uid="uid://dacyksh0vdcf1"]
 
-[ext_resource type="Script" path="res://scripts/car_interface.gd" id="1_7hk0w"]
+[ext_resource type="Script" path="res://car/car_interface.gd" id="1_7hk0w"]
 [ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="1_ygvcg"]
-[ext_resource type="Script" path="res://scripts/car_internal.gd" id="2_5muok"]
+[ext_resource type="Script" path="res://car/car_internal.gd" id="2_5muok"]
 [ext_resource type="Script" path="res://scripts/raycast_walls.gd" id="4_mkqm4"]
 [ext_resource type="Texture2D" uid="uid://cr6kwan4d3pq2" path="res://assets/truck_threequel.png" id="4_o03j6"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_fgm4v"]
-radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ny0wh"]
 radius = 4.0
 
-[node name="Car" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_fgm4v"]
+radius = 24.0
+
+[node name="Car" type="Node2D" node_paths=PackedStringArray("AREA_NODE")]
 script = ExtResource("1_7hk0w")
+AREA_NODE = NodePath("Car")
 metadata/Tag = "Car"
 
 [node name="Scaleable" parent="." node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("1_ygvcg")]
 visible = false
 OTHER_NODE = NodePath("../Car")
 
+[node name="PathTracker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathTracker"]
+shape = SubResource("CircleShape2D_ny0wh")
+
 [node name="Car" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 29
+collision_mask = 285
 collision_priority = 100.0
 script = ExtResource("2_5muok")
 metadata/Tag = "Car"
@@ -30,13 +39,6 @@ metadata/Tag = "Car"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
 shape = SubResource("CircleShape2D_fgm4v")
 metadata/_edit_lock_ = true
-
-[node name="PathTracker" type="Area2D" parent="Car"]
-collision_layer = 2
-collision_mask = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Car/PathTracker"]
-shape = SubResource("CircleShape2D_ny0wh")
 
 [node name="Sprites" type="Node2D" parent="Car"]
 position = Vector2(-80, -56)
@@ -52,23 +54,23 @@ region_rect = Rect2(64, 136, 64, 32)
 [node name="RotatingPart" type="Node2D" parent="Car"]
 
 [node name="RayCast2D" type="RayCast2D" parent="Car/RotatingPart"]
-visible = false
+enabled = false
 target_position = Vector2(72, 0)
 script = ExtResource("4_mkqm4")
 
 [node name="RayCast2D2" type="RayCast2D" parent="Car/RotatingPart"]
-visible = false
 position = Vector2(0, -20)
+enabled = false
 target_position = Vector2(72, 0)
 script = ExtResource("4_mkqm4")
 
 [node name="RayCast2D3" type="RayCast2D" parent="Car/RotatingPart"]
-visible = false
 position = Vector2(0, 20)
+enabled = false
 target_position = Vector2(72, 0)
 script = ExtResource("4_mkqm4")
 
 [connection signal="Tick" from="." to="Car" method="tick"]
+[connection signal="area_entered" from="PathTracker" to="Car" method="_on_path_tracker_area_entered"]
 [connection signal="area_entered" from="Car" to="Car" method="on_body_entered"]
 [connection signal="body_entered" from="Car" to="Car" method="on_body_entered"]
-[connection signal="area_entered" from="Car/PathTracker" to="Car" method="_on_path_tracker_area_entered"]

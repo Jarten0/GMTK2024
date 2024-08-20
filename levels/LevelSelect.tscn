@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctjcqadss426g"]
+[gd_scene load_steps=3 format=3 uid="uid://ctjcqadss426g"]
 
 [ext_resource type="Script" path="res://scripts/level_select.gd" id="1_745fp"]
+[ext_resource type="Script" path="res://level_select/load_level.gd" id="2_6xfrh"]
 
 [node name="Control" type="Node2D"]
 script = ExtResource("1_745fp")
 
 [node name="Control" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -25,39 +27,82 @@ offset_bottom = 800.445
 grow_horizontal = 2
 grow_vertical = 0
 text = "Back to main menu"
+script = ExtResource("2_6xfrh")
+level = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Level1" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -2.79306
-anchor_top = -1.57746
-anchor_right = 0.442177
-anchor_bottom = 0.535808
+anchor_left = -0.793076
+anchor_top = -7.97748
+anchor_right = 2.44216
+anchor_bottom = -5.86421
 offset_left = 639.723
 offset_top = 487.099
 offset_right = 697.313
 offset_bottom = 515.568
 grow_vertical = 2
 text = "Level 1"
+script = ExtResource("2_6xfrh")
 metadata/_edit_use_anchors_ = true
 
 [node name="Level2" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -2.14392
-anchor_top = -1.57746
-anchor_right = 0.666321
-anchor_bottom = 0.535808
+anchor_left = -10.344
+anchor_top = -4.57748
+anchor_right = -7.53376
+anchor_bottom = -2.46421
 offset_left = 1029.76
 offset_top = 487.099
 offset_right = 1087.35
 offset_bottom = 515.568
 grow_vertical = 2
 text = "Level 2"
+script = ExtResource("2_6xfrh")
+level = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Level3" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -10.344
+anchor_top = -1.37748
+anchor_right = -7.53376
+anchor_bottom = 0.735793
+offset_left = 1029.76
+offset_top = 487.099
+offset_right = 1087.35
+offset_bottom = 515.568
+grow_vertical = 2
+text = "Level 2"
+script = ExtResource("2_6xfrh")
+level = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Level4" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -10.344
+anchor_top = 1.82253
+anchor_right = -7.53376
+anchor_bottom = 3.93579
+offset_left = 1029.76
+offset_top = 487.099
+offset_right = 1087.35
+offset_bottom = 515.568
+grow_vertical = 2
+text = "Level 2"
+script = ExtResource("2_6xfrh")
+level = 4
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Control/BTMM" to="." method="_on_btmm_pressed"]
 [connection signal="pressed" from="Control/Level1" to="." method="_on_level_1_pressed"]
-[connection signal="pressed" from="Control/Level2" to="Control/BTMM" method="_on_level_2_pressed"]
 [connection signal="pressed" from="Control/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/Level2" to="Control/BTMM" method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/Level3" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/Level3" to="Control/BTMM" method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/Level4" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/Level4" to="Control/BTMM" method="_on_level_2_pressed"]

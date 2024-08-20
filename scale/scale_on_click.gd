@@ -1,3 +1,5 @@
+class_name CardReciever
+
 extends Area2D
 
 var SCALE_LIMIT = (Vector2.ONE * 4).length()

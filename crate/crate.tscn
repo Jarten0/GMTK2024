@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://7517qscpunx1"]
+[gd_scene load_steps=6 format=3 uid="uid://7517qscpunx1"]
 
-[ext_resource type="Script" path="res://scripts/scaleable_sprite.gd" id="1_xpf2s"]
+[ext_resource type="Script" path="res://crate/crate.gd" id="1_m61hq"]
+[ext_resource type="Script" path="res://scale/scaleable_sprite.gd" id="1_xpf2s"]
 [ext_resource type="Texture2D" uid="uid://ckmifq80xcnbk" path="res://assets/finalizedObjectSet.png" id="2_7b1fn"]
 [ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="3_elnou"]
 
@@ -8,10 +9,10 @@
 size = Vector2(128, 128)
 
 [node name="Crate" type="Node2D"]
-position = Vector2(1536, 192)
+script = ExtResource("1_m61hq")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 16
+collision_layer = 17
 collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -45,3 +46,5 @@ region_rect = Rect2(256, 112, 32, 32)
 
 [node name="Scaleable" parent="." node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("3_elnou")]
 OTHER_NODE = NodePath("../Area2D")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

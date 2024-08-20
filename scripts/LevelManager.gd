@@ -8,22 +8,24 @@ extends Node2D
 
 var current_level: Node
 var level_index: int = 0
+var turns_left: int = 0
 
 signal loaded_level(index: int)
 
 func load_level(index: int):
 	level_index = index
 	if current_level != null:
-		remove_child(current_level)
+		current_level.queue_free()
 	current_level = PackedSceneLevels[index].instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
 	add_child(current_level)
 
-	emit_signal("loaded_level", index)
+	loaded_level.emit(index)
 	
 	if current_level is LevelSignals:
 		current_level.LevelComplete.connect(on_level_complete)
 		current_level.LevelExit.connect(on_level_exit)
 		current_level.LevelReset.connect(on_level_restart)
+		%CardRow.position = current_level.CARD_ROW_POS
 		%CardRow.setup(current_level.CARDS)
 		
 
@@ -33,7 +35,7 @@ func load_level(index: int):
 
 func load_level_from_packed_scene(scene: PackedScene):
 	if current_level != null:
-		remove_child(current_level)
+		current_level.queue_free()
 	current_level = scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
 	add_child(current_level)
 	
@@ -41,6 +43,9 @@ func load_level_from_packed_scene(scene: PackedScene):
 		current_level.LevelComplete.connect(on_level_complete())
 		current_level.LevelExit.connect(on_level_exit())
 		current_level.LevelReset.connect(on_level_restart())
+		%CardRow.position = current_level.CARD_ROW_POS 
+		%CardRow.setup(current_level.CARDS)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -49,11 +54,12 @@ func _ready() -> void:
 	%CardRow.setup(array)
 	$UI.visible = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Restart"):
 		on_level_restart()
 	if Input.is_action_just_pressed("Exit"):
 		on_level_exit()
+	$UI/Counter2.text = String.num_int64(turns_left)
 
 func on_level_complete():
 	$LevelCompleteDelay.start()
