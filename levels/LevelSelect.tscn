@@ -34,10 +34,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Level1" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.793076
-anchor_top = -7.97748
-anchor_right = 2.44216
-anchor_bottom = -5.86421
+anchor_left = -0.593076
+anchor_top = -7.77747
+anchor_right = 2.16718
+anchor_bottom = -5.6892
 offset_left = 639.723
 offset_top = 487.099
 offset_right = 697.313
@@ -45,6 +45,23 @@ offset_bottom = 515.568
 grow_vertical = 2
 text = "Level 1"
 script = ExtResource("2_6xfrh")
+metadata/_edit_use_anchors_ = true
+
+[node name="Level5" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 6.00692
+anchor_top = -7.77747
+anchor_right = 8.76718
+anchor_bottom = -5.6892
+offset_left = 639.723
+offset_top = 487.099
+offset_right = 697.313
+offset_bottom = 515.568
+grow_vertical = 2
+text = "Level 5"
+script = ExtResource("2_6xfrh")
+level = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="Level2" type="Button" parent="Control"]
@@ -76,7 +93,7 @@ offset_top = 487.099
 offset_right = 1087.35
 offset_bottom = 515.568
 grow_vertical = 2
-text = "Level 2"
+text = "Level 3"
 script = ExtResource("2_6xfrh")
 level = 3
 metadata/_edit_use_anchors_ = true
@@ -93,16 +110,74 @@ offset_top = 487.099
 offset_right = 1087.35
 offset_bottom = 515.568
 grow_vertical = 2
-text = "Level 2"
+text = "Level 4"
 script = ExtResource("2_6xfrh")
 level = 4
 metadata/_edit_use_anchors_ = true
 
+[node name="Level6" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.744
+anchor_top = -4.57748
+anchor_right = -0.933762
+anchor_bottom = -2.46421
+offset_left = 1029.76
+offset_top = 487.099
+offset_right = 1087.35
+offset_bottom = 515.568
+grow_vertical = 2
+text = "Level 6"
+script = ExtResource("2_6xfrh")
+level = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="Level7" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.744
+anchor_top = -1.37748
+anchor_right = -0.933762
+anchor_bottom = 0.735797
+offset_left = 1029.76
+offset_top = 487.099
+offset_right = 1087.35
+offset_bottom = 515.568
+grow_vertical = 2
+text = "Level 7"
+script = ExtResource("2_6xfrh")
+level = 7
+metadata/_edit_use_anchors_ = true
+
+[node name="Level8" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.744
+anchor_top = 1.82253
+anchor_right = -0.933762
+anchor_bottom = 3.9358
+offset_left = 1029.76
+offset_top = 487.099
+offset_right = 1087.35
+offset_bottom = 515.568
+grow_vertical = 2
+text = "Level 8"
+script = ExtResource("2_6xfrh")
+level = 8
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="Control/BTMM" to="." method="_on_btmm_pressed"]
 [connection signal="pressed" from="Control/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Control/Level5" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Control/Level2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="Control/Level2" to="Control/BTMM" method="_on_level_2_pressed"]
 [connection signal="pressed" from="Control/Level3" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="Control/Level3" to="Control/BTMM" method="_on_level_2_pressed"]
 [connection signal="pressed" from="Control/Level4" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="Control/Level4" to="Control/BTMM" method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/Level6" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/Level6" to="Control/BTMM" method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/Level7" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/Level7" to="Control/BTMM" method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/Level8" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/Level8" to="Control/BTMM" method="_on_level_2_pressed"]

@@ -1,0 +1,242 @@
+[gd_scene load_steps=8 format=4 uid="uid://ceatcw73scwnb"]
+
+[ext_resource type="Script" path="res://scripts/level_signals.gd" id="1_knhqi"]
+[ext_resource type="Script" path="res://scripts/tile_map_manager.gd" id="2_pexy0"]
+[ext_resource type="TileSet" uid="uid://dcuwr885x5o64" path="res://resources/MainTileSet.tres" id="3_bki3i"]
+[ext_resource type="PackedScene" uid="uid://5hyunbfu11ky" path="res://scenes/flag.tscn" id="4_74fr0"]
+[ext_resource type="PackedScene" uid="uid://dacyksh0vdcf1" path="res://scenes/car.tscn" id="5_yve4c"]
+[ext_resource type="PackedScene" uid="uid://7517qscpunx1" path="res://crate/crate.tscn" id="6_8cmig"]
+[ext_resource type="PackedScene" uid="uid://vhipsd830vto" path="res://boulder/boulder.tscn" id="7_y7ont"]
+
+[node name="Level One3" type="Node2D"]
+script = ExtResource("1_knhqi")
+CARDS = Array[int]([1, 0, 1, 0])
+CARD_ROW_POS = Vector2(1024, 64)
+TURNS_ALLOWED = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="TileMaps" type="Node2D" parent="." node_paths=PackedStringArray("FLOOR_LAYER", "ROAD_LAYER", "WALL_LAYER", "OBJECT_LAYER")]
+unique_name_in_owner = true
+z_index = -100
+script = ExtResource("2_pexy0")
+FLOOR_LAYER = NodePath("Floor")
+ROAD_LAYER = NodePath("Road")
+WALL_LAYER = NodePath("Wall")
+OBJECT_LAYER = NodePath("Object")
+
+[node name="Floor2" type="TileMapLayer" parent="TileMaps"]
+scale = Vector2(4, 4)
+tile_set = ExtResource("3_bki3i")
+collision_enabled = false
+navigation_visibility_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TileMapLayer" parent="TileMaps"]
+scale = Vector2(4, 4)
+tile_set = ExtResource("3_bki3i")
+collision_enabled = false
+navigation_visibility_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Floor" type="TileMapLayer" parent="TileMaps"]
+unique_name_in_owner = true
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAADAAIAAgABAAcAAAAEAAIAAgAFAAgAAAACAAIAAgABAAcAAAACAAMAAgABAAcAAAADAAMAAgAFAAgAAAABAAIAAgAGAAgAAAABAAEAAgAFAAgAAAACAAEAAgABAAcAAAAAAAEAAgAGAAgAAAAAAAIAAgACAAcAAAAAAAAAAgAFAAgAAAABAAAAAgAFAAcAAAACAAAAAgABAAcAAAADAAEAAgAGAAgAAAAEAAEAAgAFAAcAAAAFAAEAAgAGAAgAAAAGAAEAAgABAAcAAAAFAAIAAgAGAAcAAAAGAAIAAgAFAAgAAAAHAAEAAgAGAAgAAAAIAAEAAgAFAAcAAAAIAAIAAgAGAAcAAAAJAAIAAgAGAAcAAAAHAAIAAgAFAAgAAAAJAAEAAgACAAcAAAAKAAEAAgACAAcAAAAKAAIAAgAFAAcAAAAHAAMAAgAFAAcAAAAGAAMAAgAGAAcAAAAIAAMAAgAFAAcAAAAIAAQAAgAGAAgAAAAIAAUAAgAGAAcAAAAJAAUAAgAFAAgAAAAKAAUAAgAFAAcAAAAKAAQAAgAFAAgAAAAKAAMAAgAGAAgAAAAJAAMAAgAFAAcAAAAJAAQAAgAGAAgAAAAKAAYAAgAGAAgAAAALAAUAAgAGAAcAAAAMAAQAAgAGAAgAAAANAAQAAgAGAAgAAAAOAAQAAgAGAAgAAAAPAAQAAgAFAAgAAAAQAAQAAgAFAAgAAAALAAQAAgAFAAgAAAAJAAYAAgAGAAcAAAAJAAcAAgABAAcAAAAIAAcAAgAFAAcAAAAIAAgAAgABAAcAAAAJAAgAAgAFAAcAAAAJAAkAAgAGAAcAAAAIAAYAAgAGAAgAAAAHAAYAAgAFAAgAAAAHAAUAAgAGAAgAAAAHAAcAAgAGAAcAAAAHAAgAAgAFAAgAAAAGAAgAAgAFAAgAAAAHAAkAAgAFAAgAAAAIAAkAAgAFAAgAAAAIAAoAAgAFAAcAAAAIAAsAAgABAAcAAAAIAAwAAgAGAAcAAAAIAA0AAgAGAAcAAAAJAA0AAgAGAAcAAAAJAA4AAgABAAcAAAAKAA4AAgABAAcAAAAPABAAAgABAAcAAAAPAA8AAgAGAAcAAAAQABAAAgAFAAgAAAARAAIAAgAFAAcAAAAQAAIAAgAGAAcAAAAPAAIAAgAFAAgAAAAOAAIAAgABAAcAAAAOAAMAAgABAAcAAAAPAAMAAgAFAAgAAAAQAAMAAgAFAAgAAAARAAMAAgAGAAcAAAAQAAEAAgACAAcAAAAPAAEAAgACAAcAAAAOAAEAAgACAAcAAAAQAAUAAgACAAcAAAAQAAYAAgACAAcAAAAPAAYAAgACAAcAAAAPAAcAAgACAAcAAAAPAAgAAgACAAcAAAAPAAkAAgAGAAcAAAAQAAkAAgAGAAcAAAAQAAgAAgAFAAgAAAAQAAcAAgACAAcAAAAPAAUAAgAFAAgAAAAQAAoAAgAFAAcAAAAQAAsAAgACAAcAAAAQAAwAAgACAAcAAAAPAAsAAgABAAcAAAAPAAoAAgABAAcAAAAPAAwAAgAGAAcAAAAPAA0AAgACAAcAAAAPAA4AAgACAAcAAAAQAA8AAgAGAAcAAAAQAA4AAgACAAcAAAAQAA0AAgACAAcAAAAHAAQAAgAFAAgAAAAGAAQAAgAFAAgAAAAGAAUAAgAGAAcAAAAGAAYAAgAFAAgAAAAGAAcAAgAGAAcAAAAGAAkAAgAGAAgAAAAGAAoAAgAFAAcAAAAGAAsAAgAGAAcAAAAFAAUAAgABAAcAAAAFAAYAAgAGAAgAAAAFAAcAAgAFAAgAAAAFAAgAAgAGAAcAAAAFAAkAAgAGAAgAAAAFAAoAAgABAAcAAAAFAAsAAgAFAAgAAAAFAAQAAgAFAAcAAAAFAAMAAgAGAAcAAAAGAAwAAgAGAAcAAAAEAAcAAgAGAAgAAAAEAAgAAgAGAAgAAAAEAAkAAgAFAAcAAAAEAAoAAgAFAAgAAAAEAAsAAgAFAAgAAAAEAAwAAgAFAAgAAAAFAAwAAgAGAAgAAAAFAA0AAgABAAcAAAAGAA4AAgAGAAcAAAAHAA4AAgAFAAcAAAAHAA0AAgABAAcAAAAHAAwAAgAGAAcAAAAHAAsAAgAFAAgAAAAGAA0AAgAFAAgAAAAHAA8AAgAGAAgAAAAIAA8AAgAGAAgAAAAJAA8AAgAGAAgAAAAIAA4AAgAGAAgAAAANAAIAAgAFAAcAAAAMAAIAAgAFAAgAAAAMAAMAAgAGAAgAAAANAAMAAgAGAAcAAAALAAMAAgABAAcAAAALAAIAAgAFAAgAAAALAAYAAgABAAcAAAALAAcAAgAGAAgAAAAKAAgAAgAGAAcAAAALAAkAAgAFAAcAAAALAAoAAgAGAAcAAAALAAsAAgAGAAcAAAALAAwAAgAFAAcAAAAKAAwAAgAFAAcAAAAKAA0AAgAGAAcAAAAKAAsAAgAFAAcAAAAKAAoAAgAGAAcAAAAKAAkAAgAGAAcAAAAKAAcAAgAGAAcAAAAJAAwAAgAFAAgAAAAJAAsAAgAGAAgAAAAJAAoAAgAGAAcAAAALAAgAAgAFAAcAAAAMAAoAAgABAAcAAAAMAAsAAgAFAAgAAAAMAA0AAgAFAAgAAAAMAAwAAgAGAAcAAAAHAAoAAgAGAAcAAAAMAAkAAgACAAcAAAANAA0AAgACAAcAAAASAA0AAgACAAcAAAASAA4AAgACAAcAAAAUAA4AAgACAAcAAAAVAA0AAgACAAcAAAAUAA0AAgACAAcAAAAEAAMAAgAGAAcAAAAQABEAAgABAAcAAAAQABIAAgABAAcAAAAQABMAAgABAAcAAAAQABQAAgABAAcAAAAQABUAAgABAAcAAAAQABYAAgABAAcAAAAQABcAAgABAAcAAAAQABgAAgABAAcAAAAQABkAAgABAAcAAAAPABkAAgABAAcAAAAPABgAAgABAAcAAAAPABcAAgABAAcAAAAPABYAAgABAAcAAAAPABUAAgABAAcAAAAPABQAAgABAAcAAAAPABMAAgABAAcAAAAPABIAAgABAAcAAAAPABEAAgABAAcAAAAPABoAAgABAAcAAAAPABsAAgABAAcAAAAQABsAAgABAAcAAAAQABoAAgABAAcAAAAOAAsAAgABAAcAAAANAAsAAgACAAcAAAANAAwAAgABAAcAAAAOAAwAAgABAAcAAAAEAAYAAgABAAcAAAADAAYAAgABAAcAAAADAAcAAgABAAcAAAADAAsAAgAFAAcAAAADAAoAAgAFAAcAAAADAAkAAgAFAAcAAAADAAgAAgAFAAcAAAADAAwAAgAFAAcAAAACAAsAAgAFAAcAAAACAAoAAgACAAcAAAACAAwAAgAFAAcAAAAEAA0AAgAFAAcAAAACAAkAAgACAAcAAAAZAAkAAgAFAAcAAAAZAAoAAgABAAcAAAAaAAkAAgAFAAgAAAAaAAoAAgAGAAgAAAAYAAoAAgACAAcAAAAYAAsAAgAGAAgAAAAZAAgAAgABAAcAAAAaAAcAAgAGAAgAAAAaAAgAAgABAAcAAAAMAAUAAgAGAAcAAAAMAAYAAgAGAAcAAAAMAAcAAgAGAAcAAAAMAAgAAgAGAAcAAAAQAAAAAgABAAcAAAAPAAAAAgABAAcAAAASAAcAAgACAAcAAAARAAcAAgACAAcAAAARAAgAAgACAAcAAAASAAgAAgACAAcAAAATAAcAAgACAAcAAAAOAAcAAgACAAcAAAAOAAgAAgACAAcAAAADAA0AAgAFAAcAAAACAA0AAgAFAAcAAAADAAUAAgABAAcAAAAEAAUAAgABAAcAAAAEAAQAAgABAAcAAAADAAQAAgABAAcAAAANAAUAAgACAAcAAAANAAYAAgACAAcAAAANAAcAAgACAAcAAAANAAgAAgACAAcAAAANAAkAAgACAAcAAAAOAAYAAgACAAcAAAAOAAUAAgACAAcAAAAOAAkAAgACAAcAAAAOAAoAAgACAAcAAAANAAoAAgACAAcAAAARAAYAAgACAAcAAAARAAUAAgACAAcAAAASAAUAAgACAAcAAAASAAQAAgACAAcAAAATAAQAAgACAAcAAAATAAUAAgACAAcAAAASAAYAAgACAAcAAAARAAQAAgACAAcAAAAUAAUAAgACAAcAAAAXAAYAAgACAAcAAAAWAAYAAgACAAcAAAAVAAYAAgACAAcAAAAVAAcAAgACAAcAAAAUAAcAAgACAAcAAAAUAAYAAgACAAcAAAATAAgAAgACAAcAAAATAAYAAgACAAcAAAAUAAgAAgACAAcAAAAXAAcAAgACAAcAAAAXAAgAAgACAAcAAAAWAAgAAgACAAcAAAAWAAkAAgACAAcAAAAXAAkAAgACAAcAAAAYAAgAAgACAAcAAAAYAAcAAgACAAcAAAAZAAcAAgACAAcAAAAWAAoAAgACAAcAAAAXAAoAAgACAAcAAAAYAAkAAgACAAcAAAAXAAsAAgACAAcAAAAWAAsAAgACAAcAAAAWAAwAAgACAAcAAAAWAAcAAgACAAcAAAAVAAgAAgACAAcAAAAVAAkAAgACAAcAAAAVAAoAAgACAAcAAAAVAAsAAgACAAcAAAAVAAwAAgACAAcAAAAUAAoAAgACAAcAAAAUAAsAAgACAAcAAAATAAwAAgACAAcAAAASAA8AAgACAAcAAAATAA8AAgACAAcAAAATAA4AAgACAAcAAAAUAAwAAgACAAcAAAATAAkAAgACAAcAAAASAAkAAgACAAcAAAASAAwAAgACAAcAAAARAA0AAgACAAcAAAARAA4AAgACAAcAAAAUAA8AAgACAAcAAAARAA8AAgACAAcAAAAOAA0AAgACAAcAAAATAA0AAgACAAcAAAARAAkAAgACAAcAAAAUAAkAAgACAAcAAAANAAEAAgACAAcAAAAMAAEAAgACAAcAAAAMAAAAAgACAAcAAAANAAAAAgACAAcAAAAOAAAAAgACAAcAAAALAAAAAgACAAcAAAALAAEAAgACAAcAAAAKAAAAAgACAAcAAAAJAAAAAgACAAcAAAAIAAAAAgACAAcAAAAHAAAAAgACAAcAAAAGAAAAAgACAAcAAAAFAAAAAgACAAcAAAACAAQAAgACAAcAAAACAAUAAgACAAcAAAACAAYAAgACAAcAAAACAAcAAgACAAcAAAACAAgAAgACAAcAAAABAAMAAgACAAcAAAABAAQAAgACAAcAAAAAAAQAAgACAAcAAAAAAAUAAgACAAcAAAABAAUAAgACAAcAAAAAAAMAAgACAAcAAAD//wIAAgACAAcAAAD//wMAAgACAAcAAAD//wQAAgACAAcAAAALAA4AAgABAAcAAAALAA0AAgAFAAgAAAALAA8AAgABAAcAAAAKAA8AAgAGAAgAAAAKABAAAgAFAAgAAAAJABAAAgAFAAgAAAAIABAAAgAFAAgAAAA=")
+tile_set = ExtResource("3_bki3i")
+collision_enabled = false
+navigation_visibility_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="FloorDecal" type="TileMapLayer" parent="TileMaps"]
+scale = Vector2(4, 4)
+tile_set = ExtResource("3_bki3i")
+collision_enabled = false
+navigation_visibility_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="FloorDecal2" type="TileMapLayer" parent="TileMaps"]
+scale = Vector2(4, 4)
+tile_set = ExtResource("3_bki3i")
+collision_enabled = false
+navigation_visibility_mode = 1
+
+[node name="Bridge" type="TileMapLayer" parent="TileMaps"]
+scale = Vector2(4, 4)
+tile_set = ExtResource("3_bki3i")
+collision_enabled = false
+navigation_visibility_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Road" type="TileMapLayer" parent="TileMaps"]
+position = Vector2(-32, -32)
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAQABEAAgAFAAQAAAAAAAUAAgAFAAQAAAABAAUAAgAFAAQAAAACAAUAAgAFAAQAAAADAAUAAgAFAAQAAAAEAAUAAgAFAAQAAAAFAAUAAgAFAAQAAAAGAAUAAgAFAAQAAAA=")
+tile_set = ExtResource("3_bki3i")
+collision_enabled = false
+navigation_visibility_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Road2" type="TileMapLayer" parent="TileMaps"]
+position = Vector2(32, -32)
+scale = Vector2(4, 4)
+tile_set = ExtResource("3_bki3i")
+collision_enabled = false
+navigation_visibility_mode = 1
+
+[node name="Wall" type="TileMapLayer" parent="TileMaps"]
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAATAA0AAgACAAsAAAATAAwAAgACAAsAAAAUAA0AAgACAAsAAAAUAA4AAgACAAsAAAATAA4AAgACAAsAAAATAA8AAgACAAsAAAASAA8AAgACAAsAAAASAA4AAgACAAsAAAAUAA8AAgACAAsAAAAUAAwAAgACAAsAAAA=")
+tile_set = ExtResource("3_bki3i")
+navigation_visibility_mode = 1
+metadata/_edit_lock_ = true
+metadata/Tag = "Wall"
+
+[node name="Object" type="TileMapLayer" parent="TileMaps"]
+scale = Vector2(4, 4)
+tile_set = ExtResource("3_bki3i")
+collision_enabled = false
+navigation_visibility_mode = 1
+metadata/_edit_lock_ = true
+metadata/Tag = "ObjectLayer"
+
+[node name="Entities" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Flag" parent="Entities" instance=ExtResource("4_74fr0")]
+z_index = 25
+position = Vector2(1024, 1024)
+
+[node name="Car" parent="Entities" node_paths=PackedStringArray("TILEMAP_MANAGER", "TIMER") instance=ExtResource("5_yve4c")]
+unique_name_in_owner = true
+z_index = 20
+position = Vector2(64, 320)
+TILEMAP_MANAGER = NodePath("../../TileMaps")
+TIMER = NodePath("../../Global Tick")
+
+[node name="Directions" type="Node2D" parent="Entities"]
+
+[node name="Crate" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(512, 192)
+
+[node name="Crate2" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(512, 320)
+
+[node name="Crate9" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(1024, 832)
+
+[node name="Crate10" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(960, 704)
+
+[node name="Crate6" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(704, 768)
+
+[node name="Crate7" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(640, 896)
+
+[node name="Crate11" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(832, 832)
+
+[node name="Crate12" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(1152, 832)
+
+[node name="Crate4" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(384, 256)
+
+[node name="Crate5" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(1472, 576)
+
+[node name="Crate8" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(1344, 576)
+
+[node name="Crate13" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(1216, 576)
+
+[node name="Crate14" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(1088, 576)
+
+[node name="Crate15" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(960, 576)
+
+[node name="Crate16" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(832, 576)
+
+[node name="Crate17" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(704, 576)
+
+[node name="Crate18" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(576, 576)
+
+[node name="Crate19" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(448, 576)
+
+[node name="Crate20" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(320, 576)
+
+[node name="Crate21" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(192, 512)
+
+[node name="Crate22" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(832, 128)
+
+[node name="Crate23" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(640, 64)
+
+[node name="Crate24" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(704, 192)
+
+[node name="Crate25" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(896, 256)
+
+[node name="Crate26" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(1024, 192)
+
+[node name="Crate27" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(960, 384)
+
+[node name="Crate28" parent="Entities" instance=ExtResource("6_8cmig")]
+position = Vector2(1088, 320)
+
+[node name="Boulder" parent="Entities" node_paths=PackedStringArray("TILEMAP_MANAGER") instance=ExtResource("7_y7ont")]
+position = Vector2(1664, 576)
+TILEMAP_MANAGER = NodePath("../../TileMaps")
+AUTO_ROLL = true
+DIRECTION = Vector2(-1, 0)
+
+[node name="Boulder2" parent="Entities" node_paths=PackedStringArray("TILEMAP_MANAGER") instance=ExtResource("7_y7ont")]
+position = Vector2(448, 64)
+TILEMAP_MANAGER = NodePath("../../TileMaps")
+AUTO_ROLL = true
+DIRECTION = Vector2(0, 1)
+
+[node name="Boulder3" parent="Entities" node_paths=PackedStringArray("TILEMAP_MANAGER") instance=ExtResource("7_y7ont")]
+position = Vector2(192, 640)
+TILEMAP_MANAGER = NodePath("../../TileMaps")
+AUTO_ROLL = true
+DIRECTION = Vector2(1, 0)
+
+[node name="Boulder4" parent="Entities" node_paths=PackedStringArray("TILEMAP_MANAGER") instance=ExtResource("7_y7ont")]
+position = Vector2(960, 64)
+TILEMAP_MANAGER = NodePath("../../TileMaps")
+AUTO_ROLL = true
+DIRECTION = Vector2(0, 1)
+
+[node name="Boulder5" parent="Entities" node_paths=PackedStringArray("TILEMAP_MANAGER") instance=ExtResource("7_y7ont")]
+position = Vector2(192, 832)
+TILEMAP_MANAGER = NodePath("../../TileMaps")
+AUTO_ROLL = true
+DIRECTION = Vector2(1, 0)
+
+[node name="Global Tick" type="Timer" parent="."]
+wait_time = 0.6
+
+[connection signal="LevelComplete" from="Entities/Car" to="." method="_on_car_level_complete"]
+[connection signal="LevelExit" from="Entities/Car" to="." method="_on_car_level_exit"]
+[connection signal="LevelRestart" from="Entities/Car" to="." method="_on_car_level_restart"]
+[connection signal="timeout" from="Global Tick" to="Entities/Car" method="_on_global_tick_timeout"]
+[connection signal="timeout" from="Global Tick" to="Entities/Boulder" method="_on_global_tick_timeout"]
+[connection signal="timeout" from="Global Tick" to="Entities/Boulder2" method="_on_global_tick_timeout"]
+[connection signal="timeout" from="Global Tick" to="Entities/Boulder3" method="_on_global_tick_timeout"]
+[connection signal="timeout" from="Global Tick" to="Entities/Boulder4" method="_on_global_tick_timeout"]
+[connection signal="timeout" from="Global Tick" to="Entities/Boulder5" method="_on_global_tick_timeout"]

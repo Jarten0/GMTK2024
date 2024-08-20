@@ -17,7 +17,7 @@ metadata/Tag = "Wall"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16
-collision_mask = 275
+collision_mask = 273
 collision_priority = 0.0
 metadata/Tag = "Boulder"
 

@@ -29,8 +29,9 @@ func on_collision(direction: Vector2):
 		rolling = true
 
 func on_collision_car(car: CarInterface):
-	# print(car.SIZE.length(), " - " , SIZE.length())
-	pass
+	if car.SIZE.length() >= (SIZE.length() - 0.01):
+		DIRECTION = car.AREA_NODE.DIRECTION
+		rolling = true
 	
 
 func _physics_process(delta: float) -> void:
@@ -64,7 +65,7 @@ func tick():
 		
 	$Area2D/ScaleableSprite.get_current_sprite().frame_coords.y = current_frame 
 
-	if get_tile_data(TILEMAP_MANAGER.FLOOR_LAYER) == null and get_tile_data_minus_one(TILEMAP_MANAGER.FLOOR_LAYER) == null:
+	if get_tile_data(TILEMAP_MANAGER.FLOOR_LAYER) == null:
 		fall()
 
 
@@ -74,10 +75,6 @@ func _on_global_tick_timeout() -> void:
 
 func get_tile_data(tile_map_layer: TileMapLayer) -> TileData:
 	var map_position = tile_map_layer.local_to_map(position / tile_map_layer.scale.x)
-	return tile_map_layer.get_cell_tile_data(map_position)
-
-func get_tile_data_minus_one(tile_map_layer: TileMapLayer) -> TileData:
-	var map_position = tile_map_layer.local_to_map(position / tile_map_layer.scale.x) - Vector2i.ONE
 	return tile_map_layer.get_cell_tile_data(map_position)
 
 func fall():
@@ -95,15 +92,23 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body.has_meta("Tag"):
 		tag = body.get_meta("Tag")
 	if body is CarInternal:
-		on_collision_car(body.get_parent())
+		pass
+		# on_collision_car(body.get_parent())
 	elif parent is Crate:
-		if parent.get_node("Area2D/ScaleableSprite").current_tile > 2:
-			# DIRECTION *= -1
-			position += DIRECTION.normalized() * 64
+		if SIZE >= parent.SIZE:
+			pass
+			# position += DIRECTION.normalized() * 64
+		else:
+			position -= DIRECTION.normalized() * 64
+			rolling = false
+			DIRECTION = Vector2.ZERO
+
+			
 	elif parent is DoorKey:
 		print('push')
 		parent.position += DIRECTION.normalized() * 64
 	elif tag == "Wall":
+		rolling = false
 		position -= DIRECTION.normalized() * 64
 		DIRECTION = Vector2.ZERO
 
