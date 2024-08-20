@@ -5,6 +5,7 @@ extends Node2D
 @export var InitialScene: PackedScene
 @export var LevelSelect: PackedScene
 @export var PackedSceneLevels: Array[PackedScene]
+@onready var BGM: AudioStreamPlayer = $BGM
 
 var current_level: Node
 var level_index: int = 0
@@ -13,14 +14,24 @@ var completed: bool = false
 signal loaded_level(index: int)
 
 func load_level(index: int):
+	if (level_index > 0 and level_index <= 3) and (!index > 0 and !index <= 3):
+		BGM.stream = BGM.TRACKS[1]
+		BGM.play()
+	elif (level_index > 3 and level_index <= 6) and (!level_index > 3 and !level_index <= 6):
+		BGM.stream = BGM.TRACKS[2]
+		BGM.play()
+	elif level_index == 0 and (index != 0 and index != 7):
+		BGM.stream = BGM.TRACKS[0]
+		BGM.play()
 	level_index = index
 	if current_level != null:
 		current_level.queue_free()
-	current_level = PackedSceneLevels[index].instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
+	current_level = PackedSceneLevels[index].instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
 	add_child(current_level)
 
 	loaded_level.emit(index)
 	
+
 	if current_level is LevelSignals:
 		current_level.LevelComplete.connect(on_level_complete)
 		current_level.LevelExit.connect(on_level_exit)
@@ -36,7 +47,7 @@ func load_level(index: int):
 func load_level_from_packed_scene(scene: PackedScene):
 	if current_level != null:
 		current_level.queue_free()
-	current_level = scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
+	current_level = scene.instantiate(PackedScene.GEN_EDIT_STATE_DISABLED)
 	add_child(current_level)
 	
 	if current_level is LevelSignals:
@@ -75,7 +86,7 @@ var timer : Timer
 
 func _on_level_complete_delay_timeout() -> void:
 	timer = $LevelCompleteDelay/OtherTimer
-	$LevelTransition.play("clean")
+	# $LevelTransition.play("clean")
 	timer.connect("timeout", after_wipe)
 	timer.start(8.0 / 20.0)
 
@@ -86,7 +97,7 @@ func after_wipe():
 		level_index = 0
 		completed = true
 	load_level(level_index)
-	$LevelTransition.play("default")
+	# $LevelTransition.play("default")
 	
 func on_level_restart():
 	if level_index != 7:

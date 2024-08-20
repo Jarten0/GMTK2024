@@ -18,6 +18,13 @@ func stage_two():
 	stage = 2
 	$Control/PhoneOverlay.close_text()
 	$Control/PhoneOverlay.display_text(Dialog.lines[31])
+	LEVEL_MANAGER.BGM.stream = LEVEL_MANAGER.BGM.TRACKS[3]
+	LEVEL_MANAGER.BGM.play()
+
+
+var done = false
 
 func end():
-	LevelComplete.emit()
+	if !done:
+		LevelComplete.emit()
+		done = true

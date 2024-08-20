@@ -14,7 +14,7 @@
 [node name="Level One3" type="Node2D"]
 script = ExtResource("1_aqnw2")
 CARDS = Array[int]([0, 0, 2, 3])
-CARD_ROW_POS = Vector2(1024, 64)
+CARD_ROW_POS = Vector2(1184, 1016)
 TURNS_ALLOWED = 15
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -94,7 +94,7 @@ navigation_visibility_mode = 1
 
 [node name="Wall" type="TileMapLayer" parent="TileMaps"]
 scale = Vector2(4, 4)
-tile_map_data = PackedByteArray("AAALAA8ABgAPAAMAAAAKAA8ABgANAAMAAAAKABAACgAEABAAAAALABAACgAEABAAAAANAAsABgANAAMAAAANAAwABgANAAUAAAAOAAwABgAPAAUAAAAOAAsABgAPAAMAAAAQAAAACgACAA8AAAAPAAAACgAFAA8AAAAGAAwACAACAA8AAAAFAAwACQAFAA8AAAAFAAcACgADABMAAAAFAAYACgABABAAAAA=")
+tile_map_data = PackedByteArray("AAALAA8ACwAPAAMAAAAKAA8ACwANAAMAAAAKABAACgAEABAAAAALABAACgAEABAAAAANAAsACwANAAMAAAANAAwACwANAAUAAAAOAAwACwAPAAUAAAAOAAsACwAPAAMAAAAQAAAACgACAA8AAAAPAAAACgAFAA8AAAAGAAwACwACAA8AAAAFAAwACwACAA8AABAFAAcACgAEABMAAAAFAAYACgABABAAAAA=")
 tile_set = ExtResource("3_x8c53")
 navigation_visibility_mode = 1
 metadata/_edit_lock_ = true
@@ -166,6 +166,7 @@ position = Vector2(768, 576)
 TURN_COUNTERCLOCKWISE = true
 
 [node name="Global Tick" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="LevelComplete" from="Entities/Car" to="." method="_on_car_level_complete"]
 [connection signal="LevelExit" from="Entities/Car" to="." method="_on_car_level_exit"]

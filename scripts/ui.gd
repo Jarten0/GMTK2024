@@ -8,4 +8,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Counter.text = String.num_int64($"..".level_index)
+	$"../Counter".text = String.num_int64($"..".level_index)

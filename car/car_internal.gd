@@ -102,7 +102,7 @@ func check_for_tag(body: Node2D):
 		"Flag": 
 			$"..".emit_signal("LevelComplete")
 		"Spring":
-			$"..".position += body.DIRECTION * GRID_SIZE * (body.scale.x + body.scale.y) / 2
+			$"..".position += body.DIRECTION * GRID_SIZE * (body.scale.x + body.scale.y) / 4
 			body.Activate()
 		"TurnTile":
 			if body.get_parent().TURN_COUNTERCLOCKWISE:
@@ -123,6 +123,7 @@ func check_for_tag(body: Node2D):
 		"Boulder":
 			var other_parent = body.get_parent()
 			print(DIRECTION, "-" ,other_parent.DIRECTION)
+			print(get_parent().SIZE.length(), " -- ", (other_parent.SIZE.length() - 0.01))
 			var angle = abs(((DIRECTION as Vector2).angle_to(other_parent.DIRECTION)))
 			if angle >= deg_to_rad(89) and angle <= deg_to_rad(91) and other_parent.DIRECTION.length() != 0:
 				print("Died")
@@ -133,6 +134,7 @@ func check_for_tag(body: Node2D):
 			if get_parent().SIZE.length() >= (other_parent.SIZE.length() - 0.01):
 				other_parent.DIRECTION = DIRECTION
 				other_parent.rolling = true
+				get_parent().position -= DIRECTION * GRID_SIZE / 2
 
 			if other_parent.SIZE.length() >= get_parent().SIZE.length():
 				DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
@@ -153,6 +155,10 @@ func check_for_tag(body: Node2D):
 					$"..".emit_signal("LevelRestart")
 				null:
 					printerr("null?")
+		"Hazard":
+			print("Died")
+			hide()
+			$"..".emit_signal("LevelRestart")
 		var tag:
 			if tag != null:
 				print("Unknown tag!: " + tag as String)

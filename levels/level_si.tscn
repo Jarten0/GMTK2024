@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b6bkdn43jhq80" path="res://key/key.tscn" id="7_tli0x"]
 [ext_resource type="PackedScene" uid="uid://qjhdm7dvq8j4" path="res://key/door.tscn" id="8_87jq8"]
 [ext_resource type="PackedScene" uid="uid://cyl5behnlkvsh" path="res://scenes/turn_tile.tscn" id="9_8we1l"]
-[ext_resource type="PackedScene" path="res://scenes/spike.tscn" id="11_fwknh"]
+[ext_resource type="PackedScene" uid="uid://clry4te0pmynk" path="res://scenes/spike.tscn" id="11_fwknh"]
 [ext_resource type="PackedScene" uid="uid://3t1gxuc170ii" path="res://scenes/mini_path_direction.tscn" id="12_vktni"]
 
 [node name="Level One3" type="Node2D"]
@@ -128,6 +128,7 @@ TIMER = NodePath("../../Global Tick")
 [node name="Spring2" parent="Entities" instance=ExtResource("6_cw5yc")]
 position = Vector2(704, 0)
 rotation = 3.14159
+PUSH_DIRECTION = Vector2(0, 1)
 
 [node name="Key" parent="Entities" instance=ExtResource("7_tli0x")]
 position = Vector2(64, 1024)

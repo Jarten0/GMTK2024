@@ -10,11 +10,13 @@ config_version=5
 
 [application]
 
-config/name="GMTK2024"
+config/name="Space Race"
+config/description="Submission for the GMTK 2024 Game Jam"
+config/version="v1.0"
 run/main_scene="res://levels/level_manager.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
-config/icon="res://assets/truck_parts.png"
+config/icon="res://main_menu/scaling_signs-1.png"
 
 [display]
 

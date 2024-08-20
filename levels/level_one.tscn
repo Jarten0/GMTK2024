@@ -12,7 +12,8 @@
 
 [node name="Level One2" type="Node2D"]
 script = ExtResource("1_okl7n")
-CARDS = Array[int]([0, 1, 4])
+CARDS = Array[int]([0, 1, 6])
+TURNS_ALLOWED = 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -112,12 +113,12 @@ metadata/_edit_lock_ = true
 
 [node name="TurnTile" parent="Objects" instance=ExtResource("6_3lnjp")]
 z_index = -3
-position = Vector2(1344, 448)
+position = Vector2(1408, 448)
 metadata/Tag = "TurnTile"
 
 [node name="Flag" parent="Objects" instance=ExtResource("7_t3pvw")]
 z_index = 25
-position = Vector2(1216, 640)
+position = Vector2(1280, 640)
 
 [node name="Car" parent="Objects" node_paths=PackedStringArray("TILEMAP_MANAGER", "TIMER") instance=ExtResource("8_28sk7")]
 unique_name_in_owner = true
@@ -127,7 +128,7 @@ TILEMAP_MANAGER = NodePath("../../TileMaps")
 TIMER = NodePath("../../Global Tick")
 
 [node name="Boulder" parent="Objects" node_paths=PackedStringArray("TILEMAP_MANAGER") instance=ExtResource("9_cy544")]
-position = Vector2(832, 576)
+position = Vector2(896, 576)
 TILEMAP_MANAGER = NodePath("../../TileMaps")
 
 [node name="PathDirection2" parent="Objects" instance=ExtResource("12_opg4x")]
@@ -138,26 +139,22 @@ ENTER = Vector2i(1, 0)
 EXIT = Vector2i(0, 1)
 
 [node name="PathDirection3" parent="Objects" instance=ExtResource("12_opg4x")]
-position = Vector2(960, 512)
-rotation = 3.14159
+position = Vector2(896, 512)
+rotation = 2.35619
 ENTER = Vector2i(1, 0)
 EXIT = Vector2i(0, -1)
 
 [node name="PathDirection4" parent="Objects" instance=ExtResource("12_opg4x")]
-position = Vector2(704, 576)
-rotation = -1.5708
+position = Vector2(704, 512)
+rotation = -2.35619
 ENTER = Vector2i(0, 1)
 
 [node name="PathDirection5" parent="Objects" instance=ExtResource("12_opg4x")]
-position = Vector2(1024, 320)
-rotation = -1.5708
+position = Vector2(960, 320)
+rotation = -0.785397
 
 [node name="PathDirection6" parent="Objects" instance=ExtResource("12_5knx6")]
 position = Vector2(1280, 832)
-ENTER = Vector2i(0, 1)
-
-[node name="PathDirection12" parent="Objects" instance=ExtResource("12_5knx6")]
-position = Vector2(1216, 832)
 ENTER = Vector2i(0, 1)
 
 [node name="PathDirection8" parent="Objects" instance=ExtResource("12_5knx6")]

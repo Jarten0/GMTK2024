@@ -6,7 +6,7 @@ extends Node2D
 
 @export var AREA_NODE: Area2D
 @export var SCALEABLE_SPRITE: ScaleableSprite
-
+var RECIEVER: CardReciever
 func _init() -> void:
 	var reciever = CardReciever.new()
 	
@@ -24,5 +24,5 @@ func _init() -> void:
 	
 	add_child(reciever)
 
-func _physics_process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	SIZE = AREA_NODE.scale 

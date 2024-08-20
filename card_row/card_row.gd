@@ -34,7 +34,7 @@ func update_cards():
 		xOffset += 80
 
 func _process(delta: float) -> void:
-	target_position = Vector2((CARDS.size() * 20.0 ), 0.0)
+	target_position = Vector2((CARDS.size() * 10.0 ) + (int (CARDS.size() > 0.0) * 14 ), 0.0)
 	$Bar/Mask.position += (target_position - $Bar/Mask.position) * 0.2
 
 
