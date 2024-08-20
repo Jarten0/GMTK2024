@@ -25,6 +25,7 @@ LevelSelect = ExtResource("3_vuvgs")
 PackedSceneLevels = Array[PackedScene]([ExtResource("2_fd8mp"), ExtResource("4_sptf6"), ExtResource("5_7tnxq"), ExtResource("6_36y5b"), ExtResource("7_ovk6j"), ExtResource("7_5ds5p"), ExtResource("9_5pwmb")])
 
 [node name="UI" type="Node2D" parent="."]
+visible = false
 script = ExtResource("5_h6pyi")
 
 [node name="Label" type="Label" parent="UI"]

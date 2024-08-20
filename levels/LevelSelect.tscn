@@ -16,10 +16,10 @@ offset_bottom = 40.0
 [node name="BTMM" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -1.84495
-anchor_top = -0.0993851
-anchor_right = 2.41165
-anchor_bottom = 0.813887
+anchor_left = 1.35505
+anchor_top = 0.90061
+anchor_right = 5.61165
+anchor_bottom = 1.81388
 offset_left = 745.798
 offset_top = 771.975
 offset_right = 895.534
@@ -34,10 +34,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Level1" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.593076
-anchor_top = -7.77747
-anchor_right = 2.16718
-anchor_bottom = -5.6892
+anchor_left = -4.19308
+anchor_top = -1.37748
+anchor_right = -1.43282
+anchor_bottom = 0.710796
 offset_left = 639.723
 offset_top = 487.099
 offset_right = 697.313
@@ -50,10 +50,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Level5" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 6.00692
-anchor_top = -7.77747
-anchor_right = 8.76718
-anchor_bottom = -5.6892
+anchor_left = 11.2069
+anchor_top = 0.422525
+anchor_right = 13.9672
+anchor_bottom = 2.5108
 offset_left = 639.723
 offset_top = 487.099
 offset_right = 697.313
@@ -67,10 +67,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Level2" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -10.344
-anchor_top = -4.57748
-anchor_right = -7.53376
-anchor_bottom = -2.46421
+anchor_left = -8.544
+anchor_top = -2.17747
+anchor_right = -5.73376
+anchor_bottom = -0.0642059
 offset_left = 1029.76
 offset_top = 487.099
 offset_right = 1087.35
@@ -84,10 +84,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Level3" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -10.344
-anchor_top = -1.37748
-anchor_right = -7.53376
-anchor_bottom = 0.735793
+anchor_left = -3.544
+anchor_top = -4.77747
+anchor_right = -0.733762
+anchor_bottom = -2.6642
 offset_left = 1029.76
 offset_top = 487.099
 offset_right = 1087.35
@@ -101,10 +101,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Level4" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -10.344
-anchor_top = 1.82253
-anchor_right = -7.53376
-anchor_bottom = 3.93579
+anchor_left = 1.256
+anchor_top = -3.17747
+anchor_right = 4.06624
+anchor_bottom = -1.06421
 offset_left = 1029.76
 offset_top = 487.099
 offset_right = 1087.35
@@ -118,10 +118,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Level6" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -3.744
-anchor_top = -4.57748
-anchor_right = -0.933762
-anchor_bottom = -2.46421
+anchor_left = 3.456
+anchor_top = 3.82253
+anchor_right = 6.26624
+anchor_bottom = 5.93579
 offset_left = 1029.76
 offset_top = 487.099
 offset_right = 1087.35
@@ -130,40 +130,6 @@ grow_vertical = 2
 text = "Level 6"
 script = ExtResource("2_6xfrh")
 level = 6
-metadata/_edit_use_anchors_ = true
-
-[node name="Level7" type="Button" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -3.744
-anchor_top = -1.37748
-anchor_right = -0.933762
-anchor_bottom = 0.735797
-offset_left = 1029.76
-offset_top = 487.099
-offset_right = 1087.35
-offset_bottom = 515.568
-grow_vertical = 2
-text = "Level 7"
-script = ExtResource("2_6xfrh")
-level = 7
-metadata/_edit_use_anchors_ = true
-
-[node name="Level8" type="Button" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -3.744
-anchor_top = 1.82253
-anchor_right = -0.933762
-anchor_bottom = 3.9358
-offset_left = 1029.76
-offset_top = 487.099
-offset_right = 1087.35
-offset_bottom = 515.568
-grow_vertical = 2
-text = "Level 8"
-script = ExtResource("2_6xfrh")
-level = 8
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Control/BTMM" to="." method="_on_btmm_pressed"]
@@ -177,7 +143,3 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Control/Level4" to="Control/BTMM" method="_on_level_2_pressed"]
 [connection signal="pressed" from="Control/Level6" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="Control/Level6" to="Control/BTMM" method="_on_level_2_pressed"]
-[connection signal="pressed" from="Control/Level7" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="Control/Level7" to="Control/BTMM" method="_on_level_2_pressed"]
-[connection signal="pressed" from="Control/Level8" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="Control/Level8" to="Control/BTMM" method="_on_level_2_pressed"]

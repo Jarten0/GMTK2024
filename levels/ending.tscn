@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://iwwc4f6pbboo"]
+
+[ext_resource type="Script" path="res://main_menu/ending.gd" id="1_1fwya"]
+[ext_resource type="Texture2D" uid="uid://dcbd14qmh8bto" path="res://CarGameTileset8-17-24FIN.png" id="1_8b4fq"]
+[ext_resource type="Script" path="res://main_menu/truck.gd" id="2_86oj0"]
+[ext_resource type="Texture2D" uid="uid://ctd8cxn53n4wu" path="res://main_menu/animated_speech.png" id="4_68c6w"]
+[ext_resource type="Script" path="res://main_menu/text_overlay.gd" id="4_mqk02"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_faa7v"]
+atlas = ExtResource("4_68c6w")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r63wb"]
+atlas = ExtResource("4_68c6w")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdoap"]
+atlas = ExtResource("4_68c6w")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gq503"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_faa7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r63wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdoap")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Ending" type="Node2D"]
+script = ExtResource("1_1fwya")
+
+[node name="Backdrop" type="Sprite2D" parent="."]
+z_index = -1000
+position = Vector2(2.66272, 1.33136)
+scale = Vector2(8, 8)
+texture = ExtResource("1_8b4fq")
+offset = Vector2(524, 100)
+region_enabled = true
+region_rect = Rect2(16, 560, 1064, 208)
+
+[node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("CAMERA")]
+position = Vector2(-1088, 1472)
+scale = Vector2(8, 8)
+texture = ExtResource("1_8b4fq")
+region_enabled = true
+region_rect = Rect2(560, 352, 32, 16)
+script = ExtResource("2_86oj0")
+CAMERA = NodePath("../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(0.667, 0.667)
+
+[node name="Control" type="Control" parent="."]
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="PhoneOverlay" type="Node2D" parent="Control"]
+script = ExtResource("4_mqk02")
+
+[node name="Polygon2D" type="Polygon2D" parent="Control/PhoneOverlay"]
+self_modulate = Color(0.938852, 0.949323, 1, 1)
+clip_children = 1
+position = Vector2(902, 221)
+rotation = 0.261799
+scale = Vector2(4, 4)
+polygon = PackedVector2Array(-29, 42, -10.25, 18.75, -7.75, 2.75, -8, -13, -4, -33.25, 12.5, -35.75, 17.25, -40.5, 18.75, -55.5, 26.25, -54.25, 17, 22.75, -1.75, 48)
+
+[node name="Phone" type="Sprite2D" parent="Control/PhoneOverlay/Polygon2D"]
+texture = ExtResource("1_8b4fq")
+region_enabled = true
+region_rect = Rect2(728, 392, 48, 104)
+
+[node name="bubble" type="AnimatedSprite2D" parent="Control/PhoneOverlay"]
+position = Vector2(854, 114)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_gq503")
+frame_progress = 0.887094
+
+[node name="Textbox" type="Sprite2D" parent="Control/PhoneOverlay"]
+position = Vector2(384, 192)
+scale = Vector2(2, 4)
+texture = ExtResource("1_8b4fq")
+region_enabled = true
+region_rect = Rect2(576, 16, 320, 80)
+
+[node name="Label" type="Label" parent="Control/PhoneOverlay/Textbox"]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+offset_left = -147.5
+offset_top = -32.75
+offset_right = -92.5
+offset_bottom = -9.75
+scale = Vector2(1, 0.667)
+text = "123123"
