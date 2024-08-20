@@ -27,18 +27,22 @@ func _physics_process(delta: float) -> void:
 			DIRECTION = Vector2.LEFT
 			turns -= 1
 			unpathable = 2
+			get_parent().TIMER.timeout.emit()
 		if Input.is_action_just_pressed("right"): 
 			DIRECTION = Vector2.RIGHT
 			turns -= 1
 			unpathable = 2
+			get_parent().TIMER.timeout.emit()
 		if Input.is_action_just_pressed("up"): 
 			DIRECTION = Vector2.UP
 			turns -= 1
 			unpathable = 2
+			get_parent().TIMER.timeout.emit()
 		if Input.is_action_just_pressed("down"): 
 			DIRECTION = Vector2.DOWN
 			turns -= 1
 			unpathable = 2
+			get_parent().TIMER.timeout.emit()
 
 	var manager = get_tree().root.get_node("LevelManager")
 	if manager != null:
@@ -122,7 +126,7 @@ func check_for_tag(body: Node2D):
 			if get_parent().SIZE.length() >= (other_parent.SIZE.length() - 0.01):
 				other_parent.DIRECTION = DIRECTION
 				other_parent.rolling = true
-				
+
 			if other_parent.SIZE.length() >= get_parent().SIZE.length():
 				DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
 			else:
