@@ -29,6 +29,7 @@ func on_collision(direction: Vector2):
 		rolling = true
 
 func on_collision_car(car: CarInterface):
+	# print(car.SIZE.length(), " - " , SIZE.length())
 	if car.SIZE.length() >= (SIZE.length() - 0.01):
 		DIRECTION = car.AREA_NODE.DIRECTION
 		rolling = true
@@ -92,25 +93,17 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body.has_meta("Tag"):
 		tag = body.get_meta("Tag")
 	if body is CarInternal:
-		pass
-		# on_collision_car(body.get_parent())
+		on_collision_car(body.get_parent())
 	elif parent is Crate:
-		if SIZE >= parent.SIZE:
-			pass
-			# position += DIRECTION.normalized() * 64
-		else:
-			position -= DIRECTION.normalized() * 64
-			rolling = false
-			DIRECTION = Vector2.ZERO
-
-			
+		if parent.get_node("Area2D/ScaleableSprite").current_tile > 2:
+			# DIRECTION *= -1
+			position += DIRECTION.normalized() * 64
 	elif parent is DoorKey:
 		print('push')
 		parent.position += DIRECTION.normalized() * 64
 	elif tag == "Wall":
-		rolling = false
-		position -= DIRECTION.normalized() * 64
-		DIRECTION = Vector2.ZERO
+		DIRECTION = (DIRECTION as Vector2).rotated(deg_to_rad(180))
+		position += DIRECTION.normalized() * 64
 
 
 	# elif body is Area2D:

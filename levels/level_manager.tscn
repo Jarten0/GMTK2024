@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bgjkajwga3lrj"]
+[gd_scene load_steps=16 format=3 uid="uid://bgjkajwga3lrj"]
 
 [ext_resource type="Script" path="res://scripts/LevelManager.gd" id="1_3fj03"]
 [ext_resource type="PackedScene" uid="uid://chjuxqbffvjs5" path="res://levels/MainMenu.tscn" id="2_fd8mp"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bhf4knacvgtqi" path="res://card_row/card.tscn" id="7_e4c01"]
 [ext_resource type="PackedScene" uid="uid://ceatcw73scwnb" path="res://levels/level_five.tscn" id="7_ovk6j"]
 [ext_resource type="Script" path="res://scripts/bgm.gd" id="9_4orgb"]
+[ext_resource type="PackedScene" uid="uid://5fkvuxgnvbgu" path="res://levels/level_si.tscn" id="9_5pwmb"]
 [ext_resource type="Texture2D" uid="uid://ckmifq80xcnbk" path="res://assets/finalizedObjectSet.png" id="10_o1hwv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1w1my"]
@@ -21,7 +22,7 @@ font_size = 128
 script = ExtResource("1_3fj03")
 InitialScene = ExtResource("2_fd8mp")
 LevelSelect = ExtResource("3_vuvgs")
-PackedSceneLevels = Array[PackedScene]([ExtResource("2_fd8mp"), ExtResource("4_sptf6"), ExtResource("5_7tnxq"), ExtResource("6_36y5b"), ExtResource("7_ovk6j"), ExtResource("7_5ds5p")])
+PackedSceneLevels = Array[PackedScene]([ExtResource("2_fd8mp"), ExtResource("4_sptf6"), ExtResource("5_7tnxq"), ExtResource("6_36y5b"), ExtResource("7_ovk6j"), ExtResource("7_5ds5p"), ExtResource("9_5pwmb")])
 
 [node name="UI" type="Node2D" parent="."]
 script = ExtResource("5_h6pyi")

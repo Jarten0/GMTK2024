@@ -102,7 +102,7 @@ func check_for_tag(body: Node2D):
 		"Flag": 
 			$"..".emit_signal("LevelComplete")
 		"Spring":
-			$"..".position += body.DIRECTION * GRID_SIZE
+			$"..".position += body.DIRECTION * GRID_SIZE * (body.scale.x + body.scale.y) / 2
 			body.Activate()
 		"TurnTile":
 			if body.get_parent().TURN_COUNTERCLOCKWISE:

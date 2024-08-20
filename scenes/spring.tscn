@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cbhbiqksousog"]
 
 [ext_resource type="Script" path="res://scripts/spring_internal.gd" id="1_157om"]
+[ext_resource type="Script" path="res://spring/spring.gd" id="1_h8f8v"]
 [ext_resource type="Shader" path="res://shaders/focus_lighten.gdshader" id="2_ccgso"]
-[ext_resource type="PackedScene" uid="uid://dp0fokuaqjer1" path="res://scenes/scaleable.tscn" id="2_ln0ix"]
 [ext_resource type="Script" path="res://scale/scaleable_sprite.gd" id="4_tvdoo"]
 [ext_resource type="Texture2D" uid="uid://ckmifq80xcnbk" path="res://assets/finalizedObjectSet.png" id="5_s2ri0"]
 
@@ -12,25 +12,28 @@ shader = ExtResource("2_ccgso")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66vwp"]
 size = Vector2(112, 112)
 
-[node name="Spring" type="Node2D"]
+[node name="Spring" type="Node2D" node_paths=PackedStringArray("AREA_NODE", "SCALEABLE_SPRITE")]
+script = ExtResource("1_h8f8v")
+AREA_NODE = NodePath("Area2D")
+SCALEABLE_SPRITE = NodePath("Area2D/ScaleableSprite")
 metadata/Tag = "Spring"
 
-[node name="Scaleable" parent="." node_paths=PackedStringArray("OTHER_NODE") instance=ExtResource("2_ln0ix")]
-position = Vector2(0, -56)
-OTHER_NODE = NodePath("../Spring")
-
-[node name="Spring" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 material = SubResource("ShaderMaterial_dlrxi")
 script = ExtResource("1_157om")
 metadata/Tag = "Spring"
 
-[node name="ScaleableSprite" type="Node2D" parent="Spring" node_paths=PackedStringArray("small_tile", "medium_tile", "large_tile")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -56)
+shape = SubResource("RectangleShape2D_66vwp")
+
+[node name="ScaleableSprite" type="Node2D" parent="Area2D" node_paths=PackedStringArray("small_tile", "medium_tile", "large_tile")]
 script = ExtResource("4_tvdoo")
 small_tile = NodePath("Sprite2D2")
 medium_tile = NodePath("Sprite2D")
 large_tile = NodePath("Sprite2D3")
 
-[node name="Sprite2D" type="Sprite2D" parent="Spring/ScaleableSprite"]
+[node name="Sprite2D" type="Sprite2D" parent="Area2D/ScaleableSprite"]
 visible = false
 position = Vector2(0, -112)
 scale = Vector2(8, 8)
@@ -42,7 +45,7 @@ region_enabled = true
 region_rect = Rect2(64, 32, 48, 32)
 region_filter_clip_enabled = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="Spring/ScaleableSprite"]
+[node name="Sprite2D2" type="Sprite2D" parent="Area2D/ScaleableSprite"]
 position = Vector2(0, -120)
 scale = Vector2(8, 8)
 texture = ExtResource("5_s2ri0")
@@ -53,7 +56,7 @@ region_enabled = true
 region_rect = Rect2(112, 32, 48, 32)
 region_filter_clip_enabled = true
 
-[node name="Sprite2D3" type="Sprite2D" parent="Spring/ScaleableSprite"]
+[node name="Sprite2D3" type="Sprite2D" parent="Area2D/ScaleableSprite"]
 visible = false
 position = Vector2(0, -120)
 scale = Vector2(4, 4)
@@ -64,7 +67,3 @@ frame = 2
 region_enabled = true
 region_rect = Rect2(64, 64, 96, 64)
 region_filter_clip_enabled = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring"]
-position = Vector2(0, -56)
-shape = SubResource("RectangleShape2D_66vwp")
