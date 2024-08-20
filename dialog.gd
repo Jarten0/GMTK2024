@@ -34,4 +34,8 @@ func _ready() -> void:
 	lines[26] = "And this! Seriously. It's almost like we're in some poorly thought out game jam game."
 	lines[27] = "Now this one is just a mess. Have some extra turns, because apparently it's necessary."
 	lines[28] = "Okay, heres the road again. We're almost there."
+	# ending cutscene
+	lines[29] = "Go! Go!!! You're going to make it!"
+	lines[30] = "Yes! Now connect the fuel line and get out of there!"
+	lines[31] = "Oh no! It's too late! Brace yourself!"
 	
